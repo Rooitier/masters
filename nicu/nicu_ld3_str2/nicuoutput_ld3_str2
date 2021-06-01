@@ -1,0 +1,4697 @@
+
+    TALYS-1.95 (Version: December 28, 2019)
+
+ Copyright (C) 2019  A.J. Koning, S. Hilaire and S. Goriely      
+
+ Dimensions - Cross sections: mb, Energies: MeV, Angles: degrees
+
+ ########## USER INPUT ##########
+
+ USER INPUT FILE
+
+ #
+ # general - 60ni(p,g)61cu, ldmodel 3, strength 2
+ #
+ projectile p
+ element ni
+ mass 60
+ energy 3. 6. 0.05
+ #
+ # parameters
+ #
+ massmodel 2
+ maxlevelsres 30
+ ejectiles g
+ ldmodel 3
+ strength 2
+ psfglobal y
+ localomp n
+ #
+ # output
+ #
+ outgamma y
+ outdensity y
+ filedensity y
+ filepsf y
+ psfglobal y
+
+ USER INPUT FILE + DEFAULTS
+
+ Keyword           Value   Variable     Explanation
+
+ #
+ # Four main keywords
+ #
+ projectile          p     ptype0       type of incident particle
+ element            Ni     Starget      symbol of target nucleus
+ mass               60     mass         mass number of target nucleus
+ energy                    energyfile   file with incident energies
+ #
+ # Basic physical and numerical parameters
+ #
+ ejectiles g               outtype      outgoing particles
+ maxz               12     maxZ         maximal number of protons away from the initial compound nucleus
+ maxn               29     maxN         maximal number of neutrons away from the initial compound nucleus
+ bins               40     nbins        number of continuum excitation energy bins
+ equidistant         n     flagequi     flag to use equidistant excitation bins instead of logarithmic bins
+ popmev              n     flagpopmev   flag to use initial population per MeV instead of histograms
+ segment             1     segment      number of segments to divide emission energy grid
+ maxlevelstar       30     nlevmax      maximum number of included discrete levels for target
+ maxlevelsres       30     nlevmaxres   maximum number of included discrete levels for residual nucleus
+ maxlevelsbin g     10     nlevbin      maximum number of included discrete levels for gamma    channel
+ maxlevelsbin n     10     nlevbin      maximum number of included discrete levels for neutron  channel
+ maxlevelsbin p     30     nlevbin      maximum number of included discrete levels for proton   channel
+ maxlevelsbin d      5     nlevbin      maximum number of included discrete levels for deuteron channel
+ maxlevelsbin t      5     nlevbin      maximum number of included discrete levels for triton   channel
+ maxlevelsbin h      5     nlevbin      maximum number of included discrete levels for helium-3 channel
+ maxlevelsbin a     10     nlevbin      maximum number of included discrete levels for alpha    channel
+ ltarget             0     ltarget      excited level of target
+ isomer           1.00E+00 isomer       definition of isomer in seconds
+ transpower          5     transpower   power for transmission coefficient limit
+ transeps         1.00E-08 transeps     limit for transmission coefficient
+ xseps            1.00E-07 xseps        limit for cross sections
+ popeps           1.00E-03 popeps       limit for population cross section per nucleus
+ Rfiseps          1.00E-03 Rfiseps      ratio for limit for fission cross section per nucleus
+ elow             1.00E-06 elow         minimal incident energy for nuclear model calculations
+ angles             90     nangle       number of angles
+ anglescont         18     nanglecont   number of angles for continuum
+ anglesrec           1     nanglerec    number of recoil angles
+ maxenrec           20     maxenrec     number of recoil energies
+ channels            n     flagchannels flag for exclusive channels calculation
+ maxchannel          4     maxchannel   maximal number of outgoing particles in individual channel description
+ micro               n     flagmicro    flag for completely microscopic Talys calculation
+ best                n     flagbest     flag to use best set of adjusted parameters
+ bestbranch          y     flagbestbr   flag to use flag to use only best set of branching ratios
+ bestend             n     flagbestend  flag to put best set of parameters at end of input file
+ relativistic        y     flagrel      flag for relativistic kinematics
+ recoil              n     flagrecoil   flag for calculation of recoils
+ labddx              n     flaglabddx   flag for calculation of DDX in LAB system
+ recoilaverage       n     flagrecoilav flag for average velocity in recoil calculation
+ channelenergy       n     flagEchannel flag for channel energy for emission spectrum
+ reaction            y     flagreaction flag for calculation of nuclear reactions
+ astro               n     flagastro    flag for calculation of astrophysics reaction rate
+ astrogs             n     flagastrogs  flag for calculation of astrophysics reaction rate with target in ground state only
+ astroex             n     flagastroex  flag for calculation of astrophysics reaction rate to long-lived excited states
+ nonthermlev        -1     nonthermlev  excited level non-thermalized in the calculation of astrophysics rate
+ massmodel           2     massmodel    model for theoretical nuclear mass
+ expmass             y     flagexpmass  flag for using experimental nuclear mass if available
+ disctable           1     disctable    table with discrete levels
+ production          n     flagprod     flag for isotope production
+ outfy               n     flagoutfy    flag for output detailed fission yield calculation
+ gefran          50000     gefran       number of random events for GEF calculation
+ Estop            1000.000 Estop        incident energy above which TALYS stops
+ rpevap              n     flagrpevap   flag for evaporation of residual products at high incident energies
+ maxZrp             12     maxZrp       maximal number of protons away from the initial compound nucleus before residual evaporation
+ maxNrp             32     maxNrp       maximal number of neutons away from the initial compound nucleus before residual evaporation
+ #
+ # Optical model
+ #
+ localomp            n     flaglocalomp flag for local (y) or global (n) optical model
+ dispersion          n     flagdisp     flag for dispersive optical model
+ jlmomp              n     flagjlm      flag for using semi-microscopic JLM OMP
+ optmodall           n     flagompall   flag for new optical model calculation for all residual nuclei
+ incadjust           y     flagincadj   flag for OMP adjustment on incident channel also
+ omponly             n     flagomponly  flag to execute ONLY an optical model calculation
+ autorot             n     flagautorot  flag for automatic rotational coupled channels calculations for A > 150
+ spherical           n     flagspher    flag to force spherical optical model
+ coulomb             y     flagcoulomb  flag for Coulomb excitation calculation with ECIS
+ statepot            n     flagstate    flag for optical model potential for each excited state
+ maxband             0     maxband      highest vibrational band added to rotational model
+ maxrot              2     maxrot       number of included excited rotational levels
+ sysreaction               sysreaction  particles with reaction cross section from systematics
+ rotational   p            rotational   particles with possible rotational optical model
+ core               -1     core         even-even core for weakcoupling (-1 or 1)
+ ecissave            n     flagecissave flag for saving ECIS input and output files
+ eciscalc            y     flageciscalc flag for new ECIS calculation for outgoing particles and energy grid
+ inccalc             y     flaginccalc  flag for new ECIS calculation for incident channel
+ endfecis            y     flagendfecis flag for new ECIS calculation for ENDF-6 files
+ radialmodel         2     radialmodel  model for radial matter densities (JLM OMP only)
+ jlmmode             0     jlmmode      option for JLM imaginary potential normalization
+ alphaomp            6     alphaomp     alpha OMP (1=normal, 2= McFadden-Satchler, 3-5= folding potential, 6,8= Avrigeanu, 7=Nolte)
+ deuteronomp         1     deuteronomp  deuteron OMP (1=normal, 2=Daehnick, 3=Bojowald, 4=Han-Shi-Shen, 5=An-Cai)
+ #
+ # Compound nucleus
+ #
+ widthfluc           y     flagwidth    flag for width fluctuation calculation
+ widthmode           1     wmode        designator for width fluctuation model
+ compound            y     flagcomp     flag for compound nucleus model
+ fullhf              n     flagfullhf   flag for full spin dependence of transmission coefficients
+ eciscompound        n     flageciscomp flag for compound nucleus calculation by ECIS
+ cpang               n     flagcpang    flag for compound angular distribution calculation for incident charged particles
+ urr                 n     flagurr      flag for URR calculation
+ urrnjoy             n     flagurrnjoy  flag for normalization of URR parameters with NJOY method
+ lurr                2     lurr         maximal orbital angular momentum for URR
+ #
+ # Gamma emission
+ #
+ gammax              2     gammax       number of l-values for gamma multipolarity
+ strength            2     strength     model for E1 gamma-ray strength function
+ strengthM1          2     strengthM1   model for M1 gamma-ray strength function
+ electronconv        y     flagelectron flag for application of electron conversion coefficient
+ racap               n     flagracap    flag for radiative capture model
+ ldmodelracap        1     ldmodelracap level density model for direct radiative capture
+ upbend              n     flagupbend   flag for low-energy upbend of photon strength function
+ psfglobal           y    flagpsfglobal flag for global photon strength functions only
+ #
+ # Pre-equilibrium
+ #
+ preequilibrium      4.116 epreeq       on-set incident energy for preequilibrium calculation
+ preeqmode           2     preeqmode    designator for pre-equilibrium model
+ multipreeq          n     flagmulpre   flag for multiple pre-equilibrium calculation
+ mpreeqmode          2     mpreeqmode   designator for multiple pre-equilibrium model
+ breakupmodel        1     breakupmodel model for break-up reaction: 1. Kalbach 2. Avrigeanu
+ phmodel             1     phmodel      particle-hole state density model
+ pairmodel           2     pairmodel    designator for pre-equilibrium pairing model
+ preeqspin           2     pespinmodel  model for pre-equilibrium spin distribution
+ giantresonance      y     flaggiant    flag for collective contribution from giant resonances
+ preeqsurface        y     flagsurface  flag for surface effects in exciton model
+ preeqcomplex        y     flagpecomp   flag for Kalbach complex particle emission model
+ twocomponent        y     flag2comp    flag for two-component pre-equilibrium model
+ ecisdwba            y     flagecisdwba flag for new ECIS calculation for DWBA for MSD
+ onestep             n     flagonestep  flag for continuum one-step direct only
+ #
+ # Level densities
+ #
+ ldmodel             3     ldmodelall   level density model
+ shellmodel          1     shellmodel   model for shell correction energies
+ kvibmodel           2     kvibmodel    model for vibrational enhancement
+ spincutmodel        1     spincutmodel model for spin cutoff factor for ground state
+ asys                n     flagasys     flag for all level density parameters a from systematics
+ parity              n     flagparity   flag for non-equal parity distribution
+ colenhance          n     flagcolall   flag for collective enhancement of level density for all nuclides
+ ctmglobal           n     flagctmglob  flag for global CTM model (no discrete level info)
+ gshell              n     flaggshell   flag for energy dependence of single particle level density parameter g
+ colldamp            n     flagcolldamp flag for damping of collective effects in effective  level density
+ #
+ # Fission
+ #
+ fission             n     flagfission  flag for fission
+ fismodel            1     fismodel     fission model
+ fismodelalt         4     fismodelalt  alternative fission model for default barriers
+ hbstate             y     flaghbstate  flag for head band states in fission
+ class2              y     flagclass2   flag for class2 states in fission
+ fispartdamp         n  flagfispartdamp flag for fission partial damping
+ massdis             n     flagmassdis  flag for calculation of fission fragment mass yields
+ ffevaporation       y     flagffevap   flag for calculation of particle evaporation from fission fragment mass yields
+ fisfeed             n     flagfisfeed  flag for output of fission per excitation bin
+ fymodel             2     fymodel      fission yield model, 1: Brosa 2: GEF
+ ffspin              n     flagffspin   flag to use spin distribution in initial FF population
+ #
+ # Output
+ #
+ outmain             y     flagmain     flag for main output
+ outbasic            n     flagbasic    flag for output of basic information and results
+ outpopulation       n     flagpop      flag for output of population
+ outcheck            n     flagcheck    flag for output of numerical checks
+ outlevels           n     flaglevels   flag for output of discrete level information
+ outdensity          y     flagdensity  flag for output of level densities
+ outomp              n     flagoutomp   flag for output of optical model parameters
+ outkd               n     flagoutkd    flag for output of KD03 OMP parameters
+ outdirect           n     flagdirect   flag for output of direct reaction results
+ outinverse          n     flaginverse  flag for output of transmission coefficients and inverse reaction cross sections
+ outdecay            n     flagdecay    flag for output of decay of each population bin
+ outtransenergy      y     flagtransen  flag for output of transmission coefficients per energy
+ outecis             n     flagoutecis  flag for output of ECIS results
+ outgamma            y     flaggamma    flag for output of gamma-ray information
+ outpreequilibrium   n     flagpeout    flag for output of pre-equilibrium results 
+ outfission          n     flagfisout   flag for output of fission information
+ outdiscrete         n     flagdisc     flag for output of discrete state cross sections
+ outspectra          n     flagspec     flag for output of double-differential cross sections
+ outbinspectra       n     flagbinspec  flag for output of emission spectrum per excitation bin
+ resonance           n     flagres      flag for output of low energy resonance cross sections
+ group               n     flaggroup    flag for output of low energy groupwise cross sections
+ addiscrete          y     flagadd      flag for addition of discrete states to spectra
+ addelastic          y     flagaddel    flag for addition of elastic peak to spectra
+ outangle            n     flagang      flag for output of angular distributions
+ outlegendre         n     flaglegendre flag for output of Legendre coefficients
+ ddxmode             0     ddxmode      mode for double-differential cross sections
+ outdwba             n     flagoutdwba  flag for output of DWBA cross sections for MSD
+ outgamdis           n     flaggamdis   flag for output of discrete gamma-ray intensities
+ outexcitation       y     flagexc      flag for output of excitation functions
+ components          n     flagcompo    flag for output of cross section components
+ endf                n     flagendf     flag for information for ENDF-6 file
+ endfdetail          n     flagendfdet  flag for detailed ENDF-6 information per channel
+ sacs                n     flagsacs     flag for statistical analysis of cross sections
+ partable            n     flagpartable flag for output of model parameters on separate file
+
+ ########## BASIC REACTION PARAMETERS ##########
+
+ Projectile           : proton      Mass in a.m.u.      :   1.007276
+ Target               :  60Ni       Mass in a.m.u.      :  59.930785
+
+ Included channels:
+                     gamma   
+                     proton  
+
+    61 incident energies (LAB):
+
+      3.000
+      3.050
+      3.100
+      3.150
+      3.200
+      3.250
+      3.300
+      3.350
+      3.400
+      3.450
+      3.500
+      3.550
+      3.600
+      3.650
+      3.700
+      3.750
+      3.800
+      3.850
+      3.900
+      3.950
+      4.000
+      4.050
+      4.100
+      4.150
+      4.200
+      4.250
+      4.300
+      4.350
+      4.400
+      4.450
+      4.500
+      4.550
+      4.600
+      4.650
+      4.700
+      4.750
+      4.800
+      4.850
+      4.900
+      4.950
+      5.000
+      5.050
+      5.100
+      5.150
+      5.200
+      5.250
+      5.300
+      5.350
+      5.400
+      5.450
+      5.500
+      5.550
+      5.600
+      5.650
+      5.700
+      5.750
+      5.800
+      5.850
+      5.900
+      5.950
+      6.000
+
+ Q-values for binary reactions:
+
+ Q(p,g):  4.79991
+ Q(p,p):  0.00000
+
+ Level density parameters for Z= 28 N= 32 ( 60Ni) 
+
+ Model: Generalized superfluid   
+ Collective enhancement: no
+
+ a(Sn)           :   5.72330
+ Experimental D0 :           2000.00 eV +-       700.00000
+ Theoretical D0  :           5064.60 eV
+ Theoretical D1  :           2746.25 eV
+ Av. res. energy :          10000.00 eV
+ Asymptotic a    :   5.72330
+ Damping gamma   :   0.16571
+ Pairing energy  :   0.00000
+ Shell correction:  -2.24575
+ Last disc. level:        30
+ Nlow            :         7
+ Ntop            :        32
+ Adj. pair shift :   2.33058
+ Critical energy :   4.61580
+ Condensation en.:   1.48165
+ Critical temp.  :   0.87839
+ Discrete sigma  :   1.88049
+ Sigma (Sn)      :   4.13939
+ Rhotot(Sn=11.39): 1.940E+03
+
+ Level density per parity for ground state
+ (Total level density also per parity)
+
+    Ex     a    sigma   total   JP=  0.0  JP=  1.0  JP=  2.0  JP=  3.0  JP=  4.0  JP=  5.0  JP=  6.0  JP=  7.0  JP=  8.0
+
+   0.25  4.062  1.880 3.004E-01 4.100E-02 9.270E-02 8.776E-02 5.260E-02 2.182E-02 6.486E-03 1.405E-03 2.239E-04 2.642E-05
+   0.50  4.062  1.880 4.092E-01 5.585E-02 1.263E-01 1.195E-01 7.165E-02 2.972E-02 8.835E-03 1.914E-03 3.050E-04 3.599E-05
+   0.75  4.062  1.880 5.546E-01 7.570E-02 1.711E-01 1.620E-01 9.712E-02 4.029E-02 1.197E-02 2.594E-03 4.134E-04 4.878E-05
+   1.00  4.062  1.880 7.484E-01 1.021E-01 2.310E-01 2.187E-01 1.311E-01 5.437E-02 1.616E-02 3.500E-03 5.579E-04 6.583E-05
+   1.25  4.062  1.880 1.006E+00 1.373E-01 3.105E-01 2.939E-01 1.762E-01 7.309E-02 2.172E-02 4.705E-03 7.500E-04 8.849E-05
+   1.50  4.062  1.880 1.348E+00 1.840E-01 4.160E-01 3.938E-01 2.360E-01 9.792E-02 2.911E-02 6.305E-03 1.005E-03 1.186E-04
+   1.75  4.062  1.880 1.801E+00 2.458E-01 5.558E-01 5.262E-01 3.154E-01 1.308E-01 3.889E-02 8.423E-03 1.343E-03 1.584E-04
+   2.00  4.062  1.880 2.401E+00 3.277E-01 7.409E-01 7.014E-01 4.204E-01 1.744E-01 5.184E-02 1.123E-02 1.790E-03 2.112E-04
+   2.25  4.062  1.880 3.195E+00 4.360E-01 9.858E-01 9.333E-01 5.594E-01 2.321E-01 6.897E-02 1.494E-02 2.381E-03 2.810E-04
+   2.50  4.089  2.875 2.605E+00 1.552E-01 4.126E-01 5.399E-01 5.257E-01 4.166E-01 2.780E-01 1.590E-01 7.862E-02 3.384E-02
+   2.75  4.119  2.932 3.144E+00 1.802E-01 4.812E-01 6.355E-01 6.276E-01 5.068E-01 3.463E-01 2.037E-01 1.041E-01 4.653E-02
+   3.00  4.149  2.987 3.791E+00 2.094E-01 5.617E-01 7.482E-01 7.484E-01 6.146E-01 4.290E-01 2.588E-01 1.363E-01 6.302E-02
+   3.25  4.177  3.040 4.566E+00 2.438E-01 6.563E-01 8.809E-01 8.914E-01 7.434E-01 5.289E-01 3.265E-01 1.766E-01 8.423E-02
+   3.50  4.205  3.090 5.495E+00 2.839E-01 7.671E-01 1.037E+00 1.060E+00 8.968E-01 6.494E-01 4.094E-01 2.270E-01 1.113E-01
+   3.75  4.233  3.139 6.604E+00 3.309E-01 8.969E-01 1.220E+00 1.260E+00 1.079E+00 7.942E-01 5.105E-01 2.895E-01 1.457E-01
+   4.00  4.259  3.186 7.927E+00 3.858E-01 1.049E+00 1.435E+00 1.495E+00 1.296E+00 9.679E-01 6.333E-01 3.666E-01 1.889E-01
+   4.25  4.285  3.231 9.502E+00 4.497E-01 1.226E+00 1.687E+00 1.772E+00 1.553E+00 1.176E+00 7.820E-01 4.615E-01 2.430E-01
+   4.50  4.311  3.275 1.138E+01 5.243E-01 1.433E+00 1.982E+00 2.097E+00 1.857E+00 1.424E+00 9.616E-01 5.776E-01 3.105E-01
+   4.75  4.335  3.317 1.360E+01 6.111E-01 1.674E+00 2.326E+00 2.479E+00 2.216E+00 1.719E+00 1.178E+00 7.193E-01 3.940E-01
+   5.00  4.359  3.358 1.624E+01 7.120E-01 1.955E+00 2.728E+00 2.928E+00 2.640E+00 2.071E+00 1.438E+00 8.917E-01 4.971E-01
+   5.50  4.406  3.437 2.305E+01 9.654E-01 2.661E+00 3.744E+00 4.066E+00 3.726E+00 2.982E+00 2.121E+00 1.353E+00 7.788E-01
+   6.00  4.450  3.511 3.253E+01 1.306E+00 3.613E+00 5.120E+00 5.620E+00 5.224E+00 4.256E+00 3.091E+00 2.022E+00 1.197E+00
+   6.50  4.492  3.582 4.568E+01 1.763E+00 4.892E+00 6.976E+00 7.730E+00 7.277E+00 6.024E+00 4.460E+00 2.982E+00 1.812E+00
+   7.00  4.532  3.649 6.379E+01 2.372E+00 6.602E+00 9.469E+00 1.058E+01 1.008E+01 8.461E+00 6.373E+00 4.347E+00 2.702E+00
+   7.50  4.570  3.714 8.862E+01 3.183E+00 8.882E+00 1.281E+01 1.442E+01 1.388E+01 1.180E+01 9.029E+00 6.271E+00 3.980E+00
+   8.00  4.606  3.776 1.225E+02 4.258E+00 1.191E+01 1.725E+01 1.957E+01 1.900E+01 1.636E+01 1.269E+01 8.961E+00 5.795E+00
+   8.50  4.641  3.835 1.685E+02 5.678E+00 1.591E+01 2.315E+01 2.643E+01 2.589E+01 2.253E+01 1.770E+01 1.269E+01 8.350E+00
+   9.00  4.673  3.892 2.306E+02 7.547E+00 2.119E+01 3.095E+01 3.555E+01 3.510E+01 3.084E+01 2.453E+01 1.783E+01 1.192E+01
+   9.50  4.705  3.947 3.141E+02 9.998E+00 2.813E+01 4.124E+01 4.762E+01 4.737E+01 4.200E+01 3.377E+01 2.487E+01 1.687E+01
+  10.00  4.735  4.001 4.260E+02 1.320E+01 3.721E+01 5.474E+01 6.353E+01 6.362E+01 5.690E+01 4.622E+01 3.444E+01 2.368E+01
+  11.00  4.791  4.102 7.733E+02 2.281E+01 6.448E+01 9.542E+01 1.118E+02 1.133E+02 1.029E+02 8.511E+01 6.478E+01 4.564E+01
+  12.00  4.842  4.197 1.381E+03 3.891E+01 1.103E+02 1.641E+02 1.938E+02 1.985E+02 1.827E+02 1.536E+02 1.191E+02 8.569E+01
+  13.00  4.889  4.287 2.427E+03 6.559E+01 1.863E+02 2.785E+02 3.312E+02 3.426E+02 3.189E+02 2.719E+02 2.144E+02 1.572E+02
+  14.00  4.932  4.371 4.204E+03 1.093E+02 3.111E+02 4.670E+02 5.588E+02 5.828E+02 5.483E+02 4.734E+02 3.787E+02 2.824E+02
+  15.00  4.971  4.452 7.182E+03 1.800E+02 5.135E+02 7.738E+02 9.311E+02 9.784E+02 9.292E+02 8.113E+02 6.576E+02 4.978E+02
+  16.00  5.007  4.529 1.211E+04 2.935E+02 8.385E+02 1.268E+03 1.533E+03 1.622E+03 1.554E+03 1.370E+03 1.124E+03 8.626E+02
+  17.00  5.041  4.602 2.018E+04 4.735E+02 1.355E+03 2.055E+03 2.497E+03 2.658E+03 2.566E+03 2.284E+03 1.894E+03 1.471E+03
+  18.00  5.071  4.673 3.323E+04 7.567E+02 2.168E+03 3.298E+03 4.024E+03 4.308E+03 4.187E+03 3.760E+03 3.148E+03 2.473E+03
+  19.00  5.100  4.740 5.413E+04 1.198E+03 3.438E+03 5.241E+03 6.421E+03 6.909E+03 6.759E+03 6.116E+03 5.168E+03 4.102E+03
+  20.00  5.126  4.805 8.728E+04 1.880E+03 5.401E+03 8.255E+03 1.015E+04 1.097E+04 1.080E+04 9.842E+03 8.386E+03 6.720E+03
+  22.50  5.184  4.957 2.763E+05 5.595E+03 1.612E+04 2.476E+04 3.068E+04 3.352E+04 3.342E+04 3.094E+04 2.685E+04 2.197E+04
+  25.00  5.233  5.096 8.294E+05 1.589E+04 4.587E+04 7.079E+04 8.829E+04 9.732E+04 9.811E+04 9.203E+04 8.110E+04 6.755E+04
+  30.00  5.309  5.346 6.522E+06 1.136E+05 3.291E+05 5.115E+05 6.447E+05 7.206E+05 7.394E+05 7.084E+05 6.398E+05 5.481E+05
+  40.00  5.409  5.761 2.646E+08 3.971E+06 1.156E+07 1.814E+07 2.320E+07 2.644E+07 2.780E+07 2.742E+07 2.562E+07 2.282E+07
+  50.00  5.471  6.103 7.131E+09 9.541E+07 2.787E+08 4.401E+08 5.685E+08 6.565E+08 7.016E+08 7.058E+08 6.748E+08 6.170E+08
+  60.00  5.512  6.395 1.429E+11 1.742E+09 5.100E+09 8.095E+09 1.053E+10 1.228E+10 1.328E+10 1.355E+10 1.318E+10 1.228E+10
+  70.00  5.542  6.652 2.284E+12 2.573E+10 7.547E+10 1.202E+11 1.573E+11 1.847E+11 2.017E+11 2.081E+11 2.050E+11 1.939E+11
+  80.00  5.564  6.882 3.044E+13 3.205E+11 9.415E+11 1.504E+12 1.977E+12 2.336E+12 2.569E+12 2.674E+12 2.662E+12 2.548E+12
+  90.00  5.582  7.091 3.497E+14 3.468E+12 1.020E+13 1.634E+13 2.155E+13 2.558E+13 2.831E+13 2.969E+13 2.981E+13 2.882E+13
+ 100.00  5.596  7.284 3.543E+15 3.331E+13 9.807E+13 1.574E+14 2.083E+14 2.483E+14 2.762E+14 2.915E+14 2.948E+14 2.873E+14
+ 110.00  5.607  7.462 3.224E+16 2.889E+14 8.512E+14 1.369E+15 1.816E+15 2.172E+15 2.427E+15 2.575E+15 2.621E+15 2.572E+15
+ 120.00  5.617  7.628 2.672E+17 2.291E+15 6.756E+15 1.088E+16 1.447E+16 1.736E+16 1.947E+16 2.076E+16 2.124E+16 2.098E+16
+ 130.00  5.625  7.784 2.039E+18 1.679E+16 4.955E+16 7.990E+16 1.065E+17 1.281E+17 1.442E+17 1.543E+17 1.587E+17 1.576E+17
+ 140.00  5.632  7.931 1.446E+19 1.147E+17 3.387E+17 5.469E+17 7.300E+17 8.807E+17 9.942E+17 1.068E+18 1.103E+18 1.100E+18
+ 150.00  5.638  8.070 9.603E+19 7.358E+17 2.174E+18 3.514E+18 4.697E+18 5.680E+18 6.429E+18 6.929E+18 7.180E+18 7.197E+18
+ 160.00  5.643  8.203 6.009E+20 4.457E+18 1.317E+19 2.131E+19 2.854E+19 3.458E+19 3.923E+19 4.241E+19 4.410E+19 4.438E+19
+ 170.00  5.648  8.329 3.562E+21 2.563E+19 7.579E+19 1.227E+20 1.645E+20 1.997E+20 2.271E+20 2.462E+20 2.568E+20 2.593E+20
+ 180.00  5.652  8.450 2.010E+22 1.405E+20 4.156E+20 6.736E+20 9.042E+20 1.099E+21 1.253E+21 1.361E+21 1.424E+21 1.443E+21
+ 190.00  5.656  8.566 1.083E+23 7.370E+20 2.181E+21 3.538E+21 4.754E+21 5.788E+21 6.608E+21 7.197E+21 7.548E+21 7.671E+21
+ 200.00  5.659  8.677 5.600E+23 3.713E+21 1.099E+22 1.784E+22 2.400E+22 2.926E+22 3.346E+22 3.652E+22 3.839E+22 3.913E+22
+
+ Discrete levels versus total level density
+
+   Energy Level   N_cumulative
+
+   3.1860   8       7.528
+   3.1940   9       7.597
+   3.2694  10       8.276
+   3.3187  11       8.742
+   3.3810  12       9.355
+   3.3935  13       9.481
+   3.5881  14      11.605
+   3.6195  15      11.978
+   3.6229  16      12.018
+   3.6707  17      12.604
+   3.7020  18      12.998
+   3.7307  19      13.368
+   3.7361  20      13.438
+   3.8750  21      15.349
+   3.8878  22      15.535
+   3.8950  23      15.641
+   3.9258  24      16.098
+   4.0079  25      17.369
+   4.0205  26      17.570
+   4.0350  27      17.805
+   4.0397  28      17.881
+   4.0785  29      18.525
+   4.1160  30      19.162
+   4.1654  31      20.030
+   4.1910  32      20.491
+   4.2651  33      21.878
+   4.2945  34      22.448
+   4.3000  35      22.556
+   4.3190  36      22.933
+   4.3347  37      23.249
+   4.3410  38      23.376
+   4.3557  39      23.676
+   4.3994  40      24.587
+   4.4075  41      24.758
+   4.4500  42      25.677
+   4.4934  43      26.646
+   4.5357  44      27.618
+   4.5488  45      27.925
+   4.5791  46      28.646
+   4.6130  47      29.473
+   4.7605  48      33.308
+   4.7680  49      33.514
+   4.7810  50      33.874
+   4.8000  51      34.406
+   4.8442  52      35.671
+   4.8490  53      35.811
+   4.8590  54      36.104
+   4.8910  55      37.055
+   4.9320  56      38.306
+   4.9580  57      39.118
+   4.9700  58      39.498
+   4.9857  59      40.000
+   5.0151  60      40.955
+   5.0483  61      42.057
+   5.0690  62      42.758
+   5.0900  63      43.479
+   5.1060  64      44.036
+   5.1100  65      44.176
+   5.1200  66      44.528
+   5.1330  67      44.990
+   5.1487  68      45.553
+   5.1740  69      46.473
+   5.1880  70      46.989
+   5.2050  71      47.623
+   5.2440  72      49.107
+   5.2640  73      49.883
+   5.2930  74      51.028
+   5.3070  75      51.590
+   5.3178  76      52.027
+   5.3489  77      53.303
+   5.3791  78      54.569
+   5.3960  79      55.289
+   5.4100  80      55.893
+   5.4280  81      56.677
+   5.4487  82      57.591
+   5.4740  83      58.726
+   5.5299  84      61.306
+   5.6150  85      65.431
+   5.6420  86      66.792
+   5.6500  87      67.200
+   5.6629  88      67.863
+   5.7130  89      70.493
+   5.7410  90      72.003
+   5.7805  91      74.184
+   5.7851  92      74.442
+   5.7993  93      75.243
+   5.8240  94      76.656
+   5.8480  95      78.051
+   5.8630  96      78.935
+   5.9000  97      81.155
+   5.9210  98      82.440
+   5.9460  99      83.994
+   5.9730 100      85.703
+   5.9920 101      86.925
+   6.0280 102      89.283
+   6.0540 103      91.023
+   6.0710 104      92.177
+   6.1210 105      95.651
+   6.1420 106      97.146
+   6.1810 107      99.979
+   6.1920 108     100.792
+   6.2390 109     104.334
+   6.2750 110     107.125
+   6.2920 111     108.467
+   6.3310 112     111.603
+   6.3620 113     114.157
+   6.3800 114     115.664
+   6.4030 115     117.617
+   6.4310 116     120.036
+   6.4609 117     122.669
+   6.4680 118     123.303
+   6.4920 119     125.466
+   6.5160 120     127.664
+   6.5510 121     130.935
+   6.5680 122     132.551
+   6.5840 123     134.089
+   6.6100 124     136.625
+   6.6230 125     137.909
+   6.6520 126     140.814
+   6.6580 127     141.423
+   6.6730 128     142.954
+   6.6870 129     144.397
+   6.7080 130     146.588
+   6.7280 131     148.703
+   6.7530 132     151.386
+   6.7650 133     152.690
+   6.7910 134     155.552
+   6.8104 135     157.720
+   6.8320 136     160.167
+   6.8367 137     160.704
+   6.8590 138     163.275
+   6.8920 139     167.151
+   6.9510 140     174.296
+   7.0000 141     180.447
+   7.0560 142     187.725
+   7.1030 143     194.045
+   7.1100 144     195.003
+   7.2900 145     221.210
+   7.3100 146     224.320
+   7.4315 147     244.109
+   7.5500 148     264.984
+   7.5700 149     268.670
+   7.5900 150     272.404
+   7.6280 151     279.635
+   7.6920 152     292.222
+   7.7590 153     305.971
+   7.8130 154     317.495
+   8.0439 155     371.513
+   8.1100 156     388.525
+   8.2800 157     435.707
+   8.4300 158     481.805
+   8.4330 159     482.773
+   8.5205 160     511.821
+   8.6700 161     565.312
+   8.6850 162     570.964
+   8.9590 163     684.017
+   9.0600 164     730.867
+   9.1321 165     766.162
+   9.2080 166     805.063
+   9.9894 167    1326.558
+  10.9850 168    2463.095
+  11.0480 169    2561.477
+  11.1120 170    2665.214
+  11.1200 171    2678.457
+  11.1380 172    2708.483
+  11.1490 173    2726.989
+  11.1580 174    2742.219
+  11.2070 175    2826.556
+  11.2260 176    2859.915
+  11.4290 177    3240.165
+  11.4460 178    3274.112
+  11.5990 179    3595.074
+  11.6200 180    3641.401
+  11.6470 181    3701.798
+  11.7020 182    3827.771
+  11.7320 183    3898.190
+  11.7500 184    3941.028
+  11.8600 185    4212.637
+  11.8750 186    4251.029
+  11.9320 187    4399.960
+  11.9500 188    4448.011
+  12.1300 189    4956.519
+  12.2730 190    5399.440
+  12.3330 191    5596.308
+  12.3550 192    5670.187
+  12.4650 193    6053.654
+  12.4890 194    6140.547
+  12.5150 195    6236.018
+  13.7600 196   12758.579
+  13.9080 197   13895.566
+  14.6700 198   21385.190
+  14.8170 199   23228.083
+
+ Level density parameters for Z= 29 N= 32 ( 61Cu) 
+
+ Model: Generalized superfluid   
+ Collective enhancement: no
+
+ a(Sn)           :   6.07502
+ Experimental D0 :              0.00 eV +-         0.00000
+ Theoretical D0  :            435.93 eV
+ Theoretical D1  :            236.52 eV
+ Av. res. energy :          10000.00 eV
+ Asymptotic a    :   7.23113
+ Damping gamma   :   0.16480
+ Pairing energy  :   1.53644
+ Shell correction:  -2.33641
+ Last disc. level:        10
+ Nlow            :         3
+ Ntop            :        18
+ Adj. pair shift :   1.47012
+ Critical energy :   5.79211
+ Condensation en.:   1.85924
+ Critical temp.  :   0.87116
+ Discrete sigma  :   2.10000
+ Sigma (Sn)      :   4.00716
+ Rhotot(Sn=11.71): 1.827E+04
+
+ Level density per parity for ground state
+ (Total level density also per parity)
+
+    Ex     a    sigma   total   JP=  0.5  JP=  1.5  JP=  2.5  JP=  3.5  JP=  4.5  JP=  5.5  JP=  6.5  JP=  7.5  JP=  8.5
+
+   0.25  5.182  2.100 6.980E-01 1.413E-01 2.011E-01 1.712E-01 1.032E-01 4.649E-02 1.603E-02 4.283E-03 8.937E-04 1.463E-04
+   0.50  5.182  2.100 9.551E-01 1.934E-01 2.752E-01 2.342E-01 1.412E-01 6.362E-02 2.193E-02 5.861E-03 1.223E-03 2.002E-04
+   0.75  5.182  2.100 1.300E+00 2.633E-01 3.747E-01 3.188E-01 1.922E-01 8.661E-02 2.986E-02 7.979E-03 1.665E-03 2.725E-04
+   1.00  5.182  2.100 1.762E+00 3.568E-01 5.078E-01 4.321E-01 2.605E-01 1.174E-01 4.047E-02 1.081E-02 2.256E-03 3.694E-04
+   1.25  5.182  2.100 2.379E+00 4.816E-01 6.855E-01 5.833E-01 3.517E-01 1.584E-01 5.463E-02 1.460E-02 3.045E-03 4.986E-04
+   1.50  5.182  2.100 3.199E+00 6.476E-01 9.217E-01 7.843E-01 4.729E-01 2.131E-01 7.346E-02 1.963E-02 4.095E-03 6.704E-04
+   1.75  5.182  2.100 4.287E+00 8.678E-01 1.235E+00 1.051E+00 6.337E-01 2.855E-01 9.845E-02 2.630E-02 5.488E-03 8.985E-04
+   2.00  5.182  2.100 5.727E+00 1.159E+00 1.650E+00 1.404E+00 8.467E-01 3.815E-01 1.315E-01 3.514E-02 7.332E-03 1.200E-03
+   2.25  5.182  2.100 7.631E+00 1.545E+00 2.199E+00 1.871E+00 1.128E+00 5.083E-01 1.753E-01 4.683E-02 9.770E-03 1.599E-03
+   2.50  5.182  2.100 1.014E+01 2.054E+00 2.923E+00 2.487E+00 1.500E+00 6.757E-01 2.330E-01 6.225E-02 1.299E-02 2.126E-03
+   2.75  5.182  2.100 1.346E+01 2.724E+00 3.877E+00 3.299E+00 1.989E+00 8.963E-01 3.090E-01 8.257E-02 1.723E-02 2.820E-03
+   3.00  5.214  2.907 1.240E+01 1.384E+00 2.317E+00 2.585E+00 2.278E+00 1.672E+00 1.046E+00 5.655E-01 2.660E-01 1.094E-01
+   3.25  5.250  2.955 1.543E+01 1.669E+00 2.811E+00 3.166E+00 2.827E+00 2.111E+00 1.349E+00 7.474E-01 3.618E-01 1.537E-01
+   3.50  5.286  3.001 1.916E+01 2.012E+00 3.407E+00 3.872E+00 3.500E+00 2.654E+00 1.729E+00 9.802E-01 4.871E-01 2.132E-01
+   3.75  5.321  3.045 2.374E+01 2.425E+00 4.126E+00 4.727E+00 4.321E+00 3.325E+00 2.205E+00 1.276E+00 6.497E-01 2.923E-01
+   4.00  5.354  3.088 2.936E+01 2.921E+00 4.992E+00 5.761E+00 5.322E+00 4.151E+00 2.798E+00 1.651E+00 8.597E-01 3.967E-01
+   4.25  5.387  3.130 3.625E+01 3.516E+00 6.033E+00 7.011E+00 6.540E+00 5.164E+00 3.535E+00 2.124E+00 1.129E+00 5.334E-01
+   4.50  5.419  3.170 4.466E+01 4.228E+00 7.283E+00 8.519E+00 8.019E+00 6.406E+00 4.447E+00 2.718E+00 1.473E+00 7.112E-01
+   4.75  5.450  3.209 5.493E+01 5.080E+00 8.783E+00 1.034E+01 9.811E+00 7.923E+00 5.574E+00 3.460E+00 1.909E+00 9.410E-01
+   5.00  5.481  3.247 6.743E+01 6.098E+00 1.058E+01 1.252E+01 1.198E+01 9.772E+00 6.961E+00 4.385E+00 2.461E+00 1.236E+00
+   5.50  5.539  3.320 1.011E+02 8.761E+00 1.529E+01 1.829E+01 1.775E+01 1.475E+01 1.075E+01 6.954E+00 4.025E+00 2.095E+00
+   6.00  5.595  3.390 1.504E+02 1.253E+01 2.200E+01 2.655E+01 2.610E+01 2.205E+01 1.640E+01 1.086E+01 6.464E+00 3.470E+00
+   6.50  5.648  3.456 2.223E+02 1.786E+01 3.150E+01 3.832E+01 3.811E+01 3.268E+01 2.474E+01 1.675E+01 1.021E+01 5.639E+00
+   7.00  5.699  3.519 3.265E+02 2.533E+01 4.487E+01 5.500E+01 5.527E+01 4.804E+01 3.697E+01 2.551E+01 1.591E+01 9.007E+00
+   7.50  5.747  3.579 4.763E+02 3.576E+01 6.362E+01 7.850E+01 7.964E+01 7.006E+01 5.472E+01 3.843E+01 2.446E+01 1.417E+01
+   8.00  5.793  3.637 6.905E+02 5.027E+01 8.977E+01 1.115E+02 1.141E+02 1.015E+02 8.032E+01 5.733E+01 3.716E+01 2.198E+01
+   8.50  5.837  3.692 9.952E+02 7.037E+01 1.261E+02 1.574E+02 1.624E+02 1.459E+02 1.170E+02 8.472E+01 5.585E+01 3.369E+01
+   9.00  5.879  3.746 1.426E+03 9.806E+01 1.762E+02 2.212E+02 2.299E+02 2.085E+02 1.691E+02 1.241E+02 8.312E+01 5.103E+01
+   9.50  5.919  3.798 2.032E+03 1.361E+02 2.453E+02 3.094E+02 3.236E+02 2.961E+02 2.427E+02 1.804E+02 1.226E+02 7.649E+01
+  10.00  5.957  3.848 2.880E+03 1.881E+02 3.399E+02 4.306E+02 4.532E+02 4.181E+02 3.460E+02 2.602E+02 1.792E+02 1.135E+02
+  11.00  6.028  3.943 5.695E+03 3.547E+02 6.442E+02 8.228E+02 8.759E+02 8.197E+02 6.906E+02 5.304E+02 3.742E+02 2.437E+02
+  12.00  6.093  4.033 1.105E+04 6.587E+02 1.201E+03 1.545E+03 1.661E+03 1.575E+03 1.347E+03 1.054E+03 7.595E+02 5.066E+02
+  13.00  6.153  4.117 2.103E+04 1.205E+03 2.206E+03 2.855E+03 3.096E+03 2.968E+03 2.575E+03 2.047E+03 1.503E+03 1.024E+03
+  14.00  6.208  4.197 3.938E+04 2.173E+03 3.990E+03 5.194E+03 5.677E+03 5.497E+03 4.828E+03 3.894E+03 2.908E+03 2.019E+03
+  15.00  6.258  4.274 7.254E+04 3.865E+03 7.120E+03 9.313E+03 1.025E+04 1.002E+04 8.894E+03 7.269E+03 5.510E+03 3.892E+03
+  16.00  6.304  4.346 1.316E+05 6.786E+03 1.254E+04 1.647E+04 1.825E+04 1.798E+04 1.612E+04 1.333E+04 1.024E+04 7.349E+03
+  17.00  6.347  4.416 2.355E+05 1.177E+04 2.180E+04 2.876E+04 3.205E+04 3.181E+04 2.879E+04 2.406E+04 1.872E+04 1.362E+04
+  18.00  6.386  4.482 4.157E+05 2.018E+04 3.746E+04 4.962E+04 5.558E+04 5.553E+04 5.068E+04 4.278E+04 3.366E+04 2.481E+04
+  19.00  6.423  4.546 7.246E+05 3.422E+04 6.365E+04 8.460E+04 9.523E+04 9.575E+04 8.805E+04 7.501E+04 5.963E+04 4.447E+04
+  20.00  6.457  4.608 1.248E+06 5.743E+04 1.070E+05 1.427E+05 1.613E+05 1.632E+05 1.511E+05 1.298E+05 1.042E+05 7.854E+04
+  22.50  6.531  4.752 4.634E+06 2.007E+05 3.756E+05 5.044E+05 5.760E+05 5.899E+05 5.548E+05 4.854E+05 3.979E+05 3.072E+05
+  25.00  6.594  4.884 1.617E+07 6.639E+05 1.247E+06 1.684E+06 1.939E+06 2.007E+06 1.913E+06 1.699E+06 1.418E+06 1.117E+06
+  30.00  6.692  5.122 1.686E+08 6.305E+06 1.191E+07 1.624E+07 1.895E+07 1.995E+07 1.941E+07 1.768E+07 1.518E+07 1.235E+07
+  40.00  6.821  5.517 1.129E+10 3.649E+08 6.947E+08 9.599E+08 1.141E+09 1.230E+09 1.232E+09 1.161E+09 1.037E+09 8.824E+08
+  50.00  6.901  5.842 4.735E+11 1.367E+10 2.617E+10 3.648E+10 4.390E+10 4.809E+10 4.912E+10 4.737E+10 4.346E+10 3.812E+10
+  60.00  6.955  6.121 1.416E+13 3.729E+11 7.165E+11 1.005E+12 1.221E+12 1.353E+12 1.402E+12 1.376E+12 1.287E+12 1.154E+12
+  70.00  6.994  6.366 3.267E+14 7.964E+12 1.535E+13 2.165E+13 2.647E+13 2.961E+13 3.103E+13 3.083E+13 2.928E+13 2.671E+13
+  80.00  7.023  6.586 6.134E+15 1.398E+14 2.701E+14 3.825E+14 4.704E+14 5.301E+14 5.603E+14 5.627E+14 5.410E+14 5.003E+14
+  90.00  7.046  6.785 9.718E+16 2.088E+15 4.042E+15 5.742E+15 7.096E+15 8.044E+15 8.566E+15 8.678E+15 8.427E+15 7.882E+15
+ 100.00  7.064  6.969 1.335E+18 2.720E+16 5.275E+16 7.515E+16 9.323E+16 1.062E+17 1.138E+17 1.162E+17 1.138E+17 1.074E+17
+ 110.00  7.079  7.139 1.622E+19 3.152E+17 6.120E+17 8.741E+17 1.088E+18 1.245E+18 1.341E+18 1.378E+18 1.359E+18 1.294E+18
+ 120.00  7.092  7.298 1.772E+20 3.297E+18 6.410E+18 9.174E+18 1.145E+19 1.316E+19 1.424E+19 1.470E+19 1.460E+19 1.400E+19
+ 130.00  7.102  7.446 1.763E+21 3.151E+19 6.134E+19 8.796E+19 1.101E+20 1.269E+20 1.379E+20 1.431E+20 1.428E+20 1.379E+20
+ 140.00  7.111  7.587 1.614E+22 2.780E+20 5.416E+20 7.779E+20 9.760E+20 1.128E+21 1.231E+21 1.282E+21 1.287E+21 1.249E+21
+ 150.00  7.119  7.720 1.371E+23 2.281E+21 4.449E+21 6.400E+21 8.046E+21 9.326E+21 1.020E+22 1.068E+22 1.076E+22 1.049E+22
+ 160.00  7.126  7.847 1.089E+24 1.754E+22 3.423E+22 4.931E+22 6.211E+22 7.217E+22 7.920E+22 8.314E+22 8.412E+22 8.243E+22
+ 170.00  7.132  7.967 8.129E+24 1.271E+23 2.482E+23 3.579E+23 4.516E+23 5.259E+23 5.787E+23 6.094E+23 6.189E+23 6.090E+23
+ 180.00  7.138  8.083 5.739E+25 8.717E+23 1.704E+24 2.460E+24 3.109E+24 3.627E+24 4.001E+24 4.226E+24 4.306E+24 4.253E+24
+ 190.00  7.143  8.193 3.847E+26 5.688E+24 1.112E+25 1.608E+25 2.035E+25 2.379E+25 2.630E+25 2.785E+25 2.846E+25 2.821E+25
+ 200.00  7.147  8.300 2.459E+27 3.544E+25 6.935E+25 1.003E+26 1.271E+26 1.489E+26 1.649E+26 1.751E+26 1.795E+26 1.784E+26
+
+ Discrete levels versus total level density
+
+   Energy Level   N_cumulative
+
+   1.3942   4       3.450
+   1.6605   5       5.209
+   1.7326   6       5.790
+   1.9042   7       7.382
+   1.9327   8       7.679
+   1.9425   9       7.784
+   2.0889  10       9.491
+   2.2034  11      11.044
+   2.2951  12      12.442
+   2.3365  13      13.122
+   2.3582  14      13.493
+   2.3990  15      14.214
+   2.4725  16      15.599
+   2.5838  17      17.930
+   2.5982  18      18.254
+   2.6117  19      18.564
+   2.6272  20      18.923
+   2.6841  21      20.301
+   2.7207  22      21.234
+   2.7283  23      21.434
+   2.7926  24      23.184
+   2.8405  25      24.195
+   2.8571  26      24.555
+   2.9242  27      26.067
+   2.9327  28      26.266
+   3.0016  29      27.926
+   3.0157  30      28.279
+   3.0193  31      28.369
+   3.0370  32      28.819
+   3.0420  33      28.947
+   3.0655  34      29.559
+   3.0921  35      30.265
+   3.1986  36      33.264
+   3.2490  37      34.785
+   3.2598  38      35.119
+   3.2771  39      35.662
+   3.3231  40      37.145
+   3.3570  41      38.276
+   3.3727  42      38.811
+   3.4060  43      39.970
+   3.4370  44      41.080
+   3.4544  45      41.716
+   3.5212  46      44.249
+   3.5470  47      45.266
+   3.5780  48      46.520
+   3.5970  49      47.305
+   3.6180  50      48.187
+   3.6460  51      49.389
+   3.6537  52      49.724
+   3.6860  53      51.156
+   3.7060  54      52.063
+   3.7300  55      53.171
+   3.7395  56      53.616
+   3.7795  57      55.531
+   3.7901  58      56.049
+   3.8020  59      56.637
+   3.8440  60      58.759
+   3.8531  61      59.229
+   3.8630  62      59.744
+   3.9428  63      64.060
+   3.9470  64      64.295
+   3.9803  65      66.191
+   4.0518  66      70.447
+   4.0600  67      70.952
+   4.0820  68      72.324
+   4.1328  69      75.590
+   4.2863  70      86.346
+   4.3321  71      89.835
+   4.3570  72      91.789
+   4.3806  73      93.678
+   4.4672  74     100.939
+   4.4700  75     101.182
+   4.4840  76     102.409
+   4.5897  77     112.144
+   4.6030  78     113.431
+   4.8187  79     136.375
+   4.8590  80     141.138
+   4.9910  81     157.880
+   5.0720  82     169.089
+   5.1192  83     175.970
+   5.1363  84     178.529
+   5.2780  85     201.147
+   5.4310  86     228.659
+   5.4623  87     234.721
+   5.7013  88     286.304
+   5.7320  89     293.683
+   5.8552  90     325.162
+   6.0543  91     382.959
+   6.0840  92     392.393
+   6.3506  93     487.521
+   6.3615  94     491.855
+   6.3723  95     496.186
+   6.3782  96     498.567
+   6.3929  97     504.548
+   6.4410  98     524.602
+   6.4461  99     526.772
+   6.4570 100     531.440
+   6.6270 101     609.532
+   6.6450 102     618.423
+   6.7010 103     646.885
+   6.8232 104     713.398
+   7.3882 105    1113.160
+   7.4010 106    1124.426
+   7.9352 107    1701.347
+   8.4460 108    2512.814
+   8.4500 109    2520.480
+   8.4530 110    2526.245
+   8.4570 111    2533.951
+   8.4630 112    2545.552
+   8.4650 113    2549.430
+   8.4720 114    2563.048
+   8.4750 115    2568.906
+   8.4770 116    2572.818
+   8.4800 117    2578.695
+   8.4840 118    2586.555
+   8.5610 119    2742.335
+   9.4062 120    5124.833
+
+ ########## GAMMA STRENGTH FUNCTIONS, TRANSMISSION COEFFICIENTS AND CROSS SECTIONS ##########
+
+ Gamma-ray information for Z= 29 N= 32 ( 61Cu) 
+
+ S-wave strength function parameters:
+
+ Exp. total radiative width=   1.60000 eV +/- 0.00000 Theor. total radiative width for l=0:        3.08600 eV
+                                                      Theor. total radiative width for l=0:        3.08600 eV (gnorm= 1.000)
+                                                      Theor. total radiative width for l=1:        2.74356 eV
+ Exp. D0                   =      0.00 eV +/-    0.00 Theor. D0                   =      435.92535 eV
+                                                      Theor. D1                   =      236.51956 eV
+ Theor. S-wave strength f. =  70.79192E-4
+ Average resonance energy  =     10000.00 eV
+ Normalization factor      =   1.00000
+
+ Incident energy: E[MeV]=   6.000
+
+ Gamma-ray strength function model for E1: Brink-Axel               
+
+ Gamma-ray strength function model for M1: RIPL-2                   
+
+ Normalized gamma-ray strength functions and transmission coefficients for l= 1
+
+ Giant resonance parameters :
+
+ sigma0(M1) =   6.916       sigma0(E1) = 103.941    PR: sigma0(M1) =   0.000       sigma0(E1) =   0.000
+      E(M1) =  10.415            E(E1) =  18.309    PR:      E(M1) =   0.000            E(E1) =   0.000
+  gamma(M1) =   4.000        gamma(E1) =   6.709    PR:  gamma(M1) =   0.000        gamma(E1) =   0.000
+      k(M1) =   8.67373E-08      k(E1) =   8.67373E-08
+
+      E       f(M1)        f(E1)        T(M1)        T(E1)
+
+    0.001  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+    0.002  1.63115E-12  7.22257E-12  8.19907E-20  3.63046E-19
+    0.005  4.07788E-12  1.80564E-11  3.20276E-18  1.41815E-17
+    0.010  8.15577E-12  3.61129E-11  5.12442E-17  2.26904E-16
+    0.020  1.63116E-11  7.22259E-11  8.19912E-16  3.63047E-15
+    0.050  4.07805E-11  1.80567E-10  3.20290E-14  1.41817E-13
+    0.100  8.15715E-11  3.61149E-10  5.12529E-13  2.26916E-12
+    0.200  1.63227E-10  7.22418E-10  8.20467E-12  3.63127E-11
+    0.300  2.45049E-10  1.08393E-09  4.15716E-11  1.83884E-10
+    0.400  3.27123E-10  1.44580E-09  1.31544E-10  5.81391E-10
+    0.500  4.09534E-10  1.80816E-09  3.21647E-10  1.42012E-09
+    0.600  4.92367E-10  2.17112E-09  6.68225E-10  2.94657E-09
+    0.700  5.75709E-10  2.53481E-09  1.24073E-09  5.46285E-09
+    0.800  6.59647E-10  2.89935E-09  2.12208E-09  9.32717E-09
+    0.900  7.44272E-10  3.26486E-09  3.40909E-09  1.49545E-08
+    1.000  8.29674E-10  3.63147E-09  5.21299E-09  2.28172E-08
+    1.100  9.15946E-10  3.99930E-09  7.65998E-09  3.34458E-08
+    1.200  1.00318E-09  4.36848E-09  1.08919E-08  4.74300E-08
+    1.300  1.09148E-09  4.73913E-09  1.50670E-08  6.54197E-08
+    1.400  1.18095E-09  5.11139E-09  2.03608E-08  8.81257E-08
+    1.500  1.27168E-09  5.48538E-09  2.69669E-08  1.16322E-07
+    1.600  1.36378E-09  5.86123E-09  3.50982E-08  1.50844E-07
+    1.700  1.45737E-09  6.23908E-09  4.49880E-08  1.92596E-07
+    1.800  1.55255E-09  6.61906E-09  5.68911E-08  2.42546E-07
+    1.900  1.64945E-09  7.00131E-09  7.10855E-08  3.01731E-07
+    2.000  1.74819E-09  7.38596E-09  8.78737E-08  3.71259E-07
+    2.200  1.95169E-09  8.16303E-09  1.30575E-07  5.46135E-07
+    2.400  2.16416E-09  8.95143E-09  1.87976E-07  7.77510E-07
+    2.600  2.38676E-09  9.75232E-09  2.63578E-07  1.07698E-06
+    2.800  2.62081E-09  1.05669E-08  3.61484E-07  1.45748E-06
+    3.000  2.86774E-09  1.13965E-08  4.86501E-07  1.93338E-06
+    3.200  3.12915E-09  1.22425E-08  6.44253E-07  2.52057E-06
+    3.400  3.40681E-09  1.31061E-08  8.41327E-07  3.23660E-06
+    3.600  3.70270E-09  1.39888E-08  1.08544E-06  4.10079E-06
+    3.800  4.01904E-09  1.48922E-08  1.38565E-06  5.13439E-06
+    4.000  4.35833E-09  1.58178E-08  1.75259E-06  6.36070E-06
+    4.500  5.32641E-09  1.82401E-08  3.04967E-06  1.04435E-05
+    5.000  6.51226E-09  2.08404E-08  5.11472E-06  1.63680E-05
+    5.500  7.99328E-09  2.36517E-08  8.35590E-06  2.47247E-05
+    6.000  9.87862E-09  2.67120E-08  1.34069E-05  3.62527E-05
+    6.500  1.23231E-08  3.00661E-08  2.12638E-05  5.18797E-05
+    7.000  1.55450E-08  3.37667E-08  3.35016E-05  7.27718E-05
+    7.500  1.98410E-08  3.78767E-08  5.25929E-05  1.00400E-04
+    8.000  2.55727E-08  4.24712E-08  8.22673E-05  1.36629E-04
+    8.500  3.30470E-08  4.76410E-08  1.27517E-04  1.83831E-04
+    9.000  4.21124E-08  5.34962E-08  1.92894E-04  2.45036E-04
+    9.500  5.13291E-08  6.01710E-08  2.76512E-04  3.24144E-04
+   10.000  5.74049E-08  6.78300E-08  3.60686E-04  4.26188E-04
+   10.500  5.70269E-08  7.66756E-08  4.14789E-04  5.57706E-04
+   11.000  5.04467E-08  8.69576E-08  4.21882E-04  7.27220E-04
+
+ Normalized gamma-ray strength functions and transmission coefficients for l= 2
+
+ Giant resonance parameters :
+
+ sigma0(M2) =   0.006       sigma0(E2) =   0.089    PR: sigma0(M2) =   0.000       sigma0(E2) =   0.000
+      E(M2) =  10.415            E(E2) =  16.004    PR:      E(M2) =   0.000            E(E2) =   0.000
+  gamma(M2) =   4.000        gamma(E2) =   5.378    PR:  gamma(M2) =   0.000        gamma(E2) =   0.000
+      k(M2) =   5.20424E-08      k(E2) =   5.20424E-08
+
+      E       f(M2)        f(E2)        T(M2)        T(E2)
+
+    0.001  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+    0.002  1.95738E-10  1.02110E-09  3.93555E-23  2.05305E-22
+    0.005  7.82953E-11  4.08442E-10  1.53732E-21  8.01973E-21
+    0.010  3.91477E-11  2.04221E-10  2.45972E-20  1.28316E-19
+    0.020  1.95740E-11  1.02111E-10  3.93558E-19  2.05306E-18
+    0.050  7.82986E-12  4.08449E-11  1.53739E-17  8.01988E-17
+    0.100  3.91543E-12  2.04236E-11  2.46014E-16  1.28325E-15
+    0.200  1.95872E-12  1.02141E-11  3.93824E-15  2.05366E-14
+    0.300  1.30693E-12  6.81188E-12  1.99544E-14  1.04005E-13
+    0.400  9.81370E-13  5.11154E-12  6.31412E-14  3.28876E-13
+    0.500  7.86306E-13  4.09195E-12  1.54391E-13  8.03452E-13
+    0.600  6.56489E-13  3.41273E-12  3.20748E-13  1.66739E-12
+    0.700  5.63960E-13  2.92800E-12  5.95550E-13  3.09201E-12
+    0.800  4.94735E-13  2.56484E-12  1.01860E-12  5.28068E-12
+    0.900  4.41050E-13  2.28272E-12  1.63637E-12  8.46925E-12
+    1.000  3.98243E-13  2.05733E-12  2.50224E-12  1.29266E-11
+    1.100  3.63350E-13  1.87321E-12  3.67679E-12  1.89553E-11
+    1.200  3.34394E-13  1.72003E-12  5.22812E-12  2.68920E-11
+    1.300  3.10007E-13  1.59067E-12  7.23217E-12  3.71087E-11
+    1.400  2.89212E-13  1.48001E-12  9.77319E-12  5.00131E-11
+    1.500  2.71291E-13  1.38431E-12  1.29441E-11  6.60497E-11
+    1.600  2.55709E-13  1.30078E-12  1.68471E-11  8.57009E-11
+    1.700  2.42054E-13  1.22727E-12  2.15942E-11  1.09488E-10
+    1.800  2.30008E-13  1.16212E-12  2.73077E-11  1.37972E-10
+    1.900  2.19318E-13  1.10399E-12  3.41210E-11  1.71757E-10
+    2.000  2.09783E-13  1.05185E-12  4.21794E-11  2.11486E-10
+    2.200  1.93556E-13  9.62246E-13  6.26760E-11  3.11587E-10
+    2.400  1.80346E-13  8.88162E-13  9.02284E-11  4.44354E-10
+    2.600  1.69474E-13  8.26030E-13  1.26517E-10  6.16656E-10
+    2.800  1.60458E-13  7.73303E-13  1.73512E-10  8.36219E-10
+    3.000  1.52946E-13  7.28118E-13  2.33520E-10  1.11170E-09
+    3.200  1.46679E-13  6.89076E-13  3.09242E-10  1.45277E-09
+    3.400  1.41459E-13  6.55111E-13  4.03837E-10  1.87021E-09
+    3.600  1.37137E-13  6.25394E-13  5.21012E-10  2.37600E-09
+    3.800  1.33597E-13  5.99274E-13  6.65111E-10  2.98349E-09
+    4.000  1.30750E-13  5.76231E-13  8.41242E-10  3.70746E-09
+    4.500  1.26256E-13  5.29515E-13  1.46384E-09  6.13933E-09
+    5.000  1.25035E-13  4.94879E-13  2.45506E-09  9.71694E-09
+    5.500  1.26835E-13  4.69373E-13  4.01083E-09  1.48427E-08
+    6.000  1.31715E-13  4.51105E-13  6.43534E-09  2.20401E-08
+    6.500  1.40002E-13  4.38852E-13  1.02066E-08  3.19937E-08
+    7.000  1.52278E-13  4.31839E-13  1.60808E-08  4.56029E-08
+    7.500  1.69310E-13  4.29621E-13  2.52446E-08  6.40579E-08
+    8.000  1.91796E-13  4.32007E-13  3.94883E-08  8.89448E-08
+    8.500  2.19551E-13  4.39024E-13  6.12082E-08  1.22395E-07
+    9.000  2.49555E-13  4.50909E-13  9.25889E-08  1.67295E-07
+    9.500  2.72997E-13  4.68111E-13  1.32726E-07  2.27586E-07
+   10.000  2.75544E-13  4.91307E-13  1.73129E-07  3.08697E-07
+   10.500  2.48280E-13  5.21437E-13  1.99099E-07  4.18146E-07
+   11.000  2.00119E-13  5.59722E-13  2.02503E-07  5.66391E-07
+
+ Photoabsorption cross sections
+
+     E      reaction
+
+    0.001  0.0000E+00
+    0.002  4.6968E-05
+    0.005  4.8039E-05
+    0.010  5.1867E-05
+    0.020  6.7179E-05
+    0.050  1.7436E-04
+    0.100  5.5718E-04
+    0.200  2.0889E-03
+    0.300  4.6434E-03
+    0.400  8.2229E-03
+    0.500  1.2831E-02
+    0.600  1.8471E-02
+    0.700  2.5150E-02
+    0.800  3.2873E-02
+    0.900  4.1646E-02
+    1.000  5.1480E-02
+    1.100  6.2382E-02
+    1.200  7.4364E-02
+    1.300  8.7435E-02
+    1.400  1.0161E-01
+    1.500  1.1690E-01
+    1.600  1.3332E-01
+    1.700  1.5089E-01
+    1.800  1.6963E-01
+    1.900  1.8955E-01
+    2.000  2.1066E-01
+    2.200  2.5660E-01
+    2.400  3.0761E-01
+    2.600  3.6393E-01
+    2.800  4.2577E-01
+    3.000  4.9341E-01
+    3.200  5.6716E-01
+    3.400  6.4734E-01
+    3.600  7.3433E-01
+    3.800  8.2856E-01
+    4.000  9.3050E-01
+    4.500  1.2227E+00
+    5.000  1.5769E+00
+    5.500  2.0070E+00
+    6.000  2.5322E+00
+    6.500  3.1791E+00
+    7.000  3.9848E+00
+    7.500  5.0005E+00
+    8.000  6.2929E+00
+    8.500  7.9346E+00
+    9.000  9.9624E+00
+    9.500  1.2273E+01
+   10.000  1.4523E+01
+   10.500  1.6299E+01
+   11.000  1.7574E+01
+
+ ########## RESULTS FOR E=   3.00000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.00000 ###########
+
+ Center-of-mass energy:    2.950
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.81732E+01
+     Compound elastic= 2.67660E+01
+     Non-elastic     = 1.40724E+00
+       Direct          = 1.69184E-04
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.40707E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.14264E+00
+ proton  = 2.62900E-01
+
+ 3. Total particle production cross sections
+
+ gamma   = 1.83711E+00    Multiplicity= 1.30547E+00
+ proton  = 2.64923E-01    Multiplicity= 1.88257E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.14061E+00    0    1.14061E+00  1.00000
+   28  60 ( 60Ni) 2.64923E-01    0    2.64923E-01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.14061E+00
+   60 2.64923E-01
+
+ Total residual production cross section:     1.4055372
+ Non-elastic cross section              :     1.4072361
+
+ ########## RESULTS FOR E=   3.05000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.05000 ###########
+
+ Center-of-mass energy:    3.000
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.14138E+01
+     Compound elastic= 2.98625E+01
+     Non-elastic     = 1.55128E+00
+       Direct          = 2.57128E-04
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.55102E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.19425E+00
+ proton  = 3.55073E-01
+
+ 3. Total particle production cross sections
+
+ gamma   = 1.93016E+00    Multiplicity= 1.24424E+00
+ proton  = 3.57461E-01    Multiplicity= 2.30430E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.19186E+00    0    1.19186E+00  1.00000
+   28  60 ( 60Ni) 3.57461E-01    0    3.57461E-01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.19186E+00
+   60 3.57461E-01
+
+ Total residual production cross section:     1.5493171
+ Non-elastic cross section              :     1.5512791
+
+ ########## RESULTS FOR E=   3.10000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.10000 ###########
+
+ Center-of-mass energy:    3.049
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.49093E+01
+     Compound elastic= 3.31926E+01
+     Non-elastic     = 1.71666E+00
+       Direct          = 3.84171E-04
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.71627E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.24604E+00
+ proton  = 4.68384E-01
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.02425E+00    Multiplicity= 1.17918E+00
+ proton  = 4.71207E-01    Multiplicity= 2.74491E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.24321E+00    0    1.24321E+00  1.00000
+   28  60 ( 60Ni) 4.71206E-01    0    4.71206E-01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.24321E+00
+   60 4.71206E-01
+
+ Total residual production cross section:     1.7144192
+ Non-elastic cross section              :     1.7166557
+
+ ########## RESULTS FOR E=   3.15000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.15000 ###########
+
+ Center-of-mass energy:    3.098
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.86667E+01
+     Compound elastic= 3.67546E+01
+     Non-elastic     = 1.91210E+00
+       Direct          = 5.64876E-04
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.91154E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.29715E+00
+ proton  = 6.12435E-01
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.11835E+00    Multiplicity= 1.10787E+00
+ proton  = 6.15744E-01    Multiplicity= 3.22024E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.29384E+00    0    1.29384E+00  1.00000
+   28  60 ( 60Ni) 6.15744E-01    0    6.15744E-01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.29384E+00
+   60 6.15744E-01
+
+ Total residual production cross section:     1.9095879
+ Non-elastic cross section              :     1.9121017
+
+ ########## RESULTS FOR E=   3.20000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.20000 ###########
+
+ Center-of-mass energy:    3.147
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.26916E+01
+     Compound elastic= 4.05557E+01
+     Non-elastic     = 2.13593E+00
+       Direct          = 8.18187E-04
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 2.13512E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.34828E+00
+ proton  = 7.84863E-01
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.21289E+00    Multiplicity= 1.03603E+00
+ proton  = 7.88710E-01    Multiplicity= 3.69258E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.34443E+00    0    1.34443E+00  1.00000
+   28  60 ( 60Ni) 7.88710E-01    0    7.88710E-01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.34443E+00
+   60 7.88710E-01
+
+ Total residual production cross section:     2.1331375
+ Non-elastic cross section              :     2.1359329
+
+ ########## RESULTS FOR E=   3.25000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.25000 ###########
+
+ Center-of-mass energy:    3.196
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.69887E+01
+     Compound elastic= 4.45890E+01
+     Non-elastic     = 2.39966E+00
+       Direct          = 1.16845E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 2.39849E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.39833E+00
+ proton  = 9.98281E-01
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.30633E+00    Multiplicity= 9.61108E-01
+ proton  = 1.00275E+00    Multiplicity= 4.17870E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.39386E+00    0    1.39386E+00  1.00000
+   28  60 ( 60Ni) 1.00275E+00    0    1.00275E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.39386E+00
+   60 1.00275E+00
+
+ Total residual production cross section:     2.3966062
+ Non-elastic cross section              :     2.3996620
+
+ ########## RESULTS FOR E=   3.30000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.30000 ###########
+
+ Center-of-mass energy:    3.245
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 5.15609E+01
+     Compound elastic= 4.88605E+01
+     Non-elastic     = 2.70043E+00
+       Direct          = 1.64652E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 2.69878E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.44862E+00
+ proton  = 1.24849E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.40084E+00    Multiplicity= 8.89059E-01
+ proton  = 1.25365E+00    Multiplicity= 4.64242E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.44346E+00    0    1.44346E+00  1.00000
+   28  60 ( 60Ni) 1.25365E+00    0    1.25365E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.44346E+00
+   60 1.25365E+00
+
+ Total residual production cross section:     2.6971152
+ Non-elastic cross section              :     2.7004318
+
+ ########## RESULTS FOR E=   3.35000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.35000 ###########
+
+ Center-of-mass energy:    3.295
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 5.64100E+01
+     Compound elastic= 5.33633E+01
+     Non-elastic     = 3.04667E+00
+       Direct          = 2.29114E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 3.04438E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.49100E+00
+ proton  = 1.55211E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.47971E+00    Multiplicity= 8.13907E-01
+ proton  = 1.55804E+00    Multiplicity= 5.11391E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.48506E+00    0    1.48506E+00  1.00000
+   28  60 ( 60Ni) 1.55804E+00    0    1.55804E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.48506E+00
+   60 1.55804E+00
+
+ Total residual production cross section:     3.0431044
+ Non-elastic cross section              :     3.0466728
+
+ ########## RESULTS FOR E=   3.40000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.40000 ###########
+
+ Center-of-mass energy:    3.344
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 6.15360E+01
+     Compound elastic= 5.80888E+01
+     Non-elastic     = 3.44724E+00
+       Direct          = 3.15031E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 3.44409E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.53998E+00
+ proton  = 1.90348E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.57318E+00    Multiplicity= 7.46447E-01
+ proton  = 1.91025E+00    Multiplicity= 5.54138E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.53321E+00    0    1.53321E+00  1.00000
+   28  60 ( 60Ni) 1.91025E+00    0    1.91025E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.53321E+00
+   60 1.91025E+00
+
+ Total residual production cross section:     3.4434531
+ Non-elastic cross section              :     3.4472427
+
+ ########## RESULTS FOR E=   3.45000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.45000 ###########
+
+ Center-of-mass energy:    3.393
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 6.69374E+01
+     Compound elastic= 6.30153E+01
+     Non-elastic     = 3.92213E+00
+       Direct          = 4.28290E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 3.91785E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.58662E+00
+ proton  = 2.33155E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.66324E+00    Multiplicity= 6.79028E-01
+ proton  = 2.33928E+00    Multiplicity= 5.96430E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.57889E+00    0    1.57889E+00  1.00000
+   28  60 ( 60Ni) 2.33928E+00    0    2.33928E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.57889E+00
+   60 2.33928E+00
+
+ Total residual production cross section:     3.9181683
+ Non-elastic cross section              :     3.9221344
+
+ ########## RESULTS FOR E=   3.50000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.50000 ###########
+
+ Center-of-mass energy:    3.442
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 7.26110E+01
+     Compound elastic= 6.81551E+01
+     Non-elastic     = 4.45588E+00
+       Direct          = 5.76041E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 4.45012E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.63380E+00
+ proton  = 2.81798E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.75475E+00    Multiplicity= 6.18227E-01
+ proton  = 2.82674E+00    Multiplicity= 6.34385E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.62503E+00    0    1.62503E+00  1.00000
+   28  60 ( 60Ni) 2.82674E+00    0    2.82674E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.62503E+00
+   60 2.82674E+00
+
+ Total residual production cross section:     4.4517727
+ Non-elastic cross section              :     4.4558792
+
+ ########## RESULTS FOR E=   3.55000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.55000 ###########
+
+ Center-of-mass energy:    3.491
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 7.85523E+01
+     Compound elastic= 7.35058E+01
+     Non-elastic     = 5.04646E+00
+       Direct          = 7.66881E-03
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 5.03880E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.68229E+00
+ proton  = 3.35996E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.84903E+00    Multiplicity= 5.64560E-01
+ proton  = 3.36987E+00    Multiplicity= 6.67768E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.67239E+00    0    1.67239E+00  1.00000
+   28  60 ( 60Ni) 3.36987E+00    0    3.36987E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.67239E+00
+   60 3.36987E+00
+
+ Total residual production cross section:     5.0422564
+ Non-elastic cross section              :     5.0464630
+
+ ########## RESULTS FOR E=   3.60000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.60000 ###########
+
+ Center-of-mass energy:    3.540
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 8.47550E+01
+     Compound elastic= 7.90509E+01
+     Non-elastic     = 5.70411E+00
+       Direct          = 1.01105E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 5.69400E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.73151E+00
+ proton  = 3.96830E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 2.94504E+00    Multiplicity= 5.16301E-01
+ proton  = 3.97947E+00    Multiplicity= 6.97649E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.72034E+00    0    1.72034E+00  1.00000
+   28  60 ( 60Ni) 3.97947E+00    0    3.97947E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.72034E+00
+   60 3.97947E+00
+
+ Total residual production cross section:     5.6998057
+ Non-elastic cross section              :     5.7041092
+
+ ########## RESULTS FOR E=   3.65000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.65000 ###########
+
+ Center-of-mass energy:    3.590
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 9.12118E+01
+     Compound elastic= 8.47196E+01
+     Non-elastic     = 6.49225E+00
+       Direct          = 1.32062E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 6.47904E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.77615E+00
+ proton  = 4.71176E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.03367E+00    Multiplicity= 4.67275E-01
+ proton  = 4.72429E+00    Multiplicity= 7.27681E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.76362E+00    0    1.76362E+00  1.00000
+   28  60 ( 60Ni) 4.72429E+00    0    4.72429E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.76362E+00
+   60 4.72429E+00
+
+ Total residual production cross section:     6.4879045
+ Non-elastic cross section              :     6.4922485
+
+ ########## RESULTS FOR E=   3.70000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.70000 ###########
+
+ Center-of-mass energy:    3.639
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 9.79137E+01
+     Compound elastic= 9.05537E+01
+     Non-elastic     = 7.35998E+00
+       Direct          = 1.70973E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 7.34288E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.82204E+00
+ proton  = 5.53363E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.12487E+00    Multiplicity= 4.24576E-01
+ proton  = 5.54763E+00    Multiplicity= 7.53757E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.80803E+00    0    1.80803E+00  1.00000
+   28  60 ( 60Ni) 5.54763E+00    0    5.54763E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.80803E+00
+   60 5.54763E+00
+
+ Total residual production cross section:     7.3556600
+ Non-elastic cross section              :     7.3599777
+
+ ########## RESULTS FOR E=   3.75000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.75000 ###########
+
+ Center-of-mass energy:    3.688
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.04851E+02
+     Compound elastic= 9.65453E+01
+     Non-elastic     = 8.30573E+00
+       Direct          = 2.19476E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 8.28378E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.86963E+00
+ proton  = 6.43184E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.21947E+00    Multiplicity= 3.87620E-01
+ proton  = 6.44746E+00    Multiplicity= 7.76267E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.85402E+00    0    1.85402E+00  1.00000
+   28  60 ( 60Ni) 6.44746E+00    0    6.44746E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.85402E+00
+   60 6.44746E+00
+
+ Total residual production cross section:     8.3014755
+ Non-elastic cross section              :     8.3057251
+
+ ########## RESULTS FOR E=   3.80000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.80000 ###########
+
+ Center-of-mass energy:    3.737
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.12012E+02
+     Compound elastic= 1.02673E+02
+     Non-elastic     = 9.33867E+00
+       Direct          = 2.79457E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 9.31072E+00
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.91850E+00
+ proton  = 7.41598E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.31662E+00    Multiplicity= 3.55149E-01
+ proton  = 7.43338E+00    Multiplicity= 7.95978E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.90110E+00    0    1.90110E+00  1.00000
+   28  60 ( 60Ni) 7.43338E+00    0    7.43338E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.90110E+00
+   60 7.43338E+00
+
+ Total residual production cross section:     9.3344774
+ Non-elastic cross section              :     9.3386688
+
+ ########## RESULTS FOR E=   3.85000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.85000 ###########
+
+ Center-of-mass energy:    3.786
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.19385E+02
+     Compound elastic= 1.08830E+02
+     Non-elastic     = 1.05553E+01
+       Direct          = 3.53063E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.05200E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 1.96214E+00
+ proton  = 8.58909E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.40492E+00    Multiplicity= 3.22580E-01
+ proton  = 8.60842E+00    Multiplicity= 8.15556E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.94282E+00    0    1.94282E+00  1.00000
+   28  60 ( 60Ni) 8.60842E+00    0    8.60842E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.94282E+00
+   60 8.60842E+00
+
+ Total residual production cross section:    10.5512314
+ Non-elastic cross section              :    10.5552750
+
+ ########## RESULTS FOR E=   3.90000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.90000 ###########
+
+ Center-of-mass energy:    3.835
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.26958E+02
+     Compound elastic= 1.15072E+02
+     Non-elastic     = 1.18857E+01
+       Direct          = 4.42730E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.18415E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.00658E+00
+ proton  = 9.87528E+00
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.49493E+00    Multiplicity= 2.94044E-01
+ proton  = 9.89666E+00    Multiplicity= 8.32650E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 1.98520E+00    0    1.98520E+00  1.00000
+   28  60 ( 60Ni) 9.89666E+00    0    9.89666E+00  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 1.98520E+00
+   60 9.89666E+00
+
+ Total residual production cross section:    11.8818617
+ Non-elastic cross section              :    11.8857422
+
+ ########## RESULTS FOR E=   3.95000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   3.95000 ###########
+
+ Center-of-mass energy:    3.885
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.34718E+02
+     Compound elastic= 1.21391E+02
+     Non-elastic     = 1.33274E+01
+       Direct          = 5.51188E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.32723E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.05225E+00
+ proton  = 1.12715E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.58734E+00    Multiplicity= 2.69171E-01
+ proton  = 1.12950E+01    Multiplicity= 8.47506E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.02865E+00    0    2.02865E+00  1.00000
+   28  60 ( 60Ni) 1.12950E+01    0    1.12950E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.02865E+00
+   60 1.12950E+01
+
+ Total residual production cross section:    13.3236980
+ Non-elastic cross section              :    13.3273849
+
+ ########## RESULTS FOR E=   4.00000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.00000 ###########
+
+ Center-of-mass energy:    3.934
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.42652E+02
+     Compound elastic= 1.27766E+02
+     Non-elastic     = 1.48857E+01
+       Direct          = 6.81476E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.48176E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.09908E+00
+ proton  = 1.27832E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.68200E+00    Multiplicity= 2.47351E-01
+ proton  = 1.28092E+01    Multiplicity= 8.60502E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.07308E+00    0    2.07308E+00  1.00000
+   28  60 ( 60Ni) 1.28092E+01    0    1.28092E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.07308E+00
+   60 1.28092E+01
+
+ Total residual production cross section:    14.8822641
+ Non-elastic cross section              :    14.8857117
+
+ ########## RESULTS FOR E=   4.05000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.05000 ###########
+
+ Center-of-mass energy:    3.983
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.50745E+02
+     Compound elastic= 1.34071E+02
+     Non-elastic     = 1.66742E+01
+       Direct          = 8.36963E-02
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.65905E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.14084E+00
+ proton  = 1.45302E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.76775E+00    Multiplicity= 2.25963E-01
+ proton  = 1.45587E+01    Multiplicity= 8.73128E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.11230E+00    0    2.11230E+00  1.00000
+   28  60 ( 60Ni) 1.45587E+01    0    1.45587E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.11230E+00
+   60 1.45587E+01
+
+ Total residual production cross section:    16.6710072
+ Non-elastic cross section              :    16.6741943
+
+ ########## RESULTS FOR E=   4.10000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.10000 ###########
+
+ Center-of-mass energy:    4.032
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.58986E+02
+     Compound elastic= 1.40377E+02
+     Non-elastic     = 1.86093E+01
+       Direct          = 1.02133E-01
+       Pre-equilibrium = 0.00000E+00
+       Compound non-el = 1.85071E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.17269E+00
+ proton  = 1.64337E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.83235E+00    Multiplicity= 2.05938E-01
+ proton  = 1.64650E+01    Multiplicity= 8.84775E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.14134E+00    0    2.14134E+00  1.00000
+   28  60 ( 60Ni) 1.64650E+01    0    1.64650E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.14134E+00
+   60 1.64650E+01
+
+ Total residual production cross section:    18.6063499
+ Non-elastic cross section              :    18.6092682
+
+ ########## RESULTS FOR E=   4.15000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.15000 ###########
+
+ Center-of-mass energy:    4.081
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.67360E+02
+     Compound elastic= 1.46655E+02
+     Non-elastic     = 2.07054E+01
+       Direct          = 1.27225E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 0.00000E+00
+       Compound non-el = 2.05782E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.21828E+00
+ proton  = 1.84844E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 3.92228E+00    Multiplicity= 1.89433E-01
+ proton  = 1.85187E+01    Multiplicity= 8.94391E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.18401E+00    0    2.18401E+00  1.00000
+   28  60 ( 60Ni) 1.85187E+01    0    1.85187E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.18401E+00
+   60 1.85187E+01
+
+ Total residual production cross section:    20.7027245
+ Non-elastic cross section              :    20.7053833
+
+ ########## RESULTS FOR E=   4.20000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.20000 ###########
+
+ Center-of-mass energy:    4.130
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.75855E+02
+     Compound elastic= 1.52900E+02
+     Non-elastic     = 2.29549E+01
+       Direct          = 1.52836E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 0.00000E+00
+       Compound non-el = 2.28021E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.26139E+00
+ proton  = 2.06911E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.01029E+00    Multiplicity= 1.74703E-01
+ proton  = 2.07285E+01    Multiplicity= 9.03009E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.22398E+00    0    2.22398E+00  1.00000
+   28  60 ( 60Ni) 2.07285E+01    0    2.07285E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.22398E+00
+   60 2.07285E+01
+
+ Total residual production cross section:    22.9524879
+ Non-elastic cross section              :    22.9549255
+
+ ########## RESULTS FOR E=   4.25000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.25000 ###########
+
+ Center-of-mass energy:    4.180
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.84458E+02
+     Compound elastic= 1.58987E+02
+     Non-elastic     = 2.54710E+01
+       Direct          = 1.82635E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 0.00000E+00
+       Compound non-el = 2.52884E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.30010E+00
+ proton  = 2.31688E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.09017E+00    Multiplicity= 1.60581E-01
+ proton  = 2.32095E+01    Multiplicity= 9.11214E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.25936E+00    0    2.25936E+00  1.00000
+   28  60 ( 60Ni) 2.32095E+01    0    2.32095E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.25936E+00
+   60 2.32095E+01
+
+ Total residual production cross section:    25.4689007
+ Non-elastic cross section              :    25.4710236
+
+ ########## RESULTS FOR E=   4.30000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.30000 ###########
+
+ Center-of-mass energy:    4.229
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 1.93157E+02
+     Compound elastic= 1.64962E+02
+     Non-elastic     = 2.81954E+01
+       Direct          = 2.17303E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 0.00000E+00
+       Compound non-el = 2.79781E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.33829E+00
+ proton  = 2.58552E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.16885E+00    Multiplicity= 1.47856E-01
+ proton  = 2.58995E+01    Multiplicity= 9.18571E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.29400E+00    0    2.29400E+00  1.00000
+   28  60 ( 60Ni) 2.58995E+01    0    2.58995E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.29400E+00
+   60 2.58995E+01
+
+ Total residual production cross section:    28.1934528
+ Non-elastic cross section              :    28.1953583
+
+ ########## RESULTS FOR E=   4.35000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.35000 ###########
+
+ Center-of-mass energy:    4.278
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.01941E+02
+     Compound elastic= 1.70832E+02
+     Non-elastic     = 3.11089E+01
+       Direct          = 2.56979E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 0.00000E+00
+       Compound non-el = 3.08519E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.37649E+00
+ proton  = 2.87308E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.24757E+00    Multiplicity= 1.36539E-01
+ proton  = 2.87788E+01    Multiplicity= 9.25100E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.32848E+00    0    2.32848E+00  1.00000
+   28  60 ( 60Ni) 2.87788E+01    0    2.87788E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.32848E+00
+   60 2.87788E+01
+
+ Total residual production cross section:    31.1072845
+ Non-elastic cross section              :    31.1088562
+
+ ########## RESULTS FOR E=   4.40000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.40000 ###########
+
+ Center-of-mass energy:    4.327
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.10798E+02
+     Compound elastic= 1.76587E+02
+     Non-elastic     = 3.42108E+01
+       Direct          = 3.02413E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 8.96224E-30
+       Compound non-el = 3.39083E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.41575E+00
+ proton  = 3.17936E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.32814E+00    Multiplicity= 1.26514E-01
+ proton  = 3.18455E+01    Multiplicity= 9.30863E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.36378E+00    0    2.36378E+00  1.00000
+   28  60 ( 60Ni) 3.18455E+01    0    3.18455E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.36378E+00
+   60 3.18455E+01
+
+ Total residual production cross section:    34.2093048
+ Non-elastic cross section              :    34.2107544
+
+ ########## RESULTS FOR E=   4.45000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.45000 ###########
+
+ Center-of-mass energy:    4.376
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.19717E+02
+     Compound elastic= 1.82112E+02
+     Non-elastic     = 3.76049E+01
+       Direct          = 3.54329E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 4.22927E-25
+       Compound non-el = 3.72506E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.45168E+00
+ proton  = 3.51521E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.40217E+00    Multiplicity= 1.17064E-01
+ proton  = 3.52082E+01    Multiplicity= 9.36265E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.39557E+00    0    2.39557E+00  1.00000
+   28  60 ( 60Ni) 3.52082E+01    0    3.52082E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.39557E+00
+   60 3.52082E+01
+
+ Total residual production cross section:    37.6037407
+ Non-elastic cross section              :    37.6049347
+
+ ########## RESULTS FOR E=   4.50000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.50000 ###########
+
+ Center-of-mass energy:    4.425
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.28687E+02
+     Compound elastic= 1.87428E+02
+     Non-elastic     = 4.12594E+01
+       Direct          = 4.13386E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 5.53393E-22
+       Compound non-el = 4.08460E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.48643E+00
+ proton  = 3.87719E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.47360E+00    Multiplicity= 1.08426E-01
+ proton  = 3.88323E+01    Multiplicity= 9.41176E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.42593E+00    0    2.42593E+00  1.00000
+   28  60 ( 60Ni) 3.88324E+01    0    3.88324E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.42593E+00
+   60 3.88324E+01
+
+ Total residual production cross section:    41.2582817
+ Non-elastic cross section              :    41.2593689
+
+ ########## RESULTS FOR E=   4.55000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.55000 ###########
+
+ Center-of-mass energy:    4.475
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.37700E+02
+     Compound elastic= 1.92567E+02
+     Non-elastic     = 4.51325E+01
+       Direct          = 4.79885E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 1.02936E-19
+       Compound non-el = 4.46526E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.52127E+00
+ proton  = 4.26103E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.54493E+00    Multiplicity= 1.00702E-01
+ proton  = 4.26755E+01    Multiplicity= 9.45559E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.45615E+00    0    2.45615E+00  1.00000
+   28  60 ( 60Ni) 4.26755E+01    0    4.26755E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.45615E+00
+   60 4.26755E+01
+
+ Total residual production cross section:    45.1316147
+ Non-elastic cross section              :    45.1325378
+
+ ########## RESULTS FOR E=   4.60000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.60000 ###########
+
+ Center-of-mass energy:    4.524
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.46745E+02
+     Compound elastic= 1.97513E+02
+     Non-elastic     = 4.92324E+01
+       Direct          = 5.54104E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 5.76924E-18
+       Compound non-el = 4.86783E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.55660E+00
+ proton  = 4.66750E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.61731E+00    Multiplicity= 9.37860E-02
+ proton  = 4.67450E+01    Multiplicity= 9.49477E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.48658E+00    0    2.48658E+00  1.00000
+   28  60 ( 60Ni) 4.67450E+01    0    4.67450E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.48658E+00
+   60 4.67450E+01
+
+ Total residual production cross section:    49.2316132
+ Non-elastic cross section              :    49.2323914
+
+ ########## RESULTS FOR E=   4.65000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.65000 ###########
+
+ Center-of-mass energy:    4.573
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.55813E+02
+     Compound elastic= 2.02180E+02
+     Non-elastic     = 5.36331E+01
+       Direct          = 6.37035E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 1.45401E-16
+       Compound non-el = 5.29961E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.58930E+00
+ proton  = 5.10432E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.68427E+00    Multiplicity= 8.73390E-02
+ proton  = 5.11183E+01    Multiplicity= 9.53111E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.51417E+00    0    2.51417E+00  1.00000
+   28  60 ( 60Ni) 5.11183E+01    0    5.11183E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.51417E+00
+   60 5.11183E+01
+
+ Total residual production cross section:    53.6324883
+ Non-elastic cross section              :    53.6331329
+
+ ########## RESULTS FOR E=   4.70000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.70000 ###########
+
+ Center-of-mass energy:    4.622
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.64896E+02
+     Compound elastic= 2.06564E+02
+     Non-elastic     = 5.83323E+01
+       Direct          = 7.29072E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 2.08877E-15
+       Compound non-el = 5.76032E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.62038E+00
+ proton  = 5.57114E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.74821E+00    Multiplicity= 8.13993E-02
+ proton  = 5.57918E+01    Multiplicity= 9.56448E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.53992E+00    0    2.53992E+00  1.00000
+   28  60 ( 60Ni) 5.57918E+01    0    5.57918E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.53992E+00
+   60 5.57918E+01
+
+ Total residual production cross section:    58.3317299
+ Non-elastic cross section              :    58.3322906
+
+ ########## RESULTS FOR E=   4.75000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.75000 ###########
+
+ Center-of-mass energy:    4.671
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.73984E+02
+     Compound elastic= 2.10709E+02
+     Non-elastic     = 6.32753E+01
+       Direct          = 8.30854E-01
+       Pre-equilibrium = 0.00000E+00
+       Giant resonance = 1.99297E-14
+       Compound non-el = 6.24445E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.65175E+00
+ proton  = 6.06231E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.81260E+00    Multiplicity= 7.60581E-02
+ proton  = 6.07092E+01    Multiplicity= 9.59445E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.56570E+00    0    2.56570E+00  1.00000
+   28  60 ( 60Ni) 6.07092E+01    0    6.07092E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.56570E+00
+   60 6.07092E+01
+
+ Total residual production cross section:    63.2748833
+ Non-elastic cross section              :    63.2752991
+
+ ########## RESULTS FOR E=   4.80000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.80000 ###########
+
+ Center-of-mass energy:    4.720
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.83070E+02
+     Compound elastic= 2.14593E+02
+     Non-elastic     = 6.84769E+01
+       Direct          = 9.43111E-01
+       Pre-equilibrium = 3.19634E-03
+       Giant resonance = 1.40274E-13
+       Compound non-el = 6.75306E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.68687E+00
+ proton  = 6.57897E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.88551E+00    Multiplicity= 7.13454E-02
+ proton  = 6.58817E+01    Multiplicity= 9.62101E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.59490E+00    0    2.59490E+00  1.00000
+   28  60 ( 60Ni) 6.58817E+01    0    6.58817E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.59490E+00
+   60 6.58817E+01
+
+ Total residual production cross section:    68.4765854
+ Non-elastic cross section              :    68.4768982
+
+ ########## RESULTS FOR E=   4.85000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.85000 ###########
+
+ Center-of-mass energy:    4.770
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 2.92144E+02
+     Compound elastic= 2.18176E+02
+     Non-elastic     = 7.39680E+01
+       Direct          = 1.06603E+00
+       Pre-equilibrium = 3.36544E-03
+       Giant resonance = 7.84178E-13
+       Compound non-el = 7.28986E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.71698E+00
+ proton  = 7.12507E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 4.94687E+00    Multiplicity= 6.68785E-02
+ proton  = 7.13488E+01    Multiplicity= 9.64590E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.61893E+00    0    2.61893E+00  1.00000
+   28  60 ( 60Ni) 7.13488E+01    0    7.13488E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.61893E+00
+   60 7.13488E+01
+
+ Total residual production cross section:    73.9677200
+ Non-elastic cross section              :    73.9679871
+
+ ########## RESULTS FOR E=   4.90000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.90000 ###########
+
+ Center-of-mass energy:    4.819
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.01200E+02
+     Compound elastic= 2.21433E+02
+     Non-elastic     = 7.97671E+01
+       Direct          = 1.20005E+00
+       Pre-equilibrium = 3.58544E-03
+       Giant resonance = 3.66676E-12
+       Compound non-el = 7.85635E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.74592E+00
+ proton  = 7.70209E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.00623E+00    Multiplicity= 6.27606E-02
+ proton  = 7.71252E+01    Multiplicity= 9.66881E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.64159E+00    0    2.64159E+00  1.00000
+   28  60 ( 60Ni) 7.71252E+01    0    7.71252E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.64159E+00
+   60 7.71252E+01
+
+ Total residual production cross section:    79.7668304
+ Non-elastic cross section              :    79.7670898
+
+ ########## RESULTS FOR E=   4.95000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   4.95000 ###########
+
+ Center-of-mass energy:    4.868
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.10229E+02
+     Compound elastic= 2.24399E+02
+     Non-elastic     = 8.58298E+01
+       Direct          = 1.34597E+00
+       Pre-equilibrium = 3.80520E-03
+       Giant resonance = 1.48592E-11
+       Compound non-el = 8.44800E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.77576E+00
+ proton  = 8.30539E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.06893E+00    Multiplicity= 5.90579E-02
+ proton  = 8.31648E+01    Multiplicity= 9.68950E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.66485E+00    0    2.66485E+00  1.00000
+   28  60 ( 60Ni) 8.31648E+01    0    8.31648E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.66485E+00
+   60 8.31648E+01
+
+ Total residual production cross section:    85.8296738
+ Non-elastic cross section              :    85.8298340
+
+ ########## RESULTS FOR E=   5.00000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.00000 ###########
+
+ Center-of-mass energy:    4.917
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.19222E+02
+     Compound elastic= 2.27077E+02
+     Non-elastic     = 9.21446E+01
+       Direct          = 1.50358E+00
+       Pre-equilibrium = 4.06074E-03
+       Giant resonance = 5.34542E-11
+       Compound non-el = 9.06370E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.79159E+00
+ proton  = 8.93530E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.10055E+00    Multiplicity= 5.53538E-02
+ proton  = 8.94709E+01    Multiplicity= 9.70984E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.67361E+00    0    2.67361E+00  1.00000
+   28  60 ( 60Ni) 8.94709E+01    0    8.94709E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.67361E+00
+   60 8.94709E+01
+
+ Total residual production cross section:    92.1445618
+ Non-elastic cross section              :    92.1446228
+
+ ########## RESULTS FOR E=   5.05000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.05000 ###########
+
+ Center-of-mass energy:    4.966
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.28174E+02
+     Compound elastic= 2.29431E+02
+     Non-elastic     = 9.87435E+01
+       Direct          = 1.67455E+00
+       Pre-equilibrium = 4.33766E-03
+       Giant resonance = 1.73553E-10
+       Compound non-el = 9.70646E+01
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.82006E+00
+ proton  = 9.59233E+01
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.15728E+00    Multiplicity= 5.22290E-02
+ proton  = 9.60484E+01    Multiplicity= 9.72707E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.69494E+00    0    2.69494E+00  1.00000
+   28  60 ( 60Ni) 9.60484E+01    0    9.60484E+01  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.69494E+00
+   60 9.60484E+01
+
+ Total residual production cross section:    98.7433624
+ Non-elastic cross section              :    98.7434540
+
+ ########## RESULTS FOR E=   5.10000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.10000 ###########
+
+ Center-of-mass energy:    5.015
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.37076E+02
+     Compound elastic= 2.31441E+02
+     Non-elastic     = 1.05635E+02
+       Direct          = 1.85666E+00
+       Pre-equilibrium = 4.74392E-03
+       Giant resonance = 5.14684E-10
+       Compound non-el = 1.03774E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.84637E+00
+ proton  = 1.02789E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.21130E+00    Multiplicity= 4.93330E-02
+ proton  = 1.02921E+02    Multiplicity= 9.74307E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.71392E+00    0    2.71392E+00  1.00000
+   28  60 ( 60Ni) 1.02921E+02    0    1.02921E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.71392E+00
+   60 1.02921E+02
+
+ Total residual production cross section:   105.6350250
+ Non-elastic cross section              :   105.6351471
+
+ ########## RESULTS FOR E=   5.15000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.15000 ###########
+
+ Center-of-mass energy:    5.065
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.45920E+02
+     Compound elastic= 2.33134E+02
+     Non-elastic     = 1.12786E+02
+       Direct          = 2.05162E+00
+       Pre-equilibrium = 4.97558E-03
+       Giant resonance = 1.40725E-09
+       Compound non-el = 1.10730E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.87208E+00
+ proton  = 1.09914E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.26368E+00    Multiplicity= 4.66695E-02
+ proton  = 1.10054E+02    Multiplicity= 9.75776E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.73201E+00    0    2.73201E+00  1.00000
+   28  60 ( 60Ni) 1.10054E+02    0    1.10054E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.73201E+00
+   60 1.10054E+02
+
+ Total residual production cross section:   112.7860870
+ Non-elastic cross section              :   112.7862091
+
+ ########## RESULTS FOR E=   5.20000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.20000 ###########
+
+ Center-of-mass energy:    5.114
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.54701E+02
+     Compound elastic= 2.34513E+02
+     Non-elastic     = 1.20188E+02
+       Direct          = 2.25883E+00
+       Pre-equilibrium = 5.11382E-03
+       Giant resonance = 3.57538E-09
+       Compound non-el = 1.17924E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.89719E+00
+ proton  = 1.17291E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.31535E+00    Multiplicity= 4.42253E-02
+ proton  = 1.17439E+02    Multiplicity= 9.77126E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.74931E+00    0    2.74931E+00  1.00000
+   28  60 ( 60Ni) 1.17439E+02    0    1.17439E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.74931E+00
+   60 1.17439E+02
+
+ Total residual production cross section:   120.1881104
+ Non-elastic cross section              :   120.1880188
+
+ ########## RESULTS FOR E=   5.25000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.25000 ###########
+
+ Center-of-mass energy:    5.163
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.63409E+02
+     Compound elastic= 2.35568E+02
+     Non-elastic     = 1.27841E+02
+       Direct          = 2.47872E+00
+       Pre-equilibrium = 5.27978E-03
+       Giant resonance = 8.49927E-09
+       Compound non-el = 1.25357E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.92081E+00
+ proton  = 1.24921E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.36373E+00    Multiplicity= 4.19561E-02
+ proton  = 1.25076E+02    Multiplicity= 9.78373E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.76486E+00    0    2.76486E+00  1.00000
+   28  60 ( 60Ni) 1.25076E+02    0    1.25076E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.76486E+00
+   60 1.25076E+02
+
+ Total residual production cross section:   127.8413239
+ Non-elastic cross section              :   127.8412933
+
+ ########## RESULTS FOR E=   5.30000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.30000 ###########
+
+ Center-of-mass energy:    5.212
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.72040E+02
+     Compound elastic= 2.36281E+02
+     Non-elastic     = 1.35759E+02
+       Direct          = 2.71124E+00
+       Pre-equilibrium = 5.50155E-03
+       Giant resonance = 1.90206E-08
+       Compound non-el = 1.33042E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.94341E+00
+ proton  = 1.32816E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.41026E+00    Multiplicity= 3.98519E-02
+ proton  = 1.32980E+02    Multiplicity= 9.79529E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.77920E+00    0    2.77920E+00  1.00000
+   28  60 ( 60Ni) 1.32980E+02    0    1.32980E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.77920E+00
+   60 1.32980E+02
+
+ Total residual production cross section:   135.7591705
+ Non-elastic cross section              :   135.7590332
+
+ ########## RESULTS FOR E=   5.35000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.35000 ###########
+
+ Center-of-mass energy:    5.261
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.80586E+02
+     Compound elastic= 2.36671E+02
+     Non-elastic     = 1.43915E+02
+       Direct          = 2.95612E+00
+       Pre-equilibrium = 5.74664E-03
+       Giant resonance = 4.02973E-08
+       Compound non-el = 1.40953E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.96522E+00
+ proton  = 1.40950E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.45564E+00    Multiplicity= 3.79088E-02
+ proton  = 1.41123E+02    Multiplicity= 9.80597E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.79259E+00    0    2.79259E+00  1.00000
+   28  60 ( 60Ni) 1.41122E+02    0    1.41122E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.79259E+00
+   60 1.41122E+02
+
+ Total residual production cross section:   143.9150848
+ Non-elastic cross section              :   143.9149323
+
+ ########## RESULTS FOR E=   5.40000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.40000 ###########
+
+ Center-of-mass energy:    5.310
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.89041E+02
+     Compound elastic= 2.36753E+02
+     Non-elastic     = 1.52288E+02
+       Direct          = 3.21285E+00
+       Pre-equilibrium = 6.03977E-03
+       Giant resonance = 8.12310E-08
+       Compound non-el = 1.49069E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 2.98645E+00
+ proton  = 1.49301E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.50055E+00    Multiplicity= 3.61195E-02
+ proton  = 1.49483E+02    Multiplicity= 9.81582E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.80509E+00    0    2.80509E+00  1.00000
+   28  60 ( 60Ni) 1.49483E+02    0    1.49483E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.80509E+00
+   60 1.49483E+02
+
+ Total residual production cross section:   152.2878723
+ Non-elastic cross section              :   152.2876587
+
+ ########## RESULTS FOR E=   5.45000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.45000 ###########
+
+ Center-of-mass energy:    5.360
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 3.97399E+02
+     Compound elastic= 2.36525E+02
+     Non-elastic     = 1.60874E+02
+       Direct          = 3.48189E+00
+       Pre-equilibrium = 6.39016E-03
+       Giant resonance = 1.56510E-07
+       Compound non-el = 1.57385E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.00636E+00
+ proton  = 1.57867E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.54276E+00    Multiplicity= 3.44541E-02
+ proton  = 1.58058E+02    Multiplicity= 9.82496E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.81618E+00    0    2.81618E+00  1.00000
+   28  60 ( 60Ni) 1.58058E+02    0    1.58058E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.81618E+00
+   60 1.58058E+02
+
+ Total residual production cross section:   160.8738556
+ Non-elastic cross section              :   160.8735962
+
+ ########## RESULTS FOR E=   5.50000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.50000 ###########
+
+ Center-of-mass energy:    5.409
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.05654E+02
+     Compound elastic= 2.35984E+02
+     Non-elastic     = 1.69670E+02
+       Direct          = 3.76204E+00
+       Pre-equilibrium = 6.78207E-03
+       Giant resonance = 2.89407E-07
+       Compound non-el = 1.65901E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.02469E+00
+ proton  = 1.66646E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.58300E+00    Multiplicity= 3.29051E-02
+ proton  = 1.66845E+02    Multiplicity= 9.83349E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.82544E+00    0    2.82544E+00  1.00000
+   28  60 ( 60Ni) 1.66845E+02    0    1.66845E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.82544E+00
+   60 1.66845E+02
+
+ Total residual production cross section:   169.6702423
+ Non-elastic cross section              :   169.6699677
+
+ ########## RESULTS FOR E=   5.55000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.55000 ###########
+
+ Center-of-mass energy:    5.458
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.13802E+02
+     Compound elastic= 2.35127E+02
+     Non-elastic     = 1.78675E+02
+       Direct          = 4.05481E+00
+       Pre-equilibrium = 7.29100E-03
+       Giant resonance = 5.15485E-07
+       Compound non-el = 1.74613E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.04332E+00
+ proton  = 1.75632E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.62376E+00    Multiplicity= 3.14748E-02
+ proton  = 1.75840E+02    Multiplicity= 9.84136E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.83485E+00    0    2.83485E+00  1.00000
+   28  60 ( 60Ni) 1.75840E+02    0    1.75840E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.83485E+00
+   60 1.75840E+02
+
+ Total residual production cross section:   178.6752319
+ Non-elastic cross section              :   178.6748352
+
+ ########## RESULTS FOR E=   5.60001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.60001 ###########
+
+ Center-of-mass energy:    5.507
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.21839E+02
+     Compound elastic= 2.33990E+02
+     Non-elastic     = 1.87849E+02
+       Direct          = 4.35655E+00
+       Pre-equilibrium = 7.95261E-03
+       Giant resonance = 8.87429E-07
+       Compound non-el = 1.83484E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.05980E+00
+ proton  = 1.84789E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.66383E+00    Multiplicity= 3.01510E-02
+ proton  = 1.85007E+02    Multiplicity= 9.84874E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.84187E+00    0    2.84187E+00  1.00000
+   28  60 ( 60Ni) 1.85007E+02    0    1.85007E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.84187E+00
+   60 1.85007E+02
+
+ Total residual production cross section:   187.8491516
+ Non-elastic cross section              :   187.8487549
+
+ ########## RESULTS FOR E=   5.65001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.65001 ###########
+
+ Center-of-mass energy:    5.556
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.29757E+02
+     Compound elastic= 2.32556E+02
+     Non-elastic     = 1.97201E+02
+       Direct          = 4.66884E+00
+       Pre-equilibrium = 8.55652E-03
+       Giant resonance = 1.48062E-06
+       Compound non-el = 1.92523E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.07473E+00
+ proton  = 1.94126E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.70244E+00    Multiplicity= 2.89169E-02
+ proton  = 1.94354E+02    Multiplicity= 9.85564E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.84728E+00    0    2.84728E+00  1.00000
+   28  60 ( 60Ni) 1.94354E+02    0    1.94354E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.84728E+00
+   60 1.94354E+02
+
+ Total residual production cross section:   197.2012329
+ Non-elastic cross section              :   197.2007904
+
+ ########## RESULTS FOR E=   5.70001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.70001 ###########
+
+ Center-of-mass energy:    5.606
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.37555E+02
+     Compound elastic= 2.30829E+02
+     Non-elastic     = 2.06726E+02
+       Direct          = 4.99025E+00
+       Pre-equilibrium = 8.89458E-03
+       Giant resonance = 2.40067E-06
+       Compound non-el = 2.01727E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.08739E+00
+ proton  = 2.03639E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.74014E+00    Multiplicity= 2.77670E-02
+ proton  = 2.03876E+02    Multiplicity= 9.86214E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.85033E+00    0    2.85033E+00  1.00000
+   28  60 ( 60Ni) 2.03876E+02    0    2.03876E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.85033E+00
+   60 2.03876E+02
+
+ Total residual production cross section:   206.7260895
+ Non-elastic cross section              :   206.7257080
+
+ ########## RESULTS FOR E=   5.75001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.75001 ###########
+
+ Center-of-mass energy:    5.655
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.45227E+02
+     Compound elastic= 2.28789E+02
+     Non-elastic     = 2.16438E+02
+       Direct          = 5.32084E+00
+       Pre-equilibrium = 9.57982E-03
+       Giant resonance = 3.79158E-06
+       Compound non-el = 2.11107E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.09820E+00
+ proton  = 2.13340E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.77834E+00    Multiplicity= 2.66975E-02
+ proton  = 2.13587E+02    Multiplicity= 9.86828E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.85138E+00    0    2.85138E+00  1.00000
+   28  60 ( 60Ni) 2.13587E+02    0    2.13587E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.85138E+00
+   60 2.13587E+02
+
+ Total residual production cross section:   216.4382172
+ Non-elastic cross section              :   216.4377289
+
+ ########## RESULTS FOR E=   5.80001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.80001 ###########
+
+ Center-of-mass energy:    5.704
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.52772E+02
+     Compound elastic= 2.26495E+02
+     Non-elastic     = 2.26277E+02
+       Direct          = 5.66004E+00
+       Pre-equilibrium = 1.02136E-02
+       Giant resonance = 5.84560E-06
+       Compound non-el = 2.20607E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.10808E+00
+ proton  = 2.23170E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.81991E+00    Multiplicity= 2.57202E-02
+ proton  = 2.23426E+02    Multiplicity= 9.87400E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.85147E+00    0    2.85147E+00  1.00000
+   28  60 ( 60Ni) 2.23426E+02    0    2.23426E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.85147E+00
+   60 2.23426E+02
+
+ Total residual production cross section:   226.2776947
+ Non-elastic cross section              :   226.2772369
+
+ ########## RESULTS FOR E=   5.85001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.85001 ###########
+
+ Center-of-mass energy:    5.753
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.60188E+02
+     Compound elastic= 2.23944E+02
+     Non-elastic     = 2.36244E+02
+       Direct          = 6.00725E+00
+       Pre-equilibrium = 1.14082E-02
+       Giant resonance = 8.81396E-06
+       Compound non-el = 2.30225E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.11637E+00
+ proton  = 2.33128E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.86501E+00    Multiplicity= 2.48261E-02
+ proton  = 2.33394E+02    Multiplicity= 9.87939E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.84990E+00    0    2.84990E+00  1.00000
+   28  60 ( 60Ni) 2.33394E+02    0    2.33394E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.84990E+00
+   60 2.33394E+02
+
+ Total residual production cross section:   236.2443695
+ Non-elastic cross section              :   236.2438202
+
+ ########## RESULTS FOR E=   5.90001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.90001 ###########
+
+ Center-of-mass energy:    5.802
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.67470E+02
+     Compound elastic= 2.21149E+02
+     Non-elastic     = 2.46321E+02
+       Direct          = 6.36141E+00
+       Pre-equilibrium = 1.24841E-02
+       Giant resonance = 1.30194E-05
+       Compound non-el = 2.39947E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.12278E+00
+ proton  = 2.43199E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.91491E+00    Multiplicity= 2.40130E-02
+ proton  = 2.43475E+02    Multiplicity= 9.88447E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.84643E+00    0    2.84643E+00  1.00000
+   28  60 ( 60Ni) 2.43476E+02    0    2.43476E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.84643E+00
+   60 2.43475E+02
+
+ Total residual production cross section:   246.3219299
+ Non-elastic cross section              :   246.3213196
+
+ ########## RESULTS FOR E=   5.95001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   5.95001 ###########
+
+ Center-of-mass energy:    5.851
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.74619E+02
+     Compound elastic= 2.18092E+02
+     Non-elastic     = 2.56527E+02
+       Direct          = 6.72290E+00
+       Pre-equilibrium = 1.44994E-02
+       Giant resonance = 1.88692E-05
+       Compound non-el = 2.49790E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.12768E+00
+ proton  = 2.53400E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 5.97230E+00    Multiplicity= 2.32813E-02
+ proton  = 2.53686E+02    Multiplicity= 9.88926E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.84150E+00    0    2.84150E+00  1.00000
+   28  60 ( 60Ni) 2.53686E+02    0    2.53686E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.84150E+00
+   60 2.53686E+02
+
+ Total residual production cross section:   256.5278320
+ Non-elastic cross section              :   256.5270996
+
+ ########## RESULTS FOR E=   6.00000 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########### REACTION SUMMARY FOR E=   6.00000 ###########
+
+ Center-of-mass energy:    5.901
+
+ 1. Total (binary) cross sections
+
+   Reaction        = 4.81632E+02
+     Compound elastic= 2.14868E+02
+     Non-elastic     = 2.66764E+02
+       Direct          = 7.08997E+00
+       Pre-equilibrium = 1.62821E-02
+       Giant resonance = 2.68675E-05
+       Compound non-el = 2.59658E+02
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+ gamma   = 3.13129E+00
+ proton  = 2.63633E+02
+
+ 3. Total particle production cross sections
+
+ gamma   = 6.03969E+00    Multiplicity= 2.26406E-02
+ proton  = 2.63929E+02    Multiplicity= 9.89375E-01
+
+ 4. Residual production cross sections
+
+   a. Per isotope
+
+   Z   A  nuclide    total     level   isomeric    isomeric    lifetime
+                 cross section       cross section  ratio
+
+   29  61 ( 61Cu) 2.83517E+00    0    2.83517E+00  1.00000
+   28  60 ( 60Ni) 2.63929E+02    0    2.63929E+02  1.00000
+
+   b. Per mass
+
+   A  cross section
+
+   61 2.83517E+00
+   60 2.63929E+02
+
+ Total residual production cross section:   266.7645874
+ Non-elastic cross section              :   266.7637939
+
+ ########## EXCITATION FUNCTIONS ###########
+
+ 1. Total (binary) cross sections
+
+   Energy    Non-elastic  Elastic     Total    Comp. el.  Shape el.  Reaction   Comp non-el  Direct   Pre-equil.
+
+  3.00000E+00 1.40724E+00 2.67660E+01 0.00000E+00 2.67660E+01 0.00000E+00 2.81732E+01 1.40707E+00 1.69184E-04 0.0
+  3.05000E+00 1.55128E+00 2.98625E+01 0.00000E+00 2.98625E+01 0.00000E+00 3.14138E+01 1.55102E+00 2.57128E-04 0.0
+  3.10000E+00 1.71666E+00 3.31926E+01 0.00000E+00 3.31926E+01 0.00000E+00 3.49093E+01 1.71627E+00 3.84171E-04 0.0
+  3.15000E+00 1.91210E+00 3.67546E+01 0.00000E+00 3.67546E+01 0.00000E+00 3.86667E+01 1.91154E+00 5.64876E-04 0.0
+  3.20000E+00 2.13593E+00 4.05557E+01 0.00000E+00 4.05557E+01 0.00000E+00 4.26916E+01 2.13512E+00 8.18187E-04 0.0
+  3.25000E+00 2.39966E+00 4.45890E+01 0.00000E+00 4.45890E+01 0.00000E+00 4.69887E+01 2.39849E+00 1.16845E-03 0.0
+  3.30000E+00 2.70043E+00 4.88605E+01 0.00000E+00 4.88605E+01 0.00000E+00 5.15609E+01 2.69878E+00 1.64652E-03 0.0
+  3.35000E+00 3.04667E+00 5.33633E+01 0.00000E+00 5.33633E+01 0.00000E+00 5.64100E+01 3.04438E+00 2.29114E-03 0.0
+  3.40000E+00 3.44724E+00 5.80888E+01 0.00000E+00 5.80888E+01 0.00000E+00 6.15360E+01 3.44409E+00 3.15031E-03 0.0
+  3.45000E+00 3.92213E+00 6.30153E+01 0.00000E+00 6.30153E+01 0.00000E+00 6.69374E+01 3.91785E+00 4.28290E-03 0.0
+  3.50000E+00 4.45588E+00 6.81551E+01 0.00000E+00 6.81551E+01 0.00000E+00 7.26110E+01 4.45012E+00 5.76041E-03 0.0
+  3.55000E+00 5.04646E+00 7.35058E+01 0.00000E+00 7.35058E+01 0.00000E+00 7.85523E+01 5.03880E+00 7.66881E-03 0.0
+  3.60000E+00 5.70411E+00 7.90509E+01 0.00000E+00 7.90509E+01 0.00000E+00 8.47550E+01 5.69400E+00 1.01105E-02 0.0
+  3.65000E+00 6.49225E+00 8.47196E+01 0.00000E+00 8.47196E+01 0.00000E+00 9.12118E+01 6.47904E+00 1.32062E-02 0.0
+  3.70000E+00 7.35998E+00 9.05537E+01 0.00000E+00 9.05537E+01 0.00000E+00 9.79137E+01 7.34288E+00 1.70973E-02 0.0
+  3.75000E+00 8.30573E+00 9.65453E+01 0.00000E+00 9.65453E+01 0.00000E+00 1.04851E+02 8.28378E+00 2.19476E-02 0.0
+  3.80000E+00 9.33867E+00 1.02673E+02 0.00000E+00 1.02673E+02 0.00000E+00 1.12012E+02 9.31072E+00 2.79457E-02 0.0
+  3.85000E+00 1.05553E+01 1.08830E+02 0.00000E+00 1.08830E+02 0.00000E+00 1.19385E+02 1.05200E+01 3.53063E-02 0.0
+  3.90000E+00 1.18857E+01 1.15072E+02 0.00000E+00 1.15072E+02 0.00000E+00 1.26958E+02 1.18415E+01 4.42730E-02 0.0
+  3.95000E+00 1.33274E+01 1.21391E+02 0.00000E+00 1.21391E+02 0.00000E+00 1.34718E+02 1.32723E+01 5.51188E-02 0.0
+  4.00000E+00 1.48857E+01 1.27766E+02 0.00000E+00 1.27766E+02 0.00000E+00 1.42652E+02 1.48176E+01 6.81476E-02 0.0
+  4.05000E+00 1.66742E+01 1.34071E+02 0.00000E+00 1.34071E+02 0.00000E+00 1.50745E+02 1.65905E+01 8.36963E-02 0.0
+  4.10000E+00 1.86093E+01 1.40377E+02 0.00000E+00 1.40377E+02 0.00000E+00 1.58986E+02 1.85071E+01 1.02133E-01 0.0
+  4.15000E+00 2.07054E+01 1.46655E+02 0.00000E+00 1.46655E+02 0.00000E+00 1.67360E+02 2.05782E+01 1.27225E-01 0.0
+  4.20000E+00 2.29549E+01 1.52900E+02 0.00000E+00 1.52900E+02 0.00000E+00 1.75855E+02 2.28021E+01 1.52836E-01 0.0
+  4.25000E+00 2.54710E+01 1.58987E+02 0.00000E+00 1.58987E+02 0.00000E+00 1.84458E+02 2.52884E+01 1.82635E-01 0.0
+  4.30000E+00 2.81954E+01 1.64962E+02 0.00000E+00 1.64962E+02 0.00000E+00 1.93157E+02 2.79781E+01 2.17303E-01 0.0
+  4.35000E+00 3.11089E+01 1.70832E+02 0.00000E+00 1.70832E+02 0.00000E+00 2.01941E+02 3.08519E+01 2.56979E-01 0.0
+  4.40000E+00 3.42108E+01 1.76587E+02 0.00000E+00 1.76587E+02 0.00000E+00 2.10798E+02 3.39083E+01 3.02413E-01 0.0
+  4.45000E+00 3.76049E+01 1.82112E+02 0.00000E+00 1.82112E+02 0.00000E+00 2.19717E+02 3.72506E+01 3.54329E-01 0.0
+  4.50000E+00 4.12594E+01 1.87428E+02 0.00000E+00 1.87428E+02 0.00000E+00 2.28687E+02 4.08460E+01 4.13386E-01 0.0
+  4.55000E+00 4.51325E+01 1.92567E+02 0.00000E+00 1.92567E+02 0.00000E+00 2.37700E+02 4.46526E+01 4.79885E-01 0.0
+  4.60000E+00 4.92324E+01 1.97513E+02 0.00000E+00 1.97513E+02 0.00000E+00 2.46745E+02 4.86783E+01 5.54104E-01 0.0
+  4.65000E+00 5.36331E+01 2.02180E+02 0.00000E+00 2.02180E+02 0.00000E+00 2.55813E+02 5.29961E+01 6.37035E-01 0.0
+  4.70000E+00 5.83323E+01 2.06564E+02 0.00000E+00 2.06564E+02 0.00000E+00 2.64896E+02 5.76032E+01 7.29072E-01 0.0
+  4.75000E+00 6.32753E+01 2.10709E+02 0.00000E+00 2.10709E+02 0.00000E+00 2.73984E+02 6.24445E+01 8.30854E-01 0.0
+  4.80000E+00 6.84769E+01 2.14593E+02 0.00000E+00 2.14593E+02 0.00000E+00 2.83070E+02 6.75306E+01 9.43111E-01 3.1
+  4.85000E+00 7.39680E+01 2.18176E+02 0.00000E+00 2.18176E+02 0.00000E+00 2.92144E+02 7.28986E+01 1.06603E+00 3.3
+  4.90000E+00 7.97671E+01 2.21433E+02 0.00000E+00 2.21433E+02 0.00000E+00 3.01200E+02 7.85635E+01 1.20005E+00 3.5
+  4.95000E+00 8.58298E+01 2.24399E+02 0.00000E+00 2.24399E+02 0.00000E+00 3.10229E+02 8.44800E+01 1.34597E+00 3.8
+  5.00000E+00 9.21446E+01 2.27077E+02 0.00000E+00 2.27077E+02 0.00000E+00 3.19222E+02 9.06370E+01 1.50358E+00 4.0
+  5.05000E+00 9.87435E+01 2.29431E+02 0.00000E+00 2.29431E+02 0.00000E+00 3.28174E+02 9.70646E+01 1.67455E+00 4.3
+  5.10000E+00 1.05635E+02 2.31441E+02 0.00000E+00 2.31441E+02 0.00000E+00 3.37076E+02 1.03774E+02 1.85666E+00 4.7
+  5.15000E+00 1.12786E+02 2.33134E+02 0.00000E+00 2.33134E+02 0.00000E+00 3.45920E+02 1.10730E+02 2.05162E+00 4.9
+  5.20000E+00 1.20188E+02 2.34513E+02 0.00000E+00 2.34513E+02 0.00000E+00 3.54701E+02 1.17924E+02 2.25883E+00 5.1
+  5.25000E+00 1.27841E+02 2.35568E+02 0.00000E+00 2.35568E+02 0.00000E+00 3.63409E+02 1.25357E+02 2.47872E+00 5.2
+  5.30000E+00 1.35759E+02 2.36281E+02 0.00000E+00 2.36281E+02 0.00000E+00 3.72040E+02 1.33042E+02 2.71124E+00 5.5
+  5.35000E+00 1.43915E+02 2.36671E+02 0.00000E+00 2.36671E+02 0.00000E+00 3.80586E+02 1.40953E+02 2.95612E+00 5.7
+  5.40000E+00 1.52288E+02 2.36753E+02 0.00000E+00 2.36753E+02 0.00000E+00 3.89041E+02 1.49069E+02 3.21285E+00 6.0
+  5.45000E+00 1.60874E+02 2.36525E+02 0.00000E+00 2.36525E+02 0.00000E+00 3.97399E+02 1.57385E+02 3.48189E+00 6.3
+  5.50000E+00 1.69670E+02 2.35984E+02 0.00000E+00 2.35984E+02 0.00000E+00 4.05654E+02 1.65901E+02 3.76204E+00 6.7
+  5.55000E+00 1.78675E+02 2.35127E+02 0.00000E+00 2.35127E+02 0.00000E+00 4.13802E+02 1.74613E+02 4.05481E+00 7.2
+  5.60001E+00 1.87849E+02 2.33990E+02 0.00000E+00 2.33990E+02 0.00000E+00 4.21839E+02 1.83484E+02 4.35655E+00 7.9
+  5.65001E+00 1.97201E+02 2.32556E+02 0.00000E+00 2.32556E+02 0.00000E+00 4.29757E+02 1.92523E+02 4.66884E+00 8.5
+  5.70001E+00 2.06726E+02 2.30829E+02 0.00000E+00 2.30829E+02 0.00000E+00 4.37555E+02 2.01727E+02 4.99025E+00 8.8
+  5.75001E+00 2.16438E+02 2.28789E+02 0.00000E+00 2.28789E+02 0.00000E+00 4.45227E+02 2.11107E+02 5.32084E+00 9.5
+  5.80001E+00 2.26277E+02 2.26495E+02 0.00000E+00 2.26495E+02 0.00000E+00 4.52772E+02 2.20607E+02 5.66004E+00 1.0
+  5.85001E+00 2.36244E+02 2.23944E+02 0.00000E+00 2.23944E+02 0.00000E+00 4.60188E+02 2.30225E+02 6.00725E+00 1.1
+  5.90001E+00 2.46321E+02 2.21149E+02 0.00000E+00 2.21149E+02 0.00000E+00 4.67470E+02 2.39947E+02 6.36141E+00 1.2
+  5.95001E+00 2.56527E+02 2.18092E+02 0.00000E+00 2.18092E+02 0.00000E+00 4.74619E+02 2.49790E+02 6.72290E+00 1.4
+  6.00000E+00 2.66764E+02 2.14868E+02 0.00000E+00 2.14868E+02 0.00000E+00 4.81632E+02 2.59658E+02 7.08997E+00 1.6
+
+ 2. Binary non-elastic cross sections (non-exclusive)
+
+   Energy     gamma      neutron    proton     deuteron   triton     helium-3   alpha   
+
+  3.00000E+00 1.14264E+00 0.00000E+00 2.62900E-01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.05000E+00 1.19425E+00 0.00000E+00 3.55073E-01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.10000E+00 1.24604E+00 0.00000E+00 4.68384E-01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.15000E+00 1.29715E+00 0.00000E+00 6.12435E-01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.20000E+00 1.34828E+00 0.00000E+00 7.84863E-01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.25000E+00 1.39833E+00 0.00000E+00 9.98281E-01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.30000E+00 1.44862E+00 0.00000E+00 1.24849E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.35000E+00 1.49100E+00 0.00000E+00 1.55211E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.40000E+00 1.53998E+00 0.00000E+00 1.90348E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.45000E+00 1.58662E+00 0.00000E+00 2.33155E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.50000E+00 1.63380E+00 0.00000E+00 2.81798E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.55000E+00 1.68229E+00 0.00000E+00 3.35996E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.60000E+00 1.73151E+00 0.00000E+00 3.96830E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.65000E+00 1.77615E+00 0.00000E+00 4.71176E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.70000E+00 1.82204E+00 0.00000E+00 5.53363E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.75000E+00 1.86963E+00 0.00000E+00 6.43184E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.80000E+00 1.91850E+00 0.00000E+00 7.41598E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.85000E+00 1.96214E+00 0.00000E+00 8.58909E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.90000E+00 2.00658E+00 0.00000E+00 9.87528E+00 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  3.95000E+00 2.05225E+00 0.00000E+00 1.12715E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.00000E+00 2.09908E+00 0.00000E+00 1.27832E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.05000E+00 2.14084E+00 0.00000E+00 1.45302E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.10000E+00 2.17269E+00 0.00000E+00 1.64337E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.15000E+00 2.21828E+00 0.00000E+00 1.84844E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.20000E+00 2.26139E+00 0.00000E+00 2.06911E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.25000E+00 2.30010E+00 0.00000E+00 2.31688E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.30000E+00 2.33829E+00 0.00000E+00 2.58552E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.35000E+00 2.37649E+00 0.00000E+00 2.87308E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.40000E+00 2.41575E+00 0.00000E+00 3.17936E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.45000E+00 2.45168E+00 0.00000E+00 3.51521E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.50000E+00 2.48643E+00 0.00000E+00 3.87719E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.55000E+00 2.52127E+00 0.00000E+00 4.26103E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.60000E+00 2.55660E+00 0.00000E+00 4.66750E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.65000E+00 2.58930E+00 0.00000E+00 5.10432E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.70000E+00 2.62038E+00 0.00000E+00 5.57114E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.75000E+00 2.65175E+00 0.00000E+00 6.06231E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.80000E+00 2.68687E+00 0.00000E+00 6.57897E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.85000E+00 2.71698E+00 0.00000E+00 7.12507E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.90000E+00 2.74592E+00 0.00000E+00 7.70209E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  4.95000E+00 2.77576E+00 0.00000E+00 8.30539E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.00000E+00 2.79159E+00 0.00000E+00 8.93530E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.05000E+00 2.82006E+00 0.00000E+00 9.59233E+01 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.10000E+00 2.84637E+00 0.00000E+00 1.02789E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.15000E+00 2.87208E+00 0.00000E+00 1.09914E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.20000E+00 2.89719E+00 0.00000E+00 1.17291E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.25000E+00 2.92081E+00 0.00000E+00 1.24921E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.30000E+00 2.94341E+00 0.00000E+00 1.32816E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.35000E+00 2.96522E+00 0.00000E+00 1.40950E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.40000E+00 2.98645E+00 0.00000E+00 1.49301E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.45000E+00 3.00636E+00 0.00000E+00 1.57867E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.50000E+00 3.02469E+00 0.00000E+00 1.66646E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.55000E+00 3.04332E+00 0.00000E+00 1.75632E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.60001E+00 3.05980E+00 0.00000E+00 1.84789E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.65001E+00 3.07473E+00 0.00000E+00 1.94126E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.70001E+00 3.08739E+00 0.00000E+00 2.03639E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.75001E+00 3.09820E+00 0.00000E+00 2.13340E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.80001E+00 3.10808E+00 0.00000E+00 2.23170E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.85001E+00 3.11637E+00 0.00000E+00 2.33128E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.90001E+00 3.12278E+00 0.00000E+00 2.43199E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  5.95001E+00 3.12768E+00 0.00000E+00 2.53400E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+  6.00000E+00 3.13129E+00 0.00000E+00 2.63633E+02 0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00                
+
+ 3. Total particle production cross sections
+
+ gamma    production
+
+ Energy   Cross section Multiplicity
+
+  3.00000E+00 1.83711E+00 1.30547E+00                                            
+  3.05000E+00 1.93016E+00 1.24424E+00                                            
+  3.10000E+00 2.02425E+00 1.17918E+00                                            
+  3.15000E+00 2.11835E+00 1.10787E+00                                            
+  3.20000E+00 2.21289E+00 1.03603E+00                                            
+  3.25000E+00 2.30633E+00 9.61108E-01                                            
+  3.30000E+00 2.40084E+00 8.89059E-01                                            
+  3.35000E+00 2.47971E+00 8.13907E-01                                            
+  3.40000E+00 2.57318E+00 7.46447E-01                                            
+  3.45000E+00 2.66324E+00 6.79028E-01                                            
+  3.50000E+00 2.75475E+00 6.18227E-01                                            
+  3.55000E+00 2.84903E+00 5.64560E-01                                            
+  3.60000E+00 2.94504E+00 5.16301E-01                                            
+  3.65000E+00 3.03367E+00 4.67275E-01                                            
+  3.70000E+00 3.12487E+00 4.24576E-01                                            
+  3.75000E+00 3.21947E+00 3.87620E-01                                            
+  3.80000E+00 3.31662E+00 3.55149E-01                                            
+  3.85000E+00 3.40492E+00 3.22580E-01                                            
+  3.90000E+00 3.49493E+00 2.94044E-01                                            
+  3.95000E+00 3.58734E+00 2.69171E-01                                            
+  4.00000E+00 3.68200E+00 2.47351E-01                                            
+  4.05000E+00 3.76775E+00 2.25963E-01                                            
+  4.10000E+00 3.83235E+00 2.05938E-01                                            
+  4.15000E+00 3.92228E+00 1.89433E-01                                            
+  4.20000E+00 4.01029E+00 1.74703E-01                                            
+  4.25000E+00 4.09017E+00 1.60581E-01                                            
+  4.30000E+00 4.16885E+00 1.47856E-01                                            
+  4.35000E+00 4.24757E+00 1.36539E-01                                            
+  4.40000E+00 4.32814E+00 1.26514E-01                                            
+  4.45000E+00 4.40217E+00 1.17064E-01                                            
+  4.50000E+00 4.47360E+00 1.08426E-01                                            
+  4.55000E+00 4.54493E+00 1.00702E-01                                            
+  4.60000E+00 4.61731E+00 9.37860E-02                                            
+  4.65000E+00 4.68427E+00 8.73390E-02                                            
+  4.70000E+00 4.74821E+00 8.13993E-02                                            
+  4.75000E+00 4.81260E+00 7.60581E-02                                            
+  4.80000E+00 4.88551E+00 7.13454E-02                                            
+  4.85000E+00 4.94687E+00 6.68785E-02                                            
+  4.90000E+00 5.00623E+00 6.27606E-02                                            
+  4.95000E+00 5.06893E+00 5.90579E-02                                            
+  5.00000E+00 5.10055E+00 5.53538E-02                                            
+  5.05000E+00 5.15728E+00 5.22290E-02                                            
+  5.10000E+00 5.21130E+00 4.93330E-02                                            
+  5.15000E+00 5.26368E+00 4.66695E-02                                            
+  5.20000E+00 5.31535E+00 4.42253E-02                                            
+  5.25000E+00 5.36373E+00 4.19561E-02                                            
+  5.30000E+00 5.41026E+00 3.98519E-02                                            
+  5.35000E+00 5.45564E+00 3.79088E-02                                            
+  5.40000E+00 5.50055E+00 3.61195E-02                                            
+  5.45000E+00 5.54276E+00 3.44541E-02                                            
+  5.50000E+00 5.58300E+00 3.29051E-02                                            
+  5.55000E+00 5.62376E+00 3.14748E-02                                            
+  5.60001E+00 5.66383E+00 3.01510E-02                                            
+  5.65001E+00 5.70244E+00 2.89169E-02                                            
+  5.70001E+00 5.74014E+00 2.77670E-02                                            
+  5.75001E+00 5.77834E+00 2.66975E-02                                            
+  5.80001E+00 5.81991E+00 2.57202E-02                                            
+  5.85001E+00 5.86501E+00 2.48261E-02                                            
+  5.90001E+00 5.91491E+00 2.40130E-02                                            
+  5.95001E+00 5.97230E+00 2.32813E-02                                            
+  6.00000E+00 6.03969E+00 2.26406E-02                                            
+
+ proton   production
+
+ Energy   Cross section Multiplicity
+
+  3.00000E+00 2.64923E-01 1.88257E-01                                            
+  3.05000E+00 3.57461E-01 2.30430E-01                                            
+  3.10000E+00 4.71207E-01 2.74491E-01                                            
+  3.15000E+00 6.15744E-01 3.22024E-01                                            
+  3.20000E+00 7.88710E-01 3.69258E-01                                            
+  3.25000E+00 1.00275E+00 4.17870E-01                                            
+  3.30000E+00 1.25365E+00 4.64242E-01                                            
+  3.35000E+00 1.55804E+00 5.11391E-01                                            
+  3.40000E+00 1.91025E+00 5.54138E-01                                            
+  3.45000E+00 2.33928E+00 5.96430E-01                                            
+  3.50000E+00 2.82674E+00 6.34385E-01                                            
+  3.55000E+00 3.36987E+00 6.67768E-01                                            
+  3.60000E+00 3.97947E+00 6.97649E-01                                            
+  3.65000E+00 4.72429E+00 7.27681E-01                                            
+  3.70000E+00 5.54763E+00 7.53757E-01                                            
+  3.75000E+00 6.44746E+00 7.76267E-01                                            
+  3.80000E+00 7.43338E+00 7.95978E-01                                            
+  3.85000E+00 8.60842E+00 8.15556E-01                                            
+  3.90000E+00 9.89666E+00 8.32650E-01                                            
+  3.95000E+00 1.12950E+01 8.47506E-01                                            
+  4.00000E+00 1.28092E+01 8.60502E-01                                            
+  4.05000E+00 1.45587E+01 8.73128E-01                                            
+  4.10000E+00 1.64650E+01 8.84775E-01                                            
+  4.15000E+00 1.85187E+01 8.94391E-01                                            
+  4.20000E+00 2.07285E+01 9.03009E-01                                            
+  4.25000E+00 2.32095E+01 9.11214E-01                                            
+  4.30000E+00 2.58995E+01 9.18571E-01                                            
+  4.35000E+00 2.87788E+01 9.25100E-01                                            
+  4.40000E+00 3.18455E+01 9.30863E-01                                            
+  4.45000E+00 3.52082E+01 9.36265E-01                                            
+  4.50000E+00 3.88323E+01 9.41176E-01                                            
+  4.55000E+00 4.26755E+01 9.45559E-01                                            
+  4.60000E+00 4.67450E+01 9.49477E-01                                            
+  4.65000E+00 5.11183E+01 9.53111E-01                                            
+  4.70000E+00 5.57918E+01 9.56448E-01                                            
+  4.75000E+00 6.07092E+01 9.59445E-01                                            
+  4.80000E+00 6.58817E+01 9.62101E-01                                            
+  4.85000E+00 7.13488E+01 9.64590E-01                                            
+  4.90000E+00 7.71252E+01 9.66881E-01                                            
+  4.95000E+00 8.31648E+01 9.68950E-01                                            
+  5.00000E+00 8.94709E+01 9.70984E-01                                            
+  5.05000E+00 9.60484E+01 9.72707E-01                                            
+  5.10000E+00 1.02921E+02 9.74307E-01                                            
+  5.15000E+00 1.10054E+02 9.75776E-01                                            
+  5.20000E+00 1.17439E+02 9.77126E-01                                            
+  5.25000E+00 1.25076E+02 9.78373E-01                                            
+  5.30000E+00 1.32980E+02 9.79529E-01                                            
+  5.35000E+00 1.41123E+02 9.80597E-01                                            
+  5.40000E+00 1.49483E+02 9.81582E-01                                            
+  5.45000E+00 1.58058E+02 9.82496E-01                                            
+  5.50000E+00 1.66845E+02 9.83349E-01                                            
+  5.55000E+00 1.75840E+02 9.84136E-01                                            
+  5.60001E+00 1.85007E+02 9.84874E-01                                            
+  5.65001E+00 1.94354E+02 9.85564E-01                                            
+  5.70001E+00 2.03876E+02 9.86214E-01                                            
+  5.75001E+00 2.13587E+02 9.86828E-01                                            
+  5.80001E+00 2.23426E+02 9.87400E-01                                            
+  5.85001E+00 2.33394E+02 9.87939E-01                                            
+  5.90001E+00 2.43475E+02 9.88447E-01                                            
+  5.95001E+00 2.53686E+02 9.88926E-01                                            
+  6.00000E+00 2.63929E+02 9.89375E-01                                            
+
+ 4. Residual production cross sections
+
+ Production of Z= 29 A= 61 ( 61Cu) - Total
+
+ Q-value    =   4.799910
+ E-threshold=   0.000000
+
+ Energy   Cross section
+
+  3.00000E+00 1.14061E+00                                                        
+  3.05000E+00 1.19186E+00                                                        
+  3.10000E+00 1.24321E+00                                                        
+  3.15000E+00 1.29384E+00                                                        
+  3.20000E+00 1.34443E+00                                                        
+  3.25000E+00 1.39386E+00                                                        
+  3.30000E+00 1.44346E+00                                                        
+  3.35000E+00 1.48506E+00                                                        
+  3.40000E+00 1.53321E+00                                                        
+  3.45000E+00 1.57889E+00                                                        
+  3.50000E+00 1.62503E+00                                                        
+  3.55000E+00 1.67239E+00                                                        
+  3.60000E+00 1.72034E+00                                                        
+  3.65000E+00 1.76362E+00                                                        
+  3.70000E+00 1.80803E+00                                                        
+  3.75000E+00 1.85402E+00                                                        
+  3.80000E+00 1.90110E+00                                                        
+  3.85000E+00 1.94282E+00                                                        
+  3.90000E+00 1.98520E+00                                                        
+  3.95000E+00 2.02865E+00                                                        
+  4.00000E+00 2.07308E+00                                                        
+  4.05000E+00 2.11230E+00                                                        
+  4.10000E+00 2.14134E+00                                                        
+  4.15000E+00 2.18401E+00                                                        
+  4.20000E+00 2.22398E+00                                                        
+  4.25000E+00 2.25936E+00                                                        
+  4.30000E+00 2.29400E+00                                                        
+  4.35000E+00 2.32848E+00                                                        
+  4.40000E+00 2.36378E+00                                                        
+  4.45000E+00 2.39557E+00                                                        
+  4.50000E+00 2.42593E+00                                                        
+  4.55000E+00 2.45615E+00                                                        
+  4.60000E+00 2.48658E+00                                                        
+  4.65000E+00 2.51417E+00                                                        
+  4.70000E+00 2.53992E+00                                                        
+  4.75000E+00 2.56570E+00                                                        
+  4.80000E+00 2.59490E+00                                                        
+  4.85000E+00 2.61893E+00                                                        
+  4.90000E+00 2.64159E+00                                                        
+  4.95000E+00 2.66485E+00                                                        
+  5.00000E+00 2.67361E+00                                                        
+  5.05000E+00 2.69494E+00                                                        
+  5.10000E+00 2.71392E+00                                                        
+  5.15000E+00 2.73201E+00                                                        
+  5.20000E+00 2.74931E+00                                                        
+  5.25000E+00 2.76486E+00                                                        
+  5.30000E+00 2.77920E+00                                                        
+  5.35000E+00 2.79259E+00                                                        
+  5.40000E+00 2.80509E+00                                                        
+  5.45000E+00 2.81618E+00                                                        
+  5.50000E+00 2.82544E+00                                                        
+  5.55000E+00 2.83485E+00                                                        
+  5.60001E+00 2.84187E+00                                                        
+  5.65001E+00 2.84728E+00                                                        
+  5.70001E+00 2.85033E+00                                                        
+  5.75001E+00 2.85138E+00                                                        
+  5.80001E+00 2.85147E+00                                                        
+  5.85001E+00 2.84990E+00                                                        
+  5.90001E+00 2.84643E+00                                                        
+  5.95001E+00 2.84150E+00                                                        
+  6.00000E+00 2.83517E+00                                                        
+
+ Production of Z= 28 A= 60 ( 60Ni) - Total
+
+ Q-value    =   0.000000
+ E-threshold=  -0.000000
+
+ Energy   Cross section
+
+  3.00000E+00 2.64923E-01                                                        
+  3.05000E+00 3.57461E-01                                                        
+  3.10000E+00 4.71206E-01                                                        
+  3.15000E+00 6.15744E-01                                                        
+  3.20000E+00 7.88710E-01                                                        
+  3.25000E+00 1.00275E+00                                                        
+  3.30000E+00 1.25365E+00                                                        
+  3.35000E+00 1.55804E+00                                                        
+  3.40000E+00 1.91025E+00                                                        
+  3.45000E+00 2.33928E+00                                                        
+  3.50000E+00 2.82674E+00                                                        
+  3.55000E+00 3.36987E+00                                                        
+  3.60000E+00 3.97947E+00                                                        
+  3.65000E+00 4.72429E+00                                                        
+  3.70000E+00 5.54763E+00                                                        
+  3.75000E+00 6.44746E+00                                                        
+  3.80000E+00 7.43338E+00                                                        
+  3.85000E+00 8.60842E+00                                                        
+  3.90000E+00 9.89666E+00                                                        
+  3.95000E+00 1.12950E+01                                                        
+  4.00000E+00 1.28092E+01                                                        
+  4.05000E+00 1.45587E+01                                                        
+  4.10000E+00 1.64650E+01                                                        
+  4.15000E+00 1.85187E+01                                                        
+  4.20000E+00 2.07285E+01                                                        
+  4.25000E+00 2.32095E+01                                                        
+  4.30000E+00 2.58995E+01                                                        
+  4.35000E+00 2.87788E+01                                                        
+  4.40000E+00 3.18455E+01                                                        
+  4.45000E+00 3.52082E+01                                                        
+  4.50000E+00 3.88324E+01                                                        
+  4.55000E+00 4.26755E+01                                                        
+  4.60000E+00 4.67450E+01                                                        
+  4.65000E+00 5.11183E+01                                                        
+  4.70000E+00 5.57918E+01                                                        
+  4.75000E+00 6.07092E+01                                                        
+  4.80000E+00 6.58817E+01                                                        
+  4.85000E+00 7.13488E+01                                                        
+  4.90000E+00 7.71252E+01                                                        
+  4.95000E+00 8.31648E+01                                                        
+  5.00000E+00 8.94709E+01                                                        
+  5.05000E+00 9.60484E+01                                                        
+  5.10000E+00 1.02921E+02                                                        
+  5.15000E+00 1.10054E+02                                                        
+  5.20000E+00 1.17439E+02                                                        
+  5.25000E+00 1.25076E+02                                                        
+  5.30000E+00 1.32980E+02                                                        
+  5.35000E+00 1.41122E+02                                                        
+  5.40000E+00 1.49483E+02                                                        
+  5.45000E+00 1.58058E+02                                                        
+  5.50000E+00 1.66845E+02                                                        
+  5.55000E+00 1.75840E+02                                                        
+  5.60001E+00 1.85007E+02                                                        
+  5.65001E+00 1.94354E+02                                                        
+  5.70001E+00 2.03876E+02                                                        
+  5.75001E+00 2.13587E+02                                                        
+  5.80001E+00 2.23426E+02                                                        
+  5.85001E+00 2.33394E+02                                                        
+  5.90001E+00 2.43476E+02                                                        
+  5.95001E+00 2.53686E+02                                                        
+  6.00000E+00 2.63929E+02                                                        
+
+ Execution time:  0 hours  0 minutes 23.57 seconds 
+
+ The TALYS team congratulates you with this successful calculation.
