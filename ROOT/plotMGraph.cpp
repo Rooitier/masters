@@ -30,7 +30,8 @@ void multigraph(const char* file1, const char* file2){
    in2.open(file2);
 
    for (int i = 0; i < Num2; ++i ){
-    in2 >> e[i] >> a[i] >> s[i] >> t[i] >> j1[i] >> j2[i] >> j3[i] >> j4[i] >> j5[i] >> j6[i] >> j7[i] >> j8[i];
+    in2 >> e[i] >> a[i] >> s[i] >> t[i];
+    
     tl[i] = log(t[i]);
     }
 
@@ -40,8 +41,8 @@ void multigraph(const char* file1, const char* file2){
     mg->Add(gr2);
 
    mg->Draw("apl");
-   mg->GetXaxis()->SetTitle("X values");
-   mg->GetYaxis()->SetTitle("Y values");
+   mg->GetXaxis()->SetTitle("Energy (MeV)");
+   mg->GetYaxis()->SetTitle("Log(no. of nuclear level density states)");
 
    gPad->Update();
    gPad->Modified();
