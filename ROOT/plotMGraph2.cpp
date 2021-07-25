@@ -33,6 +33,7 @@ void multigraph(const char* file1, const char* file2){
     in2 >> e[i] >> a[i] >> s[i] >> t[i] >> j1[i] >> j2[i] >> j3[i] >> j4[i] >> j5[i] >> j6[i] >> j7[i] >> j8[i] >> j9[i];
     
     tl[i] = log(t[i]);
+    cout << t[i];
     }
 
     TGraph *gr2 = new TGraph(40, e, tl);
