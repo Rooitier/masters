@@ -1,3 +1,7 @@
+// Simple macro used to plot the strength data of a file.
+
+
+
 {
 
   enum { kNumData = 50 };

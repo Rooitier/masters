@@ -1,3 +1,6 @@
+// Macro used for plotting resonance data from two data files, can add more just need to duplicate sections of the code.
+// The data is combined from RIPL-3 and another unnamed data file which does not have an author but was provided by my supervisor.
+
 void plot(const char* file1, const char* file2){
 TCanvas *c1 = new TCanvas ("c1","Graph Draw Options", 200,10,600,400);
 
@@ -6,7 +9,7 @@ TMultiGraph *mg = new TMultiGraph();
 TGraphErrors *gr = new TGraphErrors(file1, "%lg %*s %*s %lg %lg");
 TGraphErrors *gr1 = new TGraphErrors(file2, "%lg %*s %*s %lg %lg");
 TGraph *gr2 = new TGraph();
-gr2->SetPoint(0, 50., 3.70);
+gr2->SetPoint(0, 50., 3.80);
 
 
 gr->SetMarkerColor(4);
