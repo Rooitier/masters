@@ -1,4 +1,4 @@
-void plot(const char* file1, const char* file2, const char* file3){
+void plot(const char* file1, const char* file2){
 
 TCanvas *c1 = new TCanvas ("c1","Graph Draw Options", 200,10,600,400);
 TMultiGraph *mg = new TMultiGraph("mg","Energy (E) versus Log( #font[12]{f}(E_{1})) (arb. units)");
@@ -17,10 +17,10 @@ gr2->SetMarkerColor(4);
 gr2->SetMarkerStyle(20);
 
 
-TGraphErrors *gr3 = new TGraphErrors(file3, "%lg %lg");
-gr3->SetMarkerColor(6);
-gr3->SetMarkerStyle(20);
-mg->Add(gr3,"PL");
+// TGraphErrors *gr3 = new TGraphErrors(file3, "%lg %lg");
+// gr3->SetMarkerColor(6);
+// gr3->SetMarkerStyle(20);
+// mg->Add(gr3,"PL");
 
 
 mg->Add(gr, "PL");
