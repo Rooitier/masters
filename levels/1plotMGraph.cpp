@@ -7,7 +7,7 @@ c1->SetLogy();
 TMultiGraph *mg = new TMultiGraph("mg","Energy (E) versus No. of nuclear level density states");
 
 TGraph *gr = new TGraph(file1, "%lg %lg");
-TGraph *gr1 = new TGraph(file2, "%lg %*s %*s %lg %*s %*s %*s %*s %*s %*s %*s %*s %*s");
+TGraph *gr1 = new TGraph(file2, "%lg %lg %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s");
 
 // Options
 gr->SetMarkerColor(2);
