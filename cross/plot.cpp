@@ -7,6 +7,24 @@ c1->SetGrid();
 TMultiGraph *mg = new TMultiGraph("mg","Mass Number (A) versus Average Resonance Spacing D_{0} (keV) for neutron capture");
 
 TGraphErrors *gr = new TGraphErrors(file1, "%lg %lg");
+
+ifstream in;
+in.open( file2 );
+std::string line;
+
+num = 0;
+
+while(getline(in,line))
+    ++num;
+
+print(num)
+
+for( int i = 0; i < kNumData; ++i ){
+
+    in >> e[i] >> fm1[i] >> fe1[i] >> tm1[i] >> te1[i];
+
+}
+
 TGraph *gr1 = new TGraph(file2, "%lg %lg");
 // TGraph *gr2 = new TGraph();
 // gr2->SetPoint(0, 50., 3.80);
