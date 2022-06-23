@@ -1,0 +1,4171 @@
+
+    TALYS-1.95 (Version: December 28, 2019)
+
+ Copyright (C) 2019  A.J. Koning, S. Hilaire and S. Goriely      
+
+ Dimensions - Cross sections: mb, Energies: MeV, Angles: degrees
+
+ ########## USER INPUT ##########
+
+ USER INPUT FILE
+
+ ##########################
+ ##   talys input file   ##
+ ##    65cu(p,g)66cu     ##
+ ##########################
+ 
+ # all keywords are explained in readme.
+ 
+ element cu
+ projectile p
+ mass 65
+ energy 1
+ astro y
+ ejectiles g
+ filedensity y
+ filepsf y
+ fileresidual y
+ gnorm 1.0
+ massmodel 2
+ maxlevelsres 30
+ outdensity y
+ outgamma y
+ outlevels y
+ psfglobal y
+ strength 2
+ ldmodel 6
+ localomp n
+
+ USER INPUT FILE + DEFAULTS
+
+ Keyword           Value   Variable     Explanation
+
+ #
+ # Four main keywords
+ #
+ projectile          p     ptype0       type of incident particle
+ element            Cu     Starget      symbol of target nucleus
+ mass               65     mass         mass number of target nucleus
+ energy                    energyfile   file with incident energies
+ #
+ # Basic physical and numerical parameters
+ #
+ ejectiles g               outtype      outgoing particles
+ maxz               12     maxZ         maximal number of protons away from the initial compound nucleus
+ maxn               32     maxN         maximal number of neutrons away from the initial compound nucleus
+ bins               40     nbins        number of continuum excitation energy bins
+ equidistant         n     flagequi     flag to use equidistant excitation bins instead of logarithmic bins
+ popmev              n     flagpopmev   flag to use initial population per MeV instead of histograms
+ segment             1     segment      number of segments to divide emission energy grid
+ maxlevelstar       30     nlevmax      maximum number of included discrete levels for target
+ maxlevelsres       30     nlevmaxres   maximum number of included discrete levels for residual nucleus
+ maxlevelsbin g     10     nlevbin      maximum number of included discrete levels for gamma    channel
+ maxlevelsbin n     10     nlevbin      maximum number of included discrete levels for neutron  channel
+ maxlevelsbin p     30     nlevbin      maximum number of included discrete levels for proton   channel
+ maxlevelsbin d      5     nlevbin      maximum number of included discrete levels for deuteron channel
+ maxlevelsbin t      5     nlevbin      maximum number of included discrete levels for triton   channel
+ maxlevelsbin h      5     nlevbin      maximum number of included discrete levels for helium-3 channel
+ maxlevelsbin a     10     nlevbin      maximum number of included discrete levels for alpha    channel
+ ltarget             0     ltarget      excited level of target
+ isomer           1.00E+00 isomer       definition of isomer in seconds
+ transpower         15     transpower   power for transmission coefficient limit
+ transeps         1.00E-18 transeps     limit for transmission coefficient
+ xseps            1.00E-17 xseps        limit for cross sections
+ popeps           1.00E-13 popeps       limit for population cross section per nucleus
+ Rfiseps          1.00E-06 Rfiseps      ratio for limit for fission cross section per nucleus
+ elow             1.00E-06 elow         minimal incident energy for nuclear model calculations
+ angles             90     nangle       number of angles
+ anglescont         18     nanglecont   number of angles for continuum
+ anglesrec           1     nanglerec    number of recoil angles
+ maxenrec           20     maxenrec     number of recoil energies
+ channels            n     flagchannels flag for exclusive channels calculation
+ maxchannel          4     maxchannel   maximal number of outgoing particles in individual channel description
+ micro               n     flagmicro    flag for completely microscopic Talys calculation
+ best                n     flagbest     flag to use best set of adjusted parameters
+ bestbranch          y     flagbestbr   flag to use flag to use only best set of branching ratios
+ bestend             n     flagbestend  flag to put best set of parameters at end of input file
+ relativistic        y     flagrel      flag for relativistic kinematics
+ recoil              n     flagrecoil   flag for calculation of recoils
+ labddx              n     flaglabddx   flag for calculation of DDX in LAB system
+ recoilaverage       n     flagrecoilav flag for average velocity in recoil calculation
+ channelenergy       n     flagEchannel flag for channel energy for emission spectrum
+ reaction            y     flagreaction flag for calculation of nuclear reactions
+ astro               y     flagastro    flag for calculation of astrophysics reaction rate
+ astrogs             n     flagastrogs  flag for calculation of astrophysics reaction rate with target in ground state only
+ astroex             n     flagastroex  flag for calculation of astrophysics reaction rate to long-lived excited states
+ nonthermlev        -1     nonthermlev  excited level non-thermalized in the calculation of astrophysics rate
+ massmodel           2     massmodel    model for theoretical nuclear mass
+ expmass             y     flagexpmass  flag for using experimental nuclear mass if available
+ disctable           1     disctable    table with discrete levels
+ production          n     flagprod     flag for isotope production
+ outfy               n     flagoutfy    flag for output detailed fission yield calculation
+ gefran          50000     gefran       number of random events for GEF calculation
+ Estop            1000.000 Estop        incident energy above which TALYS stops
+ rpevap              n     flagrpevap   flag for evaporation of residual products at high incident energies
+ maxZrp             12     maxZrp       maximal number of protons away from the initial compound nucleus before residual evaporation
+ maxNrp             32     maxNrp       maximal number of neutons away from the initial compound nucleus before residual evaporation
+ #
+ # Optical model
+ #
+ localomp            n     flaglocalomp flag for local (y) or global (n) optical model
+ dispersion          n     flagdisp     flag for dispersive optical model
+ jlmomp              n     flagjlm      flag for using semi-microscopic JLM OMP
+ optmodall           n     flagompall   flag for new optical model calculation for all residual nuclei
+ incadjust           y     flagincadj   flag for OMP adjustment on incident channel also
+ omponly             n     flagomponly  flag to execute ONLY an optical model calculation
+ autorot             n     flagautorot  flag for automatic rotational coupled channels calculations for A > 150
+ spherical           n     flagspher    flag to force spherical optical model
+ coulomb             y     flagcoulomb  flag for Coulomb excitation calculation with ECIS
+ statepot            n     flagstate    flag for optical model potential for each excited state
+ maxband             0     maxband      highest vibrational band added to rotational model
+ maxrot              2     maxrot       number of included excited rotational levels
+ sysreaction               sysreaction  particles with reaction cross section from systematics
+ rotational   p            rotational   particles with possible rotational optical model
+ core               -1     core         even-even core for weakcoupling (-1 or 1)
+ ecissave            n     flagecissave flag for saving ECIS input and output files
+ eciscalc            y     flageciscalc flag for new ECIS calculation for outgoing particles and energy grid
+ inccalc             y     flaginccalc  flag for new ECIS calculation for incident channel
+ endfecis            y     flagendfecis flag for new ECIS calculation for ENDF-6 files
+ radialmodel         2     radialmodel  model for radial matter densities (JLM OMP only)
+ jlmmode             0     jlmmode      option for JLM imaginary potential normalization
+ alphaomp            6     alphaomp     alpha OMP (1=normal, 2= McFadden-Satchler, 3-5= folding potential, 6,8= Avrigeanu, 7=Nolte)
+ deuteronomp         1     deuteronomp  deuteron OMP (1=normal, 2=Daehnick, 3=Bojowald, 4=Han-Shi-Shen, 5=An-Cai)
+ #
+ # Compound nucleus
+ #
+ widthfluc           7.454 ewfc         off-set incident energy for width fluctuation calculation
+ widthmode           1     wmode        designator for width fluctuation model
+ compound            y     flagcomp     flag for compound nucleus model
+ fullhf              n     flagfullhf   flag for full spin dependence of transmission coefficients
+ eciscompound        n     flageciscomp flag for compound nucleus calculation by ECIS
+ cpang               n     flagcpang    flag for compound angular distribution calculation for incident charged particles
+ urr                 n     flagurr      flag for URR calculation
+ urrnjoy             n     flagurrnjoy  flag for normalization of URR parameters with NJOY method
+ lurr                2     lurr         maximal orbital angular momentum for URR
+ #
+ # Gamma emission
+ #
+ gammax              2     gammax       number of l-values for gamma multipolarity
+ strength            2     strength     model for E1 gamma-ray strength function
+ strengthM1          2     strengthM1   model for M1 gamma-ray strength function
+ electronconv        y     flagelectron flag for application of electron conversion coefficient
+ racap               n     flagracap    flag for radiative capture model
+ ldmodelracap        1     ldmodelracap level density model for direct radiative capture
+ upbend              n     flagupbend   flag for low-energy upbend of photon strength function
+ psfglobal           y    flagpsfglobal flag for global photon strength functions only
+ #
+ # Pre-equilibrium
+ #
+ preequilibrium      2.990 epreeq       on-set incident energy for preequilibrium calculation
+ preeqmode           2     preeqmode    designator for pre-equilibrium model
+ multipreeq         20.000 emulpre      on-set incident energy for multiple preequilibrium
+ mpreeqmode          2     mpreeqmode   designator for multiple pre-equilibrium model
+ breakupmodel        1     breakupmodel model for break-up reaction: 1. Kalbach 2. Avrigeanu
+ phmodel             1     phmodel      particle-hole state density model
+ pairmodel           2     pairmodel    designator for pre-equilibrium pairing model
+ preeqspin           2     pespinmodel  model for pre-equilibrium spin distribution
+ giantresonance      y     flaggiant    flag for collective contribution from giant resonances
+ preeqsurface        y     flagsurface  flag for surface effects in exciton model
+ preeqcomplex        y     flagpecomp   flag for Kalbach complex particle emission model
+ twocomponent        y     flag2comp    flag for two-component pre-equilibrium model
+ ecisdwba            y     flagecisdwba flag for new ECIS calculation for DWBA for MSD
+ onestep             n     flagonestep  flag for continuum one-step direct only
+ #
+ # Level densities
+ #
+ ldmodel             6     ldmodelall   level density model
+ shellmodel          1     shellmodel   model for shell correction energies
+ kvibmodel           2     kvibmodel    model for vibrational enhancement
+ spincutmodel        1     spincutmodel model for spin cutoff factor for ground state
+ asys                n     flagasys     flag for all level density parameters a from systematics
+ parity              y     flagparity   flag for non-equal parity distribution
+ colenhance          n     flagcolall   flag for collective enhancement of level density for all nuclides
+ ctmglobal           n     flagctmglob  flag for global CTM model (no discrete level info)
+ gshell              n     flaggshell   flag for energy dependence of single particle level density parameter g
+ colldamp            n     flagcolldamp flag for damping of collective effects in effective  level density
+ #
+ # Fission
+ #
+ fission             n     flagfission  flag for fission
+ fismodel            1     fismodel     fission model
+ fismodelalt         4     fismodelalt  alternative fission model for default barriers
+ hbstate             y     flaghbstate  flag for head band states in fission
+ class2              y     flagclass2   flag for class2 states in fission
+ fispartdamp         n  flagfispartdamp flag for fission partial damping
+ massdis             n     flagmassdis  flag for calculation of fission fragment mass yields
+ ffevaporation       y     flagffevap   flag for calculation of particle evaporation from fission fragment mass yields
+ fisfeed             n     flagfisfeed  flag for output of fission per excitation bin
+ fymodel             2     fymodel      fission yield model, 1: Brosa 2: GEF
+ ffspin              n     flagffspin   flag to use spin distribution in initial FF population
+ #
+ # Output
+ #
+ outmain             y     flagmain     flag for main output
+ outbasic            n     flagbasic    flag for output of basic information and results
+ outpopulation       n     flagpop      flag for output of population
+ outcheck            n     flagcheck    flag for output of numerical checks
+ outlevels           y     flaglevels   flag for output of discrete level information
+ outdensity          y     flagdensity  flag for output of level densities
+ outomp              n     flagoutomp   flag for output of optical model parameters
+ outkd               n     flagoutkd    flag for output of KD03 OMP parameters
+ outdirect           n     flagdirect   flag for output of direct reaction results
+ outinverse          n     flaginverse  flag for output of transmission coefficients and inverse reaction cross sections
+ outdecay            n     flagdecay    flag for output of decay of each population bin
+ outtransenergy      y     flagtransen  flag for output of transmission coefficients per energy
+ outecis             n     flagoutecis  flag for output of ECIS results
+ outgamma            y     flaggamma    flag for output of gamma-ray information
+ outpreequilibrium   n     flagpeout    flag for output of pre-equilibrium results 
+ outfission          n     flagfisout   flag for output of fission information
+ outdiscrete         n     flagdisc     flag for output of discrete state cross sections
+ outspectra          n     flagspec     flag for output of double-differential cross sections
+ outbinspectra       n     flagbinspec  flag for output of emission spectrum per excitation bin
+ resonance           n     flagres      flag for output of low energy resonance cross sections
+ group               n     flaggroup    flag for output of low energy groupwise cross sections
+ addiscrete          y     flagadd      flag for addition of discrete states to spectra
+ addelastic          y     flagaddel    flag for addition of elastic peak to spectra
+ outangle            n     flagang      flag for output of angular distributions
+ outlegendre         n     flaglegendre flag for output of Legendre coefficients
+ ddxmode             0     ddxmode      mode for double-differential cross sections
+ outdwba             n     flagoutdwba  flag for output of DWBA cross sections for MSD
+ outgamdis           n     flaggamdis   flag for output of discrete gamma-ray intensities
+ outexcitation       n     flagexc      flag for output of excitation functions
+ components          n     flagcompo    flag for output of cross section components
+ endf                n     flagendf     flag for information for ENDF-6 file
+ endfdetail          n     flagendfdet  flag for detailed ENDF-6 information per channel
+ sacs                n     flagsacs     flag for statistical analysis of cross sections
+ partable            n     flagpartable flag for output of model parameters on separate file
+
+ ########## BASIC REACTION PARAMETERS ##########
+
+ Projectile           : proton      Mass in a.m.u.      :   1.007276
+ Target               :  65Cu       Mass in a.m.u.      :  64.927789
+
+ Included channels:
+                     gamma   
+                     proton  
+
+   234 incident energies (LAB):
+
+      0.001
+      0.001
+      0.001
+      0.001
+      0.001
+      0.001
+      0.002
+      0.002
+      0.002
+      0.002
+      0.002
+      0.002
+      0.002
+      0.003
+      0.003
+      0.003
+      0.003
+      0.004
+      0.004
+      0.004
+      0.005
+      0.005
+      0.006
+      0.006
+      0.007
+      0.008
+      0.008
+      0.009
+      0.010
+      0.011
+      0.012
+      0.013
+      0.014
+      0.016
+      0.017
+      0.019
+      0.020
+      0.022
+      0.024
+      0.027
+      0.029
+      0.032
+      0.035
+      0.038
+      0.042
+      0.046
+      0.050
+      0.055
+      0.060
+      0.066
+      0.072
+      0.079
+      0.086
+      0.095
+      0.104
+      0.113
+      0.124
+      0.136
+      0.149
+      0.163
+      0.178
+      0.195
+      0.214
+      0.234
+      0.256
+      0.280
+      0.307
+      0.336
+      0.368
+      0.402
+      0.441
+      0.482
+      0.528
+      0.578
+      0.633
+      0.692
+      0.758
+      0.830
+      0.908
+      0.994
+      1.088
+      1.191
+      1.213
+      1.235
+      1.258
+      1.281
+      1.304
+      1.328
+      1.352
+      1.377
+      1.402
+      1.428
+      1.454
+      1.480
+      1.507
+      1.535
+      1.563
+      1.591
+      1.620
+      1.650
+      1.680
+      1.711
+      1.742
+      1.774
+      1.806
+      1.839
+      1.873
+      1.907
+      1.942
+      1.977
+      2.013
+      2.050
+      2.087
+      2.125
+      2.164
+      2.204
+      2.244
+      2.285
+      2.327
+      2.369
+      2.412
+      2.456
+      2.501
+      2.547
+      2.593
+      2.641
+      2.689
+      2.738
+      2.788
+      2.839
+      2.891
+      2.943
+      2.997
+      3.052
+      3.108
+      3.164
+      3.222
+      3.281
+      3.341
+      3.402
+      3.464
+      3.527
+      3.591
+      3.657
+      3.724
+      3.792
+      3.861
+      3.931
+      4.003
+      4.076
+      4.151
+      4.226
+      4.303
+      4.382
+      4.462
+      4.543
+      4.626
+      4.711
+      4.797
+      4.884
+      4.974
+      5.064
+      5.157
+      5.251
+      5.347
+      5.444
+      5.544
+      5.645
+      5.748
+      5.853
+      5.960
+      6.068
+      6.179
+      6.292
+      6.407
+      6.524
+      6.643
+      6.764
+      6.888
+      7.013
+      7.141
+      7.272
+      7.404
+      7.540
+      7.677
+      7.817
+      7.960
+      8.105
+      8.253
+      8.404
+      8.557
+      8.713
+      8.873
+      9.034
+      9.199
+      9.367
+      9.538
+      9.712
+      9.890
+     10.070
+     10.254
+     10.441
+     10.632
+     10.826
+     11.023
+     11.225
+     11.430
+     11.638
+     11.851
+     12.067
+     12.287
+     12.511
+     12.740
+     12.972
+     13.209
+     13.450
+     13.696
+     13.946
+     14.200
+     14.459
+     14.723
+     14.992
+     15.266
+     15.544
+     17.506
+     19.714
+     22.201
+     25.003
+     28.157
+     31.709
+     35.710
+     40.215
+     45.289
+     51.003
+
+ Q-values for binary reactions:
+
+ Q(p,g):  8.92447
+ Q(p,p):  0.00000
+
+ NUCLEAR STRUCTURE INFORMATION FOR Z= 29 N= 36 ( 65Cu) 
+
+ Mass in a.m.u.     :  64.927789
+
+ Separation energies:
+
+ Particle        S         
+
+ proton       7.45371
+
+ Discrete levels of Z= 29 N= 36 ( 65Cu) 
+
+ Number  Energy Spin Parity  Branching Ratio (%) Lifetime(sec) Assignment        ENSDF
+
+   0     0.0000  1.5   -                                                           3/2-
+   1     0.7706  0.5   -                                                           1/2-
+                               --->  0  100.0000                   
+   2     1.1156  2.5   -                                                           5/2-
+                               --->  1    0.0060                   
+                               --->  0   99.9940                   
+   3     1.4818  3.5   -                                                           7/2-
+                               --->  2   16.9700                   
+                               --->  0   83.0300                   
+   4     1.6234  2.5   -                                                           5/2-
+                               --->  2   33.0900                   
+                               --->  1   10.8700                   
+                               --->  0   56.0400                   
+   5     1.7250  1.5   -                                                           3/2-
+                               --->  2   27.8883                   
+                               --->  1    0.6362                   
+                               --->  0   71.4756                   
+   6     2.0943  3.5   -                                                         (7/2)-
+                               --->  4    5.0038                   
+                               --->  3   13.1395                   
+                               --->  2   53.1479                   
+                               --->  0   28.7089                   
+   7     2.1074  2.5   -                                                         (5/2)-
+                               --->  5    5.7913                   
+                               --->  3   31.7719                   
+                               --->  2   36.0922                   
+                               --->  1    9.7436                   
+                               --->  0   16.6010                   
+   8     2.2128  0.5   -                                                         (1/2)-
+                               --->  5    8.2063                   
+                               --->  1   54.6322                   
+                               --->  0   37.1615                   
+   9     2.2785  3.5   -                                                         (7/2)-
+                               --->  2   97.7510                   
+                               --->  0    2.2490                   
+  10     2.3291  1.5   -                                                           3/2-
+                               --->  2   22.9623                   
+                               --->  1   29.1829                   
+                               --->  0   47.8548                   
+  11     2.4066  4.5   +                                                               
+                               --->  6   17.3400                   
+                               --->  3   55.8500                   
+                               --->  2   26.8100                   
+  12     2.5257  4.5   +                                                           9/2+
+                               --->  3  100.0000                   
+  13     2.5330  2.5   -                                           J       1/2,3/2,5/2-
+                               --->  5    9.3600                   
+                               --->  1   49.2500                   
+                               --->  0   41.3900                   
+  14     2.5636  4.5   +                                           J        (7/2+,9/2+)
+                               --->  9   15.2900                   
+                               --->  6   42.3700                   
+                               --->  3   42.3400                   
+  15     2.5934  2.5   -                                           J        (1/2-,5/2-)
+                               --->  6   33.3333                   
+                               --->  1   33.3333                   
+                               --->  0   33.3333                   
+  16     2.6200  5.5   +                                           JP                  
+                               --->  0  100.0000                  B
+  17     2.6435  1.5   +                                                               
+                               --->  6   55.6200                   
+                               --->  2   44.3800                   
+  18     2.6497  2.5   -                                           J        (5/2-,7/2-)
+                               --->  5   12.3496                   
+                               --->  4    7.4068                   
+                               --->  2    7.4058                   
+                               --->  1   61.7281                   
+                               --->  0   11.1097                   
+  19     2.6549  1.5   -                                                               
+                               --->  5   68.9600                   
+                               --->  0   31.0400                   
+  20     2.6690  1.5   -                                                               
+                               --->  5  100.0000                   
+  21     2.7528  3.5   +                                           J        (7/2+,9/2+)
+                               --->  3  100.0000                   
+  22     2.8390  3.5   +                                           J        (7/2+,9/2+)
+                               --->  4   50.0000                  B
+                               --->  2   50.0000                  B
+  23     2.8628  1.5   +                                                               
+                               --->  0  100.0000                   
+  24     2.8669  1.5   -                                           J      3/2-,5/2,7/2-
+                               --->  4   21.8478                   
+                               --->  3   11.9188                   
+                               --->  0   66.2334                   
+  25     2.8745  1.5   -                                                         (3/2-)
+                               --->  1   34.6300                   
+                               --->  0   65.3700                   
+  26     2.8945  1.5   +                                           J      1/2-,3/2,5/2-
+                               --->  4   45.6500                   
+                               --->  1   41.1000                   
+                               --->  0   13.2500                   
+  27     2.9025  2.5   +                                           J          (3/2,5/2)
+                               --->  0  100.0000                   
+  28     2.9476  2.5   -                                                               
+                               --->  2  100.0000                   
+  29     2.9770  0.5   +                                           JP                  
+                               --->  5   50.0000                  B
+                               --->  0   50.0000                  B
+  30     2.9900  0.5   +                                           JP                  
+                               --->  5   50.0000                  B
+                               --->  0   50.0000                  B
+
+ Level density parameters for Z= 29 N= 36 ( 65Cu) 
+
+ Model: Hilaire-Goriely Gogny    
+ Collective enhancement: no
+
+ a(Sn)           :   9.40549
+ Experimental D0 :              0.00 eV +-         0.00000
+ Theoretical D0  :            671.99 eV
+ Theoretical D1  :            337.05 eV
+ Av. res. energy :          10000.00 eV
+ Asymptotic a    :   9.07294
+ Damping gamma   :   0.10771
+ Pairing energy  :   1.48842
+ Shell correction:   0.51763
+ Last disc. level:        30
+ Nlow            :         7
+ Ntop            :        16
+ Adj. pair shift :   0.00000
+ Discrete sigma  :   2.57456
+ Sigma (Sn)      :   3.78508
+ Rhotot(Sn= 9.91): 1.617E+04
+
+ Level density per parity for ground state
+ (Total level density also per parity)
+
+    Ex     a    sigma   total   JP=  0.5  JP=  1.5  JP=  2.5  JP=  3.5  JP=  4.5  JP=  5.5  JP=  6.5  JP=  7.5  JP=  8.5
+
+
+ Positive parity
+
+   0.25               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.50               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.75               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.00               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.25               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.50               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.75               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   2.00               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   2.25               6.350E-01 1.790E-03 6.630E-02 0.000E+00 2.370E-01 8.450E-02 0.000E+00 2.450E-01 0.000E+00 0.000E+00
+   2.50               2.900E+00 1.120E-01 5.700E-01 7.550E-02 8.590E-01 4.850E-01 1.500E-03 7.970E-01 0.000E+00 0.000E+00
+   2.75               6.000E+00 3.170E-01 1.690E+00 2.960E-01 1.000E+00 1.800E+00 9.100E-02 5.850E-01 2.160E-01 0.000E+00
+   3.00               7.480E+00 3.580E-01 2.120E+00 5.080E-01 1.040E+00 1.970E+00 1.440E-01 4.220E-01 7.590E-01 1.590E-01
+   3.25               8.130E+00 5.650E-01 2.140E+00 1.260E+00 1.210E+00 8.410E-01 3.220E-01 8.190E-01 3.130E-01 6.550E-01
+   3.50               1.750E+01 1.480E+00 2.740E+00 3.050E+00 1.940E+00 2.950E+00 1.850E+00 1.310E+00 1.150E+00 9.060E-01
+   3.75               3.880E+01 3.790E+00 4.530E+00 6.880E+00 3.100E+00 8.090E+00 3.880E+00 2.330E+00 4.430E+00 1.090E+00
+   4.00               5.530E+01 5.990E+00 6.940E+00 1.040E+01 4.830E+00 1.070E+01 4.310E+00 3.200E+00 6.890E+00 1.070E+00
+   4.25               6.330E+01 7.180E+00 1.020E+01 1.300E+01 6.790E+00 9.230E+00 4.910E+00 3.970E+00 5.290E+00 9.400E-01
+   4.50               9.310E+01 9.740E+00 1.430E+01 1.920E+01 9.300E+00 1.550E+01 7.060E+00 5.820E+00 7.600E+00 1.850E+00
+   4.75               1.160E+02 1.020E+01 1.710E+01 2.290E+01 1.400E+01 1.940E+01 1.020E+01 8.870E+00 7.870E+00 2.910E+00
+   5.00               1.470E+02 1.220E+01 2.120E+01 2.660E+01 2.320E+01 2.140E+01 1.420E+01 1.380E+01 6.110E+00 4.710E+00
+   5.50               2.400E+02 2.160E+01 3.930E+01 3.360E+01 4.440E+01 2.350E+01 2.420E+01 2.470E+01 1.000E+01 1.000E+01
+   6.00               3.300E+02 3.130E+01 5.260E+01 5.090E+01 5.090E+01 3.810E+01 3.270E+01 2.690E+01 2.270E+01 1.020E+01
+   6.50               5.290E+02 4.590E+01 8.800E+01 7.590E+01 7.420E+01 6.340E+01 5.460E+01 4.660E+01 3.750E+01 1.860E+01
+   7.00               8.050E+02 6.230E+01 1.220E+02 1.210E+02 1.220E+02 9.860E+01 8.610E+01 7.420E+01 4.330E+01 3.980E+01
+   7.50               1.220E+03 1.060E+02 1.700E+02 1.650E+02 1.920E+02 1.370E+02 1.360E+02 1.070E+02 7.160E+01 6.730E+01
+   8.00               1.780E+03 1.580E+02 2.250E+02 2.820E+02 2.420E+02 2.280E+02 1.930E+02 1.510E+02 1.260E+02 7.400E+01
+   8.50               2.600E+03 1.980E+02 3.190E+02 4.080E+02 3.090E+02 3.560E+02 2.770E+02 2.210E+02 2.110E+02 1.160E+02
+   9.00               3.530E+03 2.620E+02 4.440E+02 5.030E+02 4.660E+02 4.320E+02 4.010E+02 3.160E+02 2.510E+02 2.030E+02
+   9.50               4.990E+03 3.550E+02 5.960E+02 6.940E+02 6.900E+02 5.740E+02 5.600E+02 4.780E+02 3.490E+02 2.890E+02
+  10.00               7.610E+03 5.520E+02 8.670E+02 1.070E+03 1.020E+03 9.460E+02 8.120E+02 7.240E+02 5.730E+02 3.910E+02
+  11.00               1.530E+04 9.790E+02 1.670E+03 1.930E+03 1.990E+03 1.820E+03 1.710E+03 1.480E+03 1.150E+03 9.450E+02
+  12.00               3.100E+04 1.870E+03 3.030E+03 3.790E+03 3.750E+03 3.890E+03 3.500E+03 3.030E+03 2.590E+03 1.920E+03
+  13.00               5.790E+04 3.040E+03 5.340E+03 6.430E+03 6.930E+03 6.940E+03 6.520E+03 5.800E+03 4.900E+03 3.890E+03
+  14.00               1.050E+05 4.920E+03 8.810E+03 1.120E+04 1.240E+04 1.250E+04 1.190E+04 1.080E+04 9.050E+03 7.300E+03
+  15.00               1.810E+05 7.630E+03 1.400E+04 1.850E+04 2.090E+04 2.150E+04 2.080E+04 1.870E+04 1.610E+04 1.320E+04
+  16.00               3.180E+05 1.190E+04 2.210E+04 3.020E+04 3.530E+04 3.720E+04 3.670E+04 3.380E+04 2.940E+04 2.440E+04
+  17.00               5.110E+05 1.770E+04 3.330E+04 4.630E+04 5.490E+04 5.890E+04 5.860E+04 5.470E+04 4.800E+04 4.020E+04
+  18.00               7.660E+05 2.540E+04 4.930E+04 6.750E+04 8.010E+04 8.670E+04 8.630E+04 8.130E+04 7.230E+04 6.060E+04
+  19.00               1.140E+06 3.700E+04 7.090E+04 9.840E+04 1.170E+05 1.260E+05 1.270E+05 1.200E+05 1.070E+05 9.100E+04
+  20.00               1.830E+06 5.800E+04 1.120E+05 1.550E+05 1.850E+05 2.000E+05 2.010E+05 1.910E+05 1.710E+05 1.460E+05
+  22.50               4.490E+06 1.390E+05 2.670E+05 3.700E+05 4.420E+05 4.820E+05 4.880E+05 4.650E+05 4.200E+05 3.620E+05
+  25.00               1.080E+07 3.270E+05 6.250E+05 8.700E+05 1.040E+06 1.140E+06 1.160E+06 1.110E+06 1.010E+06 8.750E+05
+  30.00               5.540E+07 1.550E+06 2.970E+06 4.160E+06 5.040E+06 5.560E+06 5.720E+06 5.570E+06 5.150E+06 4.560E+06
+  40.00               1.410E+09 3.480E+07 6.700E+07 9.460E+07 1.160E+08 1.300E+08 1.360E+08 1.350E+08 1.280E+08 1.170E+08
+  50.00               2.970E+10 6.560E+08 1.270E+09 1.800E+09 2.230E+09 2.520E+09 2.680E+09 2.710E+09 2.630E+09 2.450E+09
+  60.00               6.540E+11 1.310E+10 2.540E+10 3.630E+10 4.510E+10 5.160E+10 5.550E+10 5.690E+10 5.600E+10 5.310E+10
+  70.00               1.250E+13 2.320E+11 4.520E+11 6.480E+11 8.090E+11 9.310E+11 1.010E+12 1.040E+12 1.040E+12 9.960E+11
+  80.00               2.490E+14 4.390E+12 8.560E+12 1.230E+13 1.540E+13 1.780E+13 1.940E+13 2.020E+13 2.020E+13 1.960E+13
+  90.00               3.800E+15 6.420E+13 1.250E+14 1.800E+14 2.260E+14 2.620E+14 2.870E+14 3.000E+14 3.020E+14 2.950E+14
+ 100.00               5.060E+16 8.150E+14 1.590E+15 2.290E+15 2.890E+15 3.360E+15 3.700E+15 3.890E+15 3.940E+15 3.860E+15
+ 110.00               6.630E+17 1.010E+16 1.980E+16 2.860E+16 3.620E+16 4.220E+16 4.660E+16 4.920E+16 5.020E+16 4.960E+16
+ 120.00               7.330E+18 1.070E+17 2.100E+17 3.040E+17 3.860E+17 4.510E+17 5.000E+17 5.310E+17 5.430E+17 5.400E+17
+ 130.00               7.290E+19 1.030E+18 2.010E+18 2.920E+18 3.700E+18 4.350E+18 4.830E+18 5.140E+18 5.290E+18 5.280E+18
+ 140.00               6.120E+20 8.310E+18 1.630E+19 2.360E+19 3.000E+19 3.530E+19 3.940E+19 4.210E+19 4.340E+19 4.360E+19
+ 150.00               4.790E+21 6.270E+19 1.230E+20 1.790E+20 2.270E+20 2.680E+20 3.000E+20 3.210E+20 3.330E+20 3.350E+20
+ 160.00               3.510E+22 4.440E+20 8.720E+20 1.270E+21 1.620E+21 1.910E+21 2.140E+21 2.300E+21 2.390E+21 2.420E+21
+ 170.00               2.430E+23 2.970E+21 5.840E+21 8.490E+21 1.090E+22 1.280E+22 1.440E+22 1.550E+22 1.620E+22 1.640E+22
+ 180.00               1.580E+24 1.880E+22 3.700E+22 5.390E+22 6.900E+22 8.170E+22 9.190E+22 9.930E+22 1.040E+23 1.060E+23
+ 190.00               9.820E+24 1.130E+23 2.230E+23 3.250E+23 4.160E+23 4.940E+23 5.570E+23 6.030E+23 6.320E+23 6.450E+23
+ 200.00               5.650E+25 6.350E+23 1.250E+24 1.820E+24 2.340E+24 2.780E+24 3.140E+24 3.400E+24 3.580E+24 3.660E+24
+
+ Negative parity
+
+   0.25               1.370E-01 1.330E-02 1.230E-01 7.850E-04 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.50               5.740E-01 1.150E-01 4.770E-02 4.110E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.75               1.580E+00 4.910E-01 5.870E-02 1.030E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.00               1.800E+00 7.870E-01 1.160E-01 8.990E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.25               1.740E+00 1.120E+00 2.310E-01 3.510E-01 4.450E-02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.50               2.540E+00 1.620E+00 4.040E-01 2.440E-01 2.750E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.75               3.760E+00 2.150E+00 6.690E-01 3.310E-01 6.060E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   2.00               5.700E+00 2.810E+00 9.430E-01 1.060E+00 8.850E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   2.25               8.290E+00 3.200E+00 1.250E+00 2.460E+00 1.090E+00 5.980E-02 2.370E-01 0.000E+00 0.000E+00 0.000E+00
+   2.50               1.270E+01 3.780E+00 1.890E+00 3.740E+00 1.850E+00 7.290E-01 7.050E-01 0.000E+00 0.000E+00 0.000E+00
+   2.75               1.560E+01 3.290E+00 2.900E+00 4.840E+00 2.210E+00 1.950E+00 2.870E-01 8.440E-02 0.000E+00 0.000E+00
+   3.00               2.080E+01 2.850E+00 4.660E+00 5.780E+00 3.010E+00 3.570E+00 3.600E-01 5.560E-01 0.000E+00 0.000E+00
+   3.25               2.700E+01 2.810E+00 6.850E+00 6.240E+00 4.260E+00 5.120E+00 9.970E-01 6.920E-01 0.000E+00 0.000E+00
+   3.50               3.430E+01 3.420E+00 8.560E+00 8.180E+00 5.740E+00 5.780E+00 1.860E+00 6.450E-01 1.070E-01 0.000E+00
+   3.75               5.010E+01 5.150E+00 1.010E+01 1.490E+01 7.800E+00 7.050E+00 3.280E+00 1.190E+00 6.240E-01 0.000E+00
+   4.00               7.010E+01 8.280E+00 1.380E+01 2.150E+01 1.070E+01 8.740E+00 4.830E+00 1.630E+00 6.430E-01 0.000E+00
+   4.25               8.640E+01 1.350E+01 1.610E+01 2.230E+01 1.460E+01 1.180E+01 5.600E+00 1.880E+00 7.180E-01 0.000E+00
+   4.50               1.170E+02 1.970E+01 1.990E+01 2.870E+01 1.980E+01 1.490E+01 7.260E+00 4.110E+00 1.470E+00 3.400E-01
+   4.75               1.360E+02 2.250E+01 2.270E+01 3.300E+01 2.480E+01 1.450E+01 8.790E+00 6.080E+00 9.020E-01 1.100E+00
+   5.00               1.640E+02 2.510E+01 3.060E+01 3.360E+01 3.250E+01 1.790E+01 1.130E+01 8.020E+00 1.640E+00 1.950E+00
+   5.50               2.750E+02 3.230E+01 6.250E+01 4.820E+01 5.120E+01 3.570E+01 2.190E+01 1.000E+01 6.580E+00 3.420E+00
+   6.00               3.950E+02 3.990E+01 7.440E+01 9.300E+01 6.220E+01 5.080E+01 3.590E+01 1.600E+01 1.130E+01 5.670E+00
+   6.50               5.960E+02 5.960E+01 1.050E+02 1.330E+02 9.570E+01 7.420E+01 5.050E+01 3.300E+01 1.670E+01 1.310E+01
+   7.00               9.110E+02 8.860E+01 1.880E+02 1.630E+02 1.470E+02 1.230E+02 7.090E+01 5.290E+01 3.180E+01 2.010E+01
+   7.50               1.340E+03 1.130E+02 2.650E+02 2.380E+02 2.150E+02 1.670E+02 1.220E+02 8.000E+01 5.920E+01 3.980E+01
+   8.00               1.900E+03 2.120E+02 2.740E+02 3.750E+02 2.910E+02 2.310E+02 1.780E+02 1.170E+02 8.850E+01 5.850E+01
+   8.50               2.670E+03 2.720E+02 3.640E+02 4.930E+02 3.910E+02 3.390E+02 2.390E+02 1.990E+02 1.370E+02 8.280E+01
+   9.00               3.840E+03 3.380E+02 5.730E+02 6.150E+02 5.920E+02 4.770E+02 3.670E+02 3.160E+02 2.070E+02 1.400E+02
+   9.50               5.570E+03 4.890E+02 7.610E+02 8.710E+02 8.180E+02 6.670E+02 5.740E+02 4.450E+02 3.270E+02 2.460E+02
+  10.00               7.730E+03 5.910E+02 1.060E+03 1.190E+03 1.080E+03 9.750E+02 7.810E+02 6.220E+02 4.910E+02 3.370E+02
+  11.00               1.530E+04 1.080E+03 1.780E+03 2.160E+03 2.090E+03 1.870E+03 1.650E+03 1.350E+03 1.070E+03 8.200E+02
+  12.00               3.030E+04 1.970E+03 3.170E+03 3.860E+03 3.890E+03 3.650E+03 3.310E+03 2.830E+03 2.310E+03 1.790E+03
+  13.00               5.650E+04 3.160E+03 5.490E+03 6.600E+03 7.030E+03 6.860E+03 6.300E+03 5.520E+03 4.580E+03 3.610E+03
+  14.00               1.010E+05 4.800E+03 8.800E+03 1.110E+04 1.210E+04 1.210E+04 1.150E+04 1.010E+04 8.550E+03 6.870E+03
+  15.00               1.730E+05 7.360E+03 1.350E+04 1.790E+04 2.010E+04 2.050E+04 1.970E+04 1.780E+04 1.520E+04 1.240E+04
+  16.00               3.110E+05 1.180E+04 2.190E+04 2.980E+04 3.490E+04 3.650E+04 3.580E+04 3.280E+04 2.830E+04 2.330E+04
+  17.00               4.940E+05 1.680E+04 3.190E+04 4.460E+04 5.300E+04 5.670E+04 5.660E+04 5.290E+04 4.630E+04 3.880E+04
+  18.00               7.530E+05 2.470E+04 4.750E+04 6.550E+04 7.790E+04 8.460E+04 8.470E+04 7.990E+04 7.100E+04 5.990E+04
+  19.00               1.120E+06 3.560E+04 6.820E+04 9.470E+04 1.140E+05 1.230E+05 1.240E+05 1.180E+05 1.060E+05 9.020E+04
+  20.00               1.740E+06 5.490E+04 1.050E+05 1.450E+05 1.740E+05 1.890E+05 1.910E+05 1.820E+05 1.640E+05 1.400E+05
+  22.50               4.380E+06 1.320E+05 2.530E+05 3.520E+05 4.220E+05 4.620E+05 4.700E+05 4.520E+05 4.110E+05 3.560E+05
+  25.00               1.150E+07 3.370E+05 6.450E+05 9.010E+05 1.090E+06 1.190E+06 1.220E+06 1.180E+06 1.080E+06 9.440E+05
+  30.00               5.920E+07 1.650E+06 3.170E+06 4.440E+06 5.380E+06 5.940E+06 6.120E+06 5.960E+06 5.520E+06 4.890E+06
+  40.00               1.360E+09 3.400E+07 6.550E+07 9.240E+07 1.130E+08 1.260E+08 1.320E+08 1.310E+08 1.240E+08 1.130E+08
+  50.00               3.140E+10 6.820E+08 1.320E+09 1.880E+09 2.320E+09 2.640E+09 2.810E+09 2.840E+09 2.760E+09 2.580E+09
+  60.00               6.470E+11 1.300E+10 2.530E+10 3.610E+10 4.480E+10 5.120E+10 5.510E+10 5.640E+10 5.550E+10 5.260E+10
+  70.00               1.250E+13 2.320E+11 4.510E+11 6.460E+11 8.080E+11 9.290E+11 1.010E+12 1.040E+12 1.040E+12 9.950E+11
+  80.00               2.500E+14 4.420E+12 8.610E+12 1.240E+13 1.550E+13 1.790E+13 1.950E+13 2.030E+13 2.030E+13 1.970E+13
+  90.00               3.790E+15 6.400E+13 1.250E+14 1.800E+14 2.260E+14 2.620E+14 2.870E+14 3.000E+14 3.020E+14 2.940E+14
+ 100.00               5.070E+16 8.160E+14 1.590E+15 2.300E+15 2.890E+15 3.370E+15 3.700E+15 3.890E+15 3.940E+15 3.870E+15
+ 110.00               6.620E+17 1.010E+16 1.980E+16 2.860E+16 3.620E+16 4.220E+16 4.660E+16 4.920E+16 5.020E+16 4.960E+16
+ 120.00               7.330E+18 1.070E+17 2.100E+17 3.040E+17 3.860E+17 4.510E+17 5.000E+17 5.310E+17 5.430E+17 5.400E+17
+ 130.00               7.290E+19 1.030E+18 2.010E+18 2.920E+18 3.700E+18 4.350E+18 4.830E+18 5.140E+18 5.290E+18 5.280E+18
+ 140.00               6.120E+20 8.310E+18 1.630E+19 2.360E+19 3.000E+19 3.530E+19 3.940E+19 4.210E+19 4.340E+19 4.360E+19
+ 150.00               4.790E+21 6.270E+19 1.230E+20 1.790E+20 2.270E+20 2.680E+20 3.000E+20 3.210E+20 3.330E+20 3.350E+20
+ 160.00               3.510E+22 4.440E+20 8.720E+20 1.270E+21 1.620E+21 1.910E+21 2.140E+21 2.300E+21 2.390E+21 2.420E+21
+ 170.00               2.430E+23 2.970E+21 5.840E+21 8.490E+21 1.090E+22 1.280E+22 1.440E+22 1.550E+22 1.620E+22 1.640E+22
+ 180.00               1.580E+24 1.880E+22 3.700E+22 5.390E+22 6.900E+22 8.170E+22 9.190E+22 9.930E+22 1.040E+23 1.060E+23
+ 190.00               9.820E+24 1.130E+23 2.230E+23 3.250E+23 4.160E+23 4.940E+23 5.570E+23 6.030E+23 6.320E+23 6.450E+23
+ 200.00               5.650E+25 6.350E+23 1.250E+24 1.820E+24 2.340E+24 2.780E+24 3.140E+24 3.400E+24 3.580E+24 3.660E+24
+
+ Normalization:
+        ctable=   0.00000
+        ptable=  -0.16585
+
+ Discrete levels versus total level density
+
+   Energy Level   N_cumulative
+
+   2.2128   8       8.115
+   2.2785   9       8.955
+   2.3291  10       9.692
+   2.4066  11      10.956
+   2.5257  12      13.163
+   2.5330  13      13.310
+   2.5636  14      13.941
+   2.5934  15      14.579
+   2.6200  16      15.168
+   2.6435  17      15.702
+   2.6497  18      15.845
+   2.6549  19      15.966
+   2.6690  20      16.297
+   2.7528  21      18.372
+   2.8390  22      20.712
+   2.8628  23      21.394
+   2.8669  24      21.513
+   2.8745  25      21.735
+   2.8945  26      22.326
+   2.9025  27      22.565
+   2.9476  28      23.946
+   2.9770  29      24.875
+   2.9900  30      25.293
+   2.9969  31      25.518
+   3.0360  32      26.813
+   3.0790  33      28.289
+   3.0828  34      28.423
+   3.0860  35      28.534
+   3.1160  36      29.616
+   3.1202  37      29.772
+   3.1270  38      30.026
+   3.1320  39      30.214
+   3.1430  40      30.634
+   3.1570  41      31.179
+   3.1665  42      31.555
+   3.1730  43      31.816
+   3.2403  44      34.676
+   3.2611  45      35.622
+   3.2740  46      36.225
+   3.2780  47      36.414
+   3.3261  48      38.785
+   3.3379  49      39.394
+   3.3470  50      39.874
+   3.3553  51      40.320
+   3.3990  52      42.804
+   3.4020  53      42.983
+   3.4070  54      43.285
+   3.4270  55      44.524
+   3.4490  56      45.950
+   3.4570  57      46.486
+   3.4820  58      48.221
+   3.5040  59      49.827
+   3.5130  60      50.506
+   3.5410  61      52.706
+   3.5630  62      54.531
+   3.5760  63      55.651
+   3.5950  64      57.343
+   3.6060  65      58.343
+   3.6319  66      60.758
+   3.6460  67      62.110
+   3.6560  68      63.085
+   3.6850  69      65.988
+   3.7140  70      69.010
+   3.7280  71      70.512
+   3.7400  72      71.823
+   3.7530  73      73.268
+   3.7770  74      76.005
+   3.7960  75      78.236
+   3.8080  76      79.676
+   3.8250  77      81.756
+   3.8510  78      85.026
+   3.8810  79      88.873
+   3.8950  80      90.697
+   3.9010  81      91.485
+   3.9040  82      91.879
+   3.9250  83      94.667
+   3.9580  84      99.132
+   3.9640  85      99.955
+   3.9760  86     101.612
+   3.9870  87     103.143
+   4.0060  88     105.817
+   4.0140  89     106.953
+   4.0310  90     109.389
+   4.0440  91     111.272
+   4.0490  92     112.001
+   4.0560  93     113.025
+   4.0870  94     117.625
+   4.0955  95     118.909
+   4.1190  96     122.539
+   4.1260  97     123.643
+   4.1410  98     126.044
+   4.1760  99     131.839
+   4.1840 100     133.203
+   4.2010 101     136.151
+   4.2170 102     138.987
+   4.2270 103     140.792
+   4.2370 104     142.621
+   4.2440 105     143.917
+   4.2660 106     148.069
+   4.2710 107     149.030
+   4.2900 108     152.741
+   4.3040 109     155.538
+   4.3200 110     158.801
+   4.3310 111     161.085
+   4.3570 112     166.587
+   4.3660 113     168.516
+   4.3760 114     170.674
+   4.3890 115     173.503
+   4.3970 116     175.257
+   4.4180 117     179.911
+   4.4360 118     183.957
+   4.4600 119     189.435
+   4.4830 120     194.775
+   4.4900 121     196.418
+   4.5130 122     201.875
+   4.5240 123     204.518
+   4.5330 124     206.696
+   4.5400 125     208.400
+   4.5660 126     214.805
+   4.5980 127     222.857
+   4.6160 128     227.481
+   4.6470 129     235.610
+   4.6680 130     241.239
+   4.6820 131     245.048
+   4.7060 132     251.681
+   4.7240 133     256.745
+   4.7360 134     260.164
+   4.7590 135     266.814
+   4.7760 136     271.813
+   4.7950 137     277.485
+   4.8080 138     281.418
+   4.8220 139     285.703
+   4.8480 140     293.796
+   4.8630 141     298.562
+   4.8920 142     307.984
+   4.9230 143     318.366
+   4.9320 144     321.441
+   5.0170 145     351.897
+   5.0630 146     369.504
+   5.0770 147     375.028
+   5.0830 148     377.419
+   5.1000 149     384.273
+   5.2170 150     434.744
+   5.2300 151     440.732
+   5.2360 152     443.522
+   5.2440 153     447.269
+   5.2620 154     455.810
+   5.2960 155     472.373
+   5.3050 156     476.853
+   5.3100 157     479.360
+   5.3200 158     484.411
+   5.3350 159     492.085
+   5.3840 160     517.761
+   5.3920 161     522.036
+   5.4240 162     539.369
+   5.4300 163     542.662
+   5.4470 164     552.065
+   5.5260 165     597.218
+   5.6030 166     643.641
+   5.6180 167     652.973
+   5.6320 168     661.770
+   5.7320 169     727.104
+   5.7790 170     759.394
+   6.0700 171     987.802
+   6.4860 172    1433.271
+   6.5560 173    1525.481
+   7.5050 174    3430.961
+   7.9393 175    4904.405
+   8.4843 176    7534.930
+   8.5350 177    7835.500
+   9.4830 178   15758.644
+  10.5130 179   33451.588
+  10.5750 180   35004.332
+  10.9000 181   44307.252
+  11.2880 182   58529.244
+  11.5020 183   68197.877
+  11.5870 184   72458.577
+  11.9280 185   92277.820
+  12.0150 186   98088.091
+
+ NUCLEAR STRUCTURE INFORMATION FOR Z= 30 N= 36 ( 66Zn) 
+
+ Mass in a.m.u.     :  65.926034
+
+ Separation energies:
+
+ Particle        S         
+
+ proton       8.92447
+
+ Discrete levels of Z= 30 N= 36 ( 66Zn) 
+
+ Number  Energy Spin Parity  Branching Ratio (%) Lifetime(sec) Assignment        ENSDF
+
+   0     0.0000  0.0   +                                                             0+
+   1     1.0392  2.0   +                                                             2+
+                               --->  0  100.0000                   
+   2     1.8728  2.0   +                                                             2+
+                               --->  1   99.6116                   
+                               --->  0    0.3884                   
+   3     2.3724  0.0   +                                                             0+
+                               --->  2    0.4091                   
+                               --->  1   99.5909                   
+   4     2.4510  4.0   +                                                             4+
+                               --->  1   98.0390                   
+                               --->  0    1.9610                   
+   5     2.7036  3.0   -                                                            (3)
+                               --->  2   93.3700                   
+                               --->  1    6.6300                   
+   6     2.7628  2.0   -                                                            (2)
+                               --->  0  100.0000                   
+   7     2.7656  4.0   +                                                             4+
+                               --->  4   16.2200                   
+                               --->  2   44.8000                   
+                               --->  1   38.9800                   
+   8     2.7802  2.0   +                                                             2+
+                               --->  4    7.2991                   
+                               --->  2   11.6501                   
+                               --->  1   15.2002                   
+                               --->  0   65.8507                   
+   9     2.8267  3.0   -                                                             3-
+                               --->  2   10.1500                   
+                               --->  1   89.8500                   
+  10     2.9381  2.0   +                                                             2+
+                               --->  2    0.3496                   
+                               --->  1   58.2602                   
+                               --->  0   41.3902                   
+
+ Level density parameters for Z= 30 N= 36 ( 66Zn) 
+
+ Model: Hilaire-Goriely Gogny    
+ Collective enhancement: no
+
+ a(Sn)           :   9.71364
+ Experimental D0 :              0.00 eV +-         0.00000
+ Theoretical D0  :            142.63 eV
+ Theoretical D1  :             76.01 eV
+ Av. res. energy :          10000.00 eV
+ Asymptotic a    :   9.18897
+ Damping gamma   :   0.10717
+ Pairing energy  :   2.95420
+ Shell correction:   0.79723
+ Last disc. level:        10
+ Nlow            :         8
+ Ntop            :        15
+ Adj. pair shift :   0.00000
+ Discrete sigma  :   1.82574
+ Sigma (Sn)      :   3.80334
+ Rhotot(Sn=11.06): 4.410E+04
+
+ Level density per parity for ground state
+ (Total level density also per parity)
+
+    Ex     a    sigma   total   JP=  0.0  JP=  1.0  JP=  2.0  JP=  3.0  JP=  4.0  JP=  5.0  JP=  6.0  JP=  7.0  JP=  8.0
+
+
+ Positive parity
+
+   0.25               1.470E-01 7.950E-02 0.000E+00 6.700E-02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.50               7.210E-02 1.450E-02 0.000E+00 5.760E-02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.75               9.650E-02 1.350E-02 0.000E+00 8.300E-02 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.00               8.960E-01 2.110E-01 6.880E-02 5.430E-01 5.770E-02 1.630E-02 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.25               4.470E+00 1.200E+00 7.940E-01 1.840E+00 7.680E-02 5.720E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.50               8.150E+00 1.570E+00 1.430E+00 3.350E+00 5.580E-01 1.240E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.75               9.930E+00 2.290E+00 1.150E+00 3.880E+00 1.880E+00 7.310E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   2.00               1.560E+01 5.030E+00 1.070E+00 3.770E+00 4.670E+00 9.130E-01 1.450E-01 0.000E+00 0.000E+00 0.000E+00
+   2.25               2.210E+01 7.540E+00 1.260E+00 3.850E+00 6.290E+00 2.680E+00 3.990E-01 9.220E-02 0.000E+00 0.000E+00
+   2.50               3.190E+01 1.050E+01 2.190E+00 4.510E+00 8.620E+00 4.870E+00 4.680E-01 7.870E-01 0.000E+00 0.000E+00
+   2.75               3.930E+01 6.890E+00 3.630E+00 8.060E+00 1.150E+01 6.620E+00 9.840E-01 1.570E+00 0.000E+00 0.000E+00
+   3.00               5.970E+01 8.980E+00 5.390E+00 1.520E+01 1.230E+01 1.050E+01 5.420E+00 1.570E+00 6.840E-02 2.950E-01
+   3.25               9.700E+01 2.090E+01 7.290E+00 2.130E+01 2.050E+01 1.420E+01 8.910E+00 2.630E+00 4.700E-01 7.810E-01
+   3.50               1.330E+02 2.410E+01 1.120E+01 3.130E+01 2.610E+01 2.050E+01 1.300E+01 3.640E+00 1.540E+00 1.290E+00
+   3.75               1.710E+02 2.240E+01 2.120E+01 4.270E+01 2.930E+01 3.110E+01 1.440E+01 5.870E+00 2.770E+00 1.580E+00
+   4.00               2.230E+02 1.980E+01 3.390E+01 6.000E+01 3.250E+01 4.390E+01 1.590E+01 1.070E+01 3.710E+00 2.150E+00
+   4.25               2.860E+02 2.000E+01 4.030E+01 7.990E+01 4.200E+01 5.640E+01 2.210E+01 1.750E+01 4.680E+00 2.870E+00
+   4.50               3.650E+02 2.770E+01 4.300E+01 9.750E+01 6.030E+01 6.840E+01 3.340E+01 2.320E+01 7.420E+00 3.740E+00
+   4.75               5.230E+02 5.190E+01 5.060E+01 1.260E+02 9.460E+01 8.940E+01 5.440E+01 3.190E+01 1.500E+01 6.260E+00
+   5.00               7.410E+02 7.730E+01 7.230E+01 1.670E+02 1.340E+02 1.240E+02 7.330E+01 4.600E+01 2.580E+01 1.180E+01
+   5.50               1.080E+03 1.080E+02 1.060E+02 2.430E+02 1.850E+02 1.780E+02 1.130E+02 6.570E+01 3.790E+01 2.140E+01
+   6.00               1.570E+03 1.660E+02 1.640E+02 3.570E+02 2.600E+02 2.570E+02 1.540E+02 1.010E+02 5.410E+01 3.120E+01
+   6.50               2.290E+03 2.420E+02 2.460E+02 5.280E+02 3.740E+02 3.630E+02 2.090E+02 1.470E+02 8.190E+01 4.300E+01
+   7.00               3.440E+03 3.800E+02 3.420E+02 7.700E+02 5.870E+02 5.130E+02 3.110E+02 2.220E+02 1.220E+02 7.600E+01
+   7.50               4.920E+03 4.810E+02 5.170E+02 1.080E+03 8.070E+02 7.380E+02 4.550E+02 3.220E+02 1.870E+02 1.390E+02
+   8.00               6.720E+03 5.750E+02 6.960E+02 1.460E+03 1.080E+03 1.040E+03 6.590E+02 4.470E+02 2.810E+02 2.000E+02
+   8.50               9.430E+03 8.360E+02 9.410E+02 1.940E+03 1.500E+03 1.410E+03 9.190E+02 6.440E+02 4.590E+02 2.850E+02
+   9.00               1.290E+04 1.180E+03 1.270E+03 2.580E+03 2.050E+03 1.840E+03 1.240E+03 8.810E+02 6.290E+02 4.030E+02
+   9.50               1.760E+04 1.530E+03 1.760E+03 3.510E+03 2.710E+03 2.430E+03 1.760E+03 1.220E+03 8.960E+02 6.230E+02
+  10.00               2.250E+04 1.790E+03 2.220E+03 4.430E+03 3.450E+03 3.160E+03 2.260E+03 1.630E+03 1.150E+03 8.550E+02
+  11.00               3.810E+04 3.260E+03 3.500E+03 6.770E+03 5.630E+03 5.150E+03 3.830E+03 2.850E+03 2.180E+03 1.570E+03
+  12.00               6.220E+04 4.390E+03 5.750E+03 1.080E+04 8.650E+03 8.250E+03 6.300E+03 4.890E+03 3.720E+03 3.040E+03
+  13.00               9.440E+04 6.760E+03 7.900E+03 1.490E+04 1.280E+04 1.200E+04 9.600E+03 7.700E+03 6.360E+03 4.920E+03
+  14.00               1.530E+05 8.820E+03 1.190E+04 2.210E+04 1.950E+04 1.910E+04 1.570E+04 1.340E+04 1.090E+04 9.070E+03
+  15.00               2.230E+05 1.270E+04 1.560E+04 2.970E+04 2.760E+04 2.620E+04 2.340E+04 2.000E+04 1.740E+04 1.400E+04
+  16.00               3.410E+05 1.650E+04 2.270E+04 4.090E+04 3.980E+04 3.900E+04 3.560E+04 3.200E+04 2.800E+04 2.340E+04
+  17.00               5.280E+05 1.970E+04 3.190E+04 5.740E+04 5.750E+04 6.070E+04 5.660E+04 5.140E+04 4.600E+04 3.890E+04
+  18.00               8.020E+05 2.450E+04 4.500E+04 7.860E+04 8.390E+04 9.210E+04 8.610E+04 8.170E+04 7.210E+04 6.200E+04
+  19.00               1.180E+06 3.240E+04 6.070E+04 1.070E+05 1.200E+05 1.320E+05 1.280E+05 1.230E+05 1.090E+05 9.480E+04
+  20.00               1.980E+06 4.520E+04 9.170E+04 1.620E+05 1.890E+05 2.180E+05 2.150E+05 2.110E+05 1.880E+05 1.660E+05
+  22.50               4.800E+06 8.030E+04 2.030E+05 3.390E+05 4.170E+05 4.930E+05 5.090E+05 5.130E+05 4.700E+05 4.250E+05
+  25.00               1.170E+07 1.840E+05 5.050E+05 8.080E+05 1.020E+06 1.190E+06 1.250E+06 1.240E+06 1.150E+06 1.030E+06
+  30.00               9.190E+07 1.290E+06 3.780E+06 5.960E+06 7.670E+06 8.830E+06 9.390E+06 9.390E+06 8.910E+06 8.060E+06
+  40.00               3.070E+09 3.670E+07 1.080E+08 1.710E+08 2.230E+08 2.610E+08 2.840E+08 2.910E+08 2.840E+08 2.660E+08
+  50.00               6.770E+10 7.280E+08 2.140E+09 3.420E+09 4.490E+09 5.300E+09 5.830E+09 6.060E+09 6.030E+09 5.750E+09
+  60.00               1.320E+12 1.310E+10 3.850E+10 6.170E+10 8.150E+10 9.690E+10 1.070E+11 1.130E+11 1.140E+11 1.100E+11
+  70.00               2.530E+13 2.300E+11 6.790E+11 1.090E+12 1.450E+12 1.730E+12 1.940E+12 2.050E+12 2.090E+12 2.050E+12
+  80.00               4.950E+14 4.300E+12 1.270E+13 2.040E+13 2.710E+13 3.260E+13 3.650E+13 3.900E+13 3.980E+13 3.930E+13
+  90.00               7.450E+15 6.180E+13 1.830E+14 2.940E+14 3.920E+14 4.720E+14 5.320E+14 5.700E+14 5.860E+14 5.810E+14
+ 100.00               9.760E+16 7.700E+14 2.280E+15 3.680E+15 4.910E+15 5.930E+15 6.710E+15 7.210E+15 7.460E+15 7.460E+15
+ 110.00               1.140E+18 8.610E+15 2.540E+16 4.120E+16 5.510E+16 6.680E+16 7.580E+16 8.190E+16 8.510E+16 8.560E+16
+ 120.00               1.270E+19 9.140E+16 2.700E+17 4.380E+17 5.880E+17 7.140E+17 8.120E+17 8.810E+17 9.200E+17 9.300E+17
+ 130.00               1.270E+20 8.770E+17 2.600E+18 4.210E+18 5.660E+18 6.880E+18 7.860E+18 8.550E+18 8.960E+18 9.100E+18
+ 140.00               1.070E+21 7.100E+18 2.100E+19 3.410E+19 4.590E+19 5.600E+19 6.410E+19 7.000E+19 7.360E+19 7.510E+19
+ 150.00               8.380E+21 5.380E+19 1.590E+20 2.590E+20 3.490E+20 4.260E+20 4.890E+20 5.350E+20 5.650E+20 5.780E+20
+ 160.00               6.170E+22 3.820E+20 1.130E+21 1.840E+21 2.490E+21 3.040E+21 3.500E+21 3.840E+21 4.070E+21 4.180E+21
+ 170.00               4.280E+23 2.570E+21 7.610E+21 1.240E+22 1.670E+22 2.050E+22 2.360E+22 2.600E+22 2.760E+22 2.840E+22
+ 180.00               2.810E+24 1.630E+22 4.840E+22 7.890E+22 1.070E+23 1.310E+23 1.510E+23 1.670E+23 1.770E+23 1.830E+23
+ 190.00               1.750E+25 9.870E+22 2.930E+23 4.770E+23 6.460E+23 7.940E+23 9.180E+23 1.010E+24 1.080E+24 1.120E+24
+ 200.00               1.010E+26 5.550E+23 1.650E+24 2.690E+24 3.640E+24 4.480E+24 5.190E+24 5.740E+24 6.140E+24 6.380E+24
+
+ Negative parity
+
+   0.25               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.50               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   0.75               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.00               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.25               0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00
+   1.50               1.590E-01 0.000E+00 0.000E+00 0.000E+00 0.000E+00 0.000E+00 1.590E-01 0.000E+00 0.000E+00 0.000E+00
+   1.75               6.890E-01 0.000E+00 5.360E-02 8.450E-02 0.000E+00 0.000E+00 5.510E-01 0.000E+00 0.000E+00 0.000E+00
+   2.00               1.790E+00 0.000E+00 4.940E-01 4.280E-01 1.870E-01 1.530E-01 5.280E-01 0.000E+00 0.000E+00 0.000E+00
+   2.25               4.370E+00 0.000E+00 6.300E-01 8.820E-01 1.000E+00 3.440E-01 1.060E+00 1.740E-01 2.760E-01 0.000E+00
+   2.50               6.900E+00 0.000E+00 1.490E-01 1.630E+00 1.670E+00 3.600E-01 1.490E+00 7.900E-01 8.050E-01 0.000E+00
+   2.75               1.050E+01 0.000E+00 2.920E-02 2.270E+00 1.550E+00 8.120E-01 3.000E+00 7.110E-01 2.090E+00 0.000E+00
+   3.00               1.920E+01 3.400E-02 1.960E+00 5.370E+00 2.730E+00 2.480E+00 3.580E+00 8.520E-01 2.070E+00 2.090E-02
+   3.25               4.420E+01 2.170E-01 7.640E+00 1.000E+01 6.780E+00 5.950E+00 5.840E+00 2.810E+00 3.220E+00 7.660E-01
+   3.50               6.740E+01 4.080E-01 1.100E+01 1.560E+01 1.170E+01 8.860E+00 8.370E+00 3.750E+00 4.660E+00 1.780E+00
+   3.75               9.470E+01 8.830E-01 1.650E+01 1.860E+01 1.910E+01 1.190E+01 9.820E+00 7.390E+00 5.520E+00 2.760E+00
+   4.00               1.480E+02 1.260E+00 2.890E+01 2.520E+01 2.910E+01 2.090E+01 1.390E+01 1.440E+01 5.810E+00 4.140E+00
+   4.25               2.330E+02 1.190E+00 4.720E+01 3.890E+01 4.560E+01 3.670E+01 2.170E+01 2.090E+01 7.540E+00 6.640E+00
+   4.50               3.300E+02 8.050E-01 6.410E+01 5.560E+01 6.980E+01 5.380E+01 3.050E+01 2.530E+01 1.160E+01 9.980E+00
+   4.75               4.960E+02 1.620E+00 9.110E+01 8.210E+01 1.090E+02 8.010E+01 5.110E+01 3.380E+01 2.090E+01 1.500E+01
+   5.00               7.140E+02 4.120E+00 1.170E+02 1.120E+02 1.480E+02 1.140E+02 8.580E+01 5.060E+01 3.640E+01 2.360E+01
+   5.50               1.070E+03 9.290E+00 1.860E+02 1.610E+02 2.140E+02 1.600E+02 1.270E+02 8.440E+01 5.630E+01 3.250E+01
+   6.00               1.690E+03 5.240E+00 3.080E+02 2.690E+02 3.110E+02 2.440E+02 2.020E+02 1.320E+02 9.280E+01 5.330E+01
+   6.50               2.420E+03 1.000E+01 4.420E+02 4.060E+02 4.490E+02 3.420E+02 2.930E+02 1.690E+02 1.290E+02 7.970E+01
+   7.00               3.330E+03 1.460E+01 6.010E+02 5.440E+02 6.510E+02 4.770E+02 3.800E+02 2.380E+02 1.680E+02 1.160E+02
+   7.50               4.640E+03 1.220E+01 8.400E+02 7.070E+02 9.190E+02 6.870E+02 4.970E+02 3.630E+02 2.380E+02 1.560E+02
+   8.00               6.680E+03 3.550E+01 1.180E+03 9.840E+02 1.300E+03 9.700E+02 7.100E+02 5.420E+02 3.580E+02 2.420E+02
+   8.50               9.310E+03 4.920E+01 1.600E+03 1.440E+03 1.740E+03 1.290E+03 1.060E+03 7.080E+02 5.300E+02 3.650E+02
+   9.00               1.220E+04 7.200E+01 2.060E+03 1.900E+03 2.290E+03 1.660E+03 1.420E+03 9.000E+02 6.990E+02 4.900E+02
+   9.50               1.620E+04 8.350E+01 2.780E+03 2.410E+03 3.050E+03 2.190E+03 1.790E+03 1.260E+03 9.180E+02 6.390E+02
+  10.00               2.200E+04 1.090E+02 3.690E+03 3.080E+03 3.990E+03 2.970E+03 2.400E+03 1.770E+03 1.300E+03 9.450E+02
+  11.00               3.840E+04 3.130E+02 5.790E+03 5.450E+03 6.540E+03 5.060E+03 4.360E+03 3.110E+03 2.490E+03 1.830E+03
+  12.00               6.130E+04 7.770E+02 9.210E+03 7.910E+03 1.010E+04 7.850E+03 6.270E+03 5.270E+03 4.040E+03 3.160E+03
+  13.00               9.880E+04 1.110E+03 1.330E+04 1.270E+04 1.500E+04 1.230E+04 1.070E+04 8.480E+03 7.080E+03 5.570E+03
+  14.00               1.450E+05 1.290E+03 1.760E+04 1.730E+04 2.090E+04 1.780E+04 1.570E+04 1.340E+04 1.110E+04 9.080E+03
+  15.00               2.330E+05 3.200E+03 2.470E+04 2.600E+04 3.110E+04 2.700E+04 2.530E+04 2.150E+04 1.920E+04 1.570E+04
+  16.00               3.370E+05 4.710E+03 3.200E+04 3.520E+04 4.240E+04 3.860E+04 3.660E+04 3.230E+04 2.850E+04 2.410E+04
+  17.00               5.310E+05 6.860E+03 4.380E+04 5.060E+04 6.330E+04 6.140E+04 5.810E+04 5.330E+04 4.730E+04 3.930E+04
+  18.00               7.970E+05 1.010E+04 5.770E+04 7.050E+04 8.970E+04 9.030E+04 8.810E+04 8.190E+04 7.310E+04 6.190E+04
+  19.00               1.190E+06 1.690E+04 7.680E+04 9.950E+04 1.290E+05 1.320E+05 1.330E+05 1.230E+05 1.110E+05 9.570E+04
+  20.00               1.970E+06 2.650E+04 1.120E+05 1.520E+05 2.030E+05 2.130E+05 2.240E+05 2.070E+05 1.900E+05 1.640E+05
+  22.50               4.800E+06 6.770E+04 2.260E+05 3.340E+05 4.410E+05 4.880E+05 5.250E+05 5.030E+05 4.750E+05 4.140E+05
+  25.00               1.160E+07 1.760E+05 5.320E+05 8.060E+05 1.040E+06 1.180E+06 1.250E+06 1.220E+06 1.140E+06 1.010E+06
+  30.00               9.250E+07 1.270E+06 3.710E+06 5.860E+06 7.570E+06 8.730E+06 9.320E+06 9.350E+06 8.900E+06 8.100E+06
+  40.00               3.020E+09 3.640E+07 1.070E+08 1.690E+08 2.210E+08 2.580E+08 2.800E+08 2.870E+08 2.800E+08 2.620E+08
+  50.00               6.750E+10 7.250E+08 2.130E+09 3.400E+09 4.470E+09 5.280E+09 5.800E+09 6.040E+09 6.000E+09 5.730E+09
+  60.00               1.400E+12 1.360E+10 3.990E+10 6.410E+10 8.470E+10 1.010E+11 1.120E+11 1.180E+11 1.190E+11 1.150E+11
+  70.00               2.480E+13 2.270E+11 6.690E+11 1.080E+12 1.430E+12 1.710E+12 1.910E+12 2.020E+12 2.050E+12 2.010E+12
+  80.00               4.950E+14 4.290E+12 1.270E+13 2.040E+13 2.710E+13 3.260E+13 3.650E+13 3.890E+13 3.980E+13 3.930E+13
+  90.00               7.470E+15 6.200E+13 1.830E+14 2.950E+14 3.930E+14 4.730E+14 5.330E+14 5.710E+14 5.870E+14 5.830E+14
+ 100.00               9.750E+16 7.700E+14 2.270E+15 3.670E+15 4.910E+15 5.930E+15 6.700E+15 7.210E+15 7.450E+15 7.450E+15
+ 110.00               1.150E+18 8.610E+15 2.550E+16 4.120E+16 5.520E+16 6.680E+16 7.580E+16 8.190E+16 8.510E+16 8.560E+16
+ 120.00               1.270E+19 9.140E+16 2.700E+17 4.380E+17 5.870E+17 7.130E+17 8.120E+17 8.810E+17 9.200E+17 9.290E+17
+ 130.00               1.270E+20 8.770E+17 2.590E+18 4.210E+18 5.650E+18 6.880E+18 7.860E+18 8.550E+18 8.960E+18 9.100E+18
+ 140.00               1.070E+21 7.100E+18 2.100E+19 3.410E+19 4.590E+19 5.600E+19 6.410E+19 7.000E+19 7.360E+19 7.510E+19
+ 150.00               8.380E+21 5.380E+19 1.590E+20 2.590E+20 3.490E+20 4.260E+20 4.890E+20 5.350E+20 5.650E+20 5.780E+20
+ 160.00               6.170E+22 3.820E+20 1.130E+21 1.840E+21 2.490E+21 3.040E+21 3.500E+21 3.840E+21 4.070E+21 4.180E+21
+ 170.00               4.280E+23 2.570E+21 7.610E+21 1.240E+22 1.670E+22 2.050E+22 2.360E+22 2.600E+22 2.760E+22 2.840E+22
+ 180.00               2.810E+24 1.630E+22 4.840E+22 7.890E+22 1.070E+23 1.310E+23 1.510E+23 1.670E+23 1.770E+23 1.830E+23
+ 190.00               1.750E+25 9.870E+22 2.930E+23 4.770E+23 6.460E+23 7.940E+23 9.180E+23 1.010E+24 1.080E+24 1.120E+24
+ 200.00               1.010E+26 5.550E+23 1.650E+24 2.690E+24 3.640E+24 4.480E+24 5.190E+24 5.740E+24 6.140E+24 6.380E+24
+
+ Normalization:
+        ctable=   0.00000
+        ptable=   1.07468
+
+ Discrete levels versus total level density
+
+   Energy Level   N_cumulative
+
+   2.8267   9       8.484
+   2.9381  10       9.809
+   3.0300  11      11.146
+   3.0777  12      11.943
+   3.1050  13      12.431
+   3.2126  14      14.585
+   3.2262  15      14.887
+   3.2289  16      14.948
+   3.2412  17      15.228
+   3.3314  18      17.468
+   3.3809  19      18.843
+   3.4274  20      20.232
+   3.4324  21      20.387
+   3.5072  22      22.861
+   3.5236  23      23.440
+   3.5317  24      23.732
+   3.5764  25      25.412
+   3.6707  26      29.256
+   3.6890  27      30.044
+   3.7094  28      30.940
+   3.7253  29      31.651
+   3.7316  30      31.936
+   3.7382  31      32.237
+   3.7426  32      32.440
+   3.7470  33      32.642
+   3.7530  34      32.918
+   3.7700  35      33.713
+   3.7911  36      34.719
+   3.8064  37      35.461
+   3.8250  38      36.379
+   3.8740  39      38.933
+   3.8824  40      39.396
+   3.8983  41      40.288
+   3.9247  42      41.831
+   3.9460  43      43.131
+   3.9690  44      44.594
+   4.0050  45      47.011
+   4.0117  46      47.479
+   4.0192  47      48.009
+   4.0757  48      52.249
+   4.0810  49      52.671
+   4.0860  50      53.072
+   4.1085  51      54.945
+   4.1190  52      55.852
+   4.1827  53      61.853
+   4.1860  54      62.189
+   4.2230  55      66.138
+   4.2519  56      69.469
+   4.2580  57      70.201
+   4.2670  58      71.301
+   4.2953  59      74.917
+   4.3218  60      78.520
+   4.3320  61      79.960
+   4.3937  62      89.151
+   4.4240  63      93.965
+   4.4330  64      95.434
+   4.4390  65      96.424
+   4.4540  66      98.936
+   4.4614  67     100.197
+   4.4720  68     102.021
+   4.4976  69     106.545
+   4.5110  70     108.978
+   4.5191  71     110.462
+   4.5270  72     111.944
+   4.5380  73     114.022
+   4.5650  74     119.260
+   4.5670  75     119.656
+   4.6090  76     128.200
+   4.6160  77     129.664
+   4.6220  78     130.928
+   4.6353  79     133.761
+   4.6382  80     134.393
+   4.6450  81     135.854
+   4.6550  82     138.035
+   4.6756  83     142.608
+   4.6800  84     143.599
+   4.6830  85     144.277
+   4.6940  86     146.783
+   4.7300  87     155.207
+   4.7450  88     158.819
+   4.7580  89     161.999
+   4.7800  90     167.489
+   4.7960  91     171.567
+   4.8062  92     174.206
+   4.8141  93     176.271
+   4.8320  94     181.019
+   4.8499  95     185.887
+   4.8661  96     190.367
+   4.8750  97     192.893
+   4.8850  98     195.754
+   4.9070  99     202.184
+   4.9180 100     205.470
+   4.9450 101     213.744
+   4.9582 102     217.899
+   4.9840 103     226.234
+   5.0058 104     233.504
+   5.0250 105     240.086
+   5.0380 106     244.638
+   5.0590 107     252.162
+   5.0730 108     257.296
+   5.0860 109     262.150
+   5.0970 110     266.325
+   5.1060 111     269.786
+   5.1119 112     272.078
+   5.1240 113     276.836
+   5.1430 114     284.464
+   5.1590 115     291.040
+   5.1690 116     295.223
+   5.1800 117     299.890
+   5.1980 118     307.676
+   5.2073 119     311.773
+   5.2220 120     318.354
+   5.2340 121     323.824
+   5.2450 122     328.916
+   5.2630 123     337.412
+   5.2740 124     342.706
+   5.2850 125     348.079
+   5.3050 126     358.054
+   5.3220 127     366.745
+   5.3310 128     371.426
+   5.3520 129     382.541
+   5.3640 130     389.016
+   5.3750 131     395.032
+   5.3890 132     402.801
+   5.4030 133     410.699
+   5.4200 134     420.463
+   5.4310 135     426.886
+   5.4460 136     435.778
+   5.4644 137     446.900
+   5.5000 138     469.109
+   5.6500 139     573.410
+   5.7400 140     648.608
+   6.0000 141     931.220
+   6.2926 142    1381.443
+   6.4190 143    1610.505
+   6.8500 144    2584.471
+   7.1700 145    3572.984
+   7.3674 146    4315.276
+   7.5173 147    4955.791
+   7.5500 148    5105.227
+   7.6933 149    5803.569
+  11.0599 150   61043.686
+  11.3950 151   77242.442
+  11.4110 152   78093.048
+  11.4570 153   80579.968
+  11.5140 154   83748.825
+  11.5930 155   88305.591
+  11.6540 156   91960.084
+  11.6980 157   94672.154
+  11.7570 158   98411.723
+
+ ########## GAMMA STRENGTH FUNCTIONS, TRANSMISSION COEFFICIENTS AND CROSS SECTIONS ##########
+
+ Gamma-ray information for Z= 30 N= 36 ( 66Zn) 
+
+ S-wave strength function parameters:
+
+ Exp. total radiative width=   0.50000 eV +/- 0.00000 Theor. total radiative width for l=0:        1.59945 eV
+                                                      Theor. total radiative width for l=0:        1.59945 eV (gnorm= 1.000)
+                                                      Theor. total radiative width for l=1:        1.37697 eV
+ Exp. D0                   =      0.00 eV +/-    0.00 Theor. D0                   =      142.63350 eV
+                                                      Theor. D1                   =       76.00919 eV
+ Theor. S-wave strength f. = 112.13673E-4
+ Average resonance energy  =     10000.00 eV
+ Normalization factor      =   1.00000
+
+ Incident energy: E[MeV]=  51.003
+
+ Gamma-ray strength function model for E1: Brink-Axel               
+
+ Gamma-ray strength function model for M1: RIPL-2                   
+
+ Normalized gamma-ray strength functions and transmission coefficients for l= 1
+
+ Giant resonance parameters :
+
+ sigma0(M1) =   6.247       sigma0(E1) = 115.888    PR: sigma0(M1) =   0.000       sigma0(E1) =   0.000
+      E(M1) =  10.145            E(E1) =  17.968    PR:      E(M1) =   0.000            E(E1) =   0.000
+  gamma(M1) =   4.000        gamma(E1) =   6.472    PR:  gamma(M1) =   0.000        gamma(E1) =   0.000
+      k(M1) =   8.67373E-08      k(E1) =   8.67373E-08
+
+      E       f(M1)        f(E1)        T(M1)        T(E1)
+
+    0.001  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+    0.002  1.63665E-12  8.08001E-12  8.22668E-20  4.06145E-19
+    0.005  4.09162E-12  2.02000E-11  3.21355E-18  1.58651E-17
+    0.010  8.18324E-12  4.04000E-11  5.14168E-17  2.53841E-16
+    0.020  1.63666E-11  8.08002E-11  8.22674E-16  4.06146E-15
+    0.050  4.09180E-11  2.02003E-10  3.21369E-14  1.58653E-13
+    0.100  8.18469E-11  4.04024E-10  5.14259E-13  2.53855E-12
+    0.200  1.63782E-10  8.08188E-10  8.23258E-12  4.06239E-11
+    0.300  2.45893E-10  1.21263E-09  4.17148E-11  2.05718E-10
+    0.400  3.28270E-10  1.61750E-09  1.32005E-10  6.50435E-10
+    0.500  4.11000E-10  2.02293E-09  3.22799E-10  1.58880E-09
+    0.600  4.94176E-10  2.42906E-09  6.70680E-10  3.29665E-09
+    0.700  5.77887E-10  2.83605E-09  1.24542E-09  6.11205E-09
+    0.800  6.62228E-10  3.24402E-09  2.13038E-09  1.04360E-08
+    0.900  7.47292E-10  3.65312E-09  3.42293E-09  1.67329E-08
+    1.000  8.33175E-10  4.06350E-09  5.23499E-09  2.55317E-08
+    1.100  9.19977E-10  4.47531E-09  7.69369E-09  3.74267E-08
+    1.200  1.00780E-09  4.88869E-09  1.09420E-08  5.30782E-08
+    1.300  1.09674E-09  5.30378E-09  1.51396E-08  7.32143E-08
+    1.400  1.18691E-09  5.72075E-09  2.04636E-08  9.86318E-08
+    1.500  1.27842E-09  6.13973E-09  2.71099E-08  1.30198E-07
+    1.600  1.37138E-09  6.56089E-09  3.52938E-08  1.68851E-07
+    1.700  1.46591E-09  6.98438E-09  4.52517E-08  2.15603E-07
+    1.800  1.56214E-09  7.41035E-09  5.72422E-08  2.71541E-07
+    1.900  1.66017E-09  7.83896E-09  7.15475E-08  3.37831E-07
+    2.000  1.76016E-09  8.27038E-09  8.84753E-08  4.15715E-07
+    2.200  1.96653E-09  9.14229E-09  1.31568E-07  6.11650E-07
+    2.400  2.18242E-09  1.00274E-08  1.89562E-07  8.70969E-07
+    2.600  2.40909E-09  1.09271E-08  2.66044E-07  1.20672E-06
+    2.800  2.64798E-09  1.18429E-08  3.65232E-07  1.63347E-06
+    3.000  2.90062E-09  1.27762E-08  4.92079E-07  2.16743E-06
+    3.200  3.16876E-09  1.37286E-08  6.52408E-07  2.82655E-06
+    3.400  3.45433E-09  1.47017E-08  8.53063E-07  3.63065E-06
+    3.600  3.75951E-09  1.56972E-08  1.10210E-06  4.60162E-06
+    3.800  4.08673E-09  1.67170E-08  1.40899E-06  5.76354E-06
+    4.000  4.43876E-09  1.77628E-08  1.78493E-06  7.14286E-06
+    4.500  5.44892E-09  2.05048E-08  3.11981E-06  1.17401E-05
+    5.000  6.69683E-09  2.34565E-08  5.25968E-06  1.84227E-05
+    5.500  8.26933E-09  2.66575E-08  8.64447E-06  2.78668E-05
+    6.000  1.02893E-08  3.01537E-08  1.39644E-05  4.09236E-05
+    6.500  1.29310E-08  3.39994E-08  2.23127E-05  5.86666E-05
+    7.000  1.64360E-08  3.82590E-08  3.54218E-05  8.24532E-05
+    7.500  2.11184E-08  4.30096E-08  5.59790E-05  1.14006E-04
+    8.000  2.73116E-08  4.83442E-08  8.78611E-05  1.55523E-04
+    8.500  3.51381E-08  5.43758E-08  1.35586E-04  2.09818E-04
+    9.000  4.39121E-08  6.12423E-08  2.01137E-04  2.80517E-04
+    9.500  5.13233E-08  6.91134E-08  2.76481E-04  3.72317E-04
+   10.000  5.38963E-08  7.81986E-08  3.38640E-04  4.91336E-04
+   10.500  5.00834E-08  8.87576E-08  3.64285E-04  6.45585E-04
+   11.000  4.21497E-08  1.01113E-07  3.52495E-04  8.45603E-04
+   11.500  3.35049E-08  1.15667E-07  3.20171E-04  1.10531E-03
+   12.000  2.60688E-08  1.32915E-07  2.83038E-04  1.44310E-03
+   12.500  2.02823E-08  1.53464E-07  2.48901E-04  1.88328E-03
+   13.000  1.59428E-08  1.78037E-07  2.20077E-04  2.45766E-03
+   13.500  1.27110E-08  2.07464E-07  1.96499E-04  3.20718E-03
+   14.000  1.02876E-08  2.42606E-07  1.77369E-04  4.18279E-03
+   14.500  8.44724E-09  2.84194E-07  1.61808E-04  5.44375E-03
+   15.000  7.02895E-09  3.32464E-07  1.49054E-04  7.05015E-03
+   15.500  5.91954E-09  3.86532E-07  1.38504E-04  9.04399E-03
+   16.000  5.03927E-09  4.43486E-07  1.29690E-04  1.14135E-02
+   16.500  4.33147E-09  4.97548E-07  1.22255E-04  1.40432E-02
+   17.000  3.75535E-09  5.40189E-07  1.15925E-04  1.66752E-02
+   17.500  3.28116E-09  5.62326E-07  1.10490E-04  1.89357E-02
+   18.000  2.88687E-09  5.58378E-07  1.05785E-04  2.04609E-02
+   18.500  2.55597E-09  5.29426E-07  1.01684E-04  2.10620E-02
+   19.000  2.27592E-09  4.82570E-07  9.80839E-05  2.07970E-02
+   19.500  2.03707E-09  4.27099E-07  9.49051E-05  1.98981E-02
+   20.000  1.83192E-09  3.70825E-07  9.20822E-05  1.86397E-02
+   21.000  1.50034E-09  2.72616E-07  8.73024E-05  1.58631E-02
+   22.000  1.24695E-09  2.00302E-07  8.34251E-05  1.34009E-02
+   23.000  1.04948E-09  1.49772E-07  8.02303E-05  1.14497E-02
+   24.000  8.92965E-10  1.14552E-07  7.75618E-05  9.94980E-03
+   25.000  7.67068E-10  8.96023E-08  7.53067E-05  8.79668E-03
+   26.000  6.64485E-10  7.15352E-08  7.33813E-05  7.89987E-03
+   27.000  5.79940E-10  5.81513E-08  7.17223E-05  7.19168E-03
+   28.000  5.09549E-10  4.80219E-08  7.02814E-05  6.62358E-03
+   29.000  4.50408E-10  4.02047E-08  6.90208E-05  6.16099E-03
+   30.000  4.00309E-10  3.40656E-08  6.79108E-05  5.77909E-03
+   31.000  3.57553E-10  2.91686E-08  6.69277E-05  5.45985E-03
+   32.000  3.20817E-10  2.52079E-08  6.60523E-05  5.18999E-03
+   33.000  2.89058E-10  2.19646E-08  6.52691E-05  4.95958E-03
+   34.000  2.61446E-10  1.92791E-08  6.45651E-05  4.76106E-03
+   35.000  2.37312E-10  1.70333E-08  6.39299E-05  4.58863E-03
+   36.000  2.16118E-10  1.51383E-08  6.33546E-05  4.43777E-03
+   37.000  1.97421E-10  1.35262E-08  6.28316E-05  4.30489E-03
+   38.000  1.80858E-10  1.21447E-08  6.23546E-05  4.18716E-03
+   39.000  1.66129E-10  1.09529E-08  6.19184E-05  4.08226E-03
+   40.000  1.52983E-10  9.91820E-09  6.15183E-05  3.98835E-03
+   42.000  1.30633E-10  8.22231E-09  6.08110E-05  3.82756E-03
+   44.000  1.12489E-10  6.90434E-09  6.02072E-05  3.69539E-03
+   46.000  9.75951E-11  5.86222E-09  5.96872E-05  3.58521E-03
+   48.000  8.52477E-11  5.02579E-09  5.92361E-05  3.49227E-03
+   50.000  7.49198E-11  4.34561E-09  5.88419E-05  3.41304E-03
+   52.000  6.62113E-11  3.78606E-09  5.84954E-05  3.34486E-03
+   54.000  5.88140E-11  3.32100E-09  5.81891E-05  3.28572E-03
+   56.000  5.24882E-11  2.93090E-09  5.79170E-05  3.23404E-03
+   58.000  4.70453E-11  2.60097E-09  5.76740E-05  3.18859E-03
+   60.000  4.23353E-11  2.31981E-09  5.74562E-05  3.14837E-03
+
+ Normalized gamma-ray strength functions and transmission coefficients for l= 2
+
+ Giant resonance parameters :
+
+ sigma0(M2) =   0.005       sigma0(E2) =   0.091    PR: sigma0(M2) =   0.000       sigma0(E2) =   0.000
+      E(M2) =  10.145            E(E2) =  15.589    PR:      E(M2) =   0.000            E(E2) =   0.000
+  gamma(M2) =   4.000        gamma(E2) =   5.318    PR:  gamma(M2) =   0.000        gamma(E2) =   0.000
+      k(M2) =   5.20424E-08      k(E2) =   5.20424E-08
+
+      E       f(M2)        f(E2)        T(M2)        T(E2)
+
+    0.001  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+    0.002  1.96397E-10  1.13882E-09  3.94881E-23  2.28973E-22
+    0.005  7.85590E-11  4.55527E-10  1.54250E-21  8.94424E-21
+    0.010  3.92796E-11  2.27763E-10  2.46801E-20  1.43108E-19
+    0.020  1.96399E-11  1.13882E-10  3.94883E-19  2.28973E-18
+    0.050  7.85625E-12  4.55535E-11  1.54257E-17  8.94442E-17
+    0.100  3.92865E-12  2.27781E-11  2.46845E-16  1.43119E-15
+    0.200  1.96538E-12  1.13917E-11  3.95164E-15  2.29044E-14
+    0.300  1.31143E-12  7.59741E-12  2.00231E-14  1.15998E-13
+    0.400  9.84809E-13  5.70115E-12  6.33624E-14  3.66811E-13
+    0.500  7.89121E-13  4.56410E-12  1.54943E-13  8.96160E-13
+    0.600  6.58901E-13  3.80667E-12  3.21926E-13  1.85986E-12
+    0.700  5.66094E-13  3.26615E-12  5.97803E-13  3.44911E-12
+    0.800  4.96671E-13  2.86121E-12  1.02258E-12  5.89088E-12
+    0.900  4.42839E-13  2.54666E-12  1.64300E-12  9.44852E-12
+    1.000  3.99924E-13  2.29538E-12  2.51280E-12  1.44223E-11
+    1.100  3.64949E-13  2.09013E-12  3.69297E-12  2.11503E-11
+    1.200  3.35932E-13  1.91938E-12  5.25216E-12  3.00087E-11
+    1.300  3.11500E-13  1.77519E-12  7.26699E-12  4.14135E-11
+    1.400  2.90672E-13  1.65187E-12  9.82253E-12  5.58207E-11
+    1.500  2.72730E-13  1.54524E-12  1.30127E-11  7.37278E-11
+    1.600  2.57134E-13  1.45217E-12  1.69410E-11  9.56750E-11
+    1.700  2.43474E-13  1.37028E-12  2.17208E-11  1.22246E-10
+    1.800  2.31427E-13  1.29771E-12  2.74762E-11  1.54071E-10
+    1.900  2.20743E-13  1.23298E-12  3.43428E-11  1.91825E-10
+    2.000  2.11219E-13  1.17492E-12  4.24682E-11  2.36233E-10
+    2.200  1.95028E-13  1.07520E-12  6.31524E-11  3.48162E-10
+    2.400  1.81868E-13  9.92778E-13  9.09897E-11  4.96693E-10
+    2.600  1.71060E-13  9.23695E-13  1.27701E-10  6.89566E-10
+    2.800  1.62121E-13  8.65109E-13  1.75311E-10  9.35494E-10
+    3.000  1.54700E-13  8.14941E-13  2.36198E-10  1.24426E-09
+    3.200  1.48536E-13  7.71633E-13  3.13156E-10  1.62683E-09
+    3.400  1.43433E-13  7.33996E-13  4.09470E-10  2.09541E-09
+    3.600  1.39241E-13  7.01108E-13  5.29006E-10  2.66365E-09
+    3.800  1.35847E-13  6.72241E-13  6.76314E-10  3.34675E-09
+    4.000  1.33163E-13  6.46818E-13  8.56767E-10  4.16162E-09
+    4.500  1.29160E-13  5.95466E-13  1.49751E-09  6.90398E-09
+    5.000  1.28579E-13  5.57687E-13  2.52465E-09  1.09502E-08
+    5.500  1.31216E-13  5.30214E-13  4.14934E-09  1.67666E-08
+    6.000  1.37191E-13  5.10967E-13  6.70290E-09  2.49648E-08
+    6.500  1.46908E-13  4.98616E-13  1.07101E-08  3.63507E-08
+    7.000  1.61006E-13  4.92348E-13  1.70025E-08  5.19927E-08
+    7.500  1.80210E-13  4.91723E-13  2.68699E-08  7.33173E-08
+    8.000  2.04837E-13  4.96602E-13  4.21733E-08  1.02244E-07
+    8.500  2.33443E-13  5.07117E-13  6.50813E-08  1.41378E-07
+    9.000  2.60220E-13  5.23654E-13  9.65456E-08  1.94284E-07
+    9.500  2.72966E-13  5.46872E-13  1.32711E-07  2.65879E-07
+   10.000  2.58702E-13  5.77727E-13  1.62547E-07  3.62996E-07
+   10.500  2.18050E-13  6.17499E-13  1.74857E-07  4.95179E-07
+   11.000  1.67206E-13  6.67811E-13  1.69198E-07  6.75767E-07
+   11.500  1.21606E-13  7.30568E-13  1.53682E-07  9.23272E-07
+   12.000  8.68960E-14  8.07724E-13  1.35858E-07  1.26284E-06
+   12.500  6.23072E-14  9.00636E-13  1.19473E-07  1.72695E-06
+   13.000  4.52813E-14  1.00862E-12  1.05637E-07  2.35301E-06
+   13.500  3.34775E-14  1.12620E-12  9.43196E-08  3.17294E-06
+   14.000  2.51941E-14  1.23910E-12  8.51372E-08  4.18722E-06
+   14.500  1.92850E-14  1.32148E-12  7.76676E-08  5.32208E-06
+   15.000  1.49951E-14  1.34088E-12  7.15460E-08  6.39771E-06
+   15.500  1.18268E-14  1.27586E-12  6.64820E-08  7.17202E-06
+   16.000  9.44863E-15  1.13488E-12  6.22513E-08  7.47701E-06
+   16.500  7.63675E-15  9.53134E-13  5.86824E-08  7.32408E-06
+   17.000  6.23727E-15  7.69225E-13  5.56441E-08  6.86243E-06
+   17.500  5.14272E-15  6.07252E-13  5.30350E-08  6.26238E-06
+   18.000  4.27685E-15  4.75404E-13  5.07769E-08  5.64424E-06
+   18.500  3.58471E-15  3.72418E-13  4.88082E-08  5.07071E-06
+   19.000  3.02615E-15  2.93442E-13  4.70803E-08  4.56530E-06
+   19.500  2.57145E-15  2.33179E-13  4.55544E-08  4.13087E-06
+   20.000  2.19830E-15  1.87075E-13  4.41994E-08  3.76137E-06
+   21.000  1.63302E-15  1.23984E-13  4.19051E-08  3.18156E-06
+   22.000  1.23664E-15  8.52121E-14  4.00441E-08  2.75927E-06
+   23.000  9.52271E-16  6.04566E-14  3.85105E-08  2.44491E-06
+   24.000  7.44137E-16  4.40777E-14  3.72297E-08  2.20523E-06
+   25.000  5.89108E-16  3.28940E-14  3.61472E-08  2.01835E-06
+   26.000  4.71824E-16  2.50447E-14  3.52230E-08  1.86966E-06
+   27.000  3.81854E-16  1.94021E-14  3.44267E-08  1.74923E-06
+   28.000  3.11969E-16  1.52601E-14  3.37351E-08  1.65017E-06
+   29.000  2.57070E-16  1.21634E-14  3.31300E-08  1.56757E-06
+   30.000  2.13498E-16  9.81035E-15  3.25972E-08  1.49786E-06
+   31.000  1.78591E-16  7.99638E-15  3.21253E-08  1.43841E-06
+   32.000  1.50383E-16  6.57987E-15  3.17051E-08  1.38723E-06
+   33.000  1.27409E-16  5.46085E-15  3.13291E-08  1.34280E-06
+   34.000  1.08559E-16  4.56754E-15  3.09913E-08  1.30394E-06
+   35.000  9.29877E-17  3.84759E-15  3.06864E-08  1.26972E-06
+   36.000  8.00436E-17  3.26230E-15  3.04102E-08  1.23942E-06
+   37.000  6.92198E-17  2.78269E-15  3.01591E-08  1.21242E-06
+   38.000  6.01190E-17  2.38677E-15  2.99302E-08  1.18825E-06
+   39.000  5.24274E-17  2.05773E-15  2.97208E-08  1.16652E-06
+   40.000  4.58950E-17  1.78255E-15  2.95288E-08  1.14689E-06
+   42.000  3.55465E-17  1.35528E-15  2.91893E-08  1.11290E-06
+   44.000  2.78899E-17  1.04668E-15  2.88994E-08  1.08457E-06
+   46.000  2.21388E-17  8.19633E-16  2.86499E-08  1.06069E-06
+   48.000  1.77599E-17  6.49814E-16  2.84333E-08  1.04034E-06
+   50.000  1.43846E-17  5.20928E-16  2.82441E-08  1.02284E-06
+   52.000  1.17535E-17  4.21813E-16  2.80778E-08  1.00767E-06
+   54.000  9.68132E-18  3.44683E-16  2.79308E-08  9.94417E-07
+   56.000  8.03392E-18  2.84009E-16  2.78002E-08  9.82770E-07
+   58.000  6.71277E-18  2.35807E-16  2.76835E-08  9.72472E-07
+   60.000  5.64471E-18  1.97167E-16  2.75790E-08  9.63319E-07
+
+ Photoabsorption cross sections
+
+     E      reaction
+
+    0.001  0.0000E+00
+    0.002  5.1537E-05
+    0.005  5.2713E-05
+    0.010  5.6914E-05
+    0.020  7.3718E-05
+    0.050  1.9135E-04
+    0.100  6.1148E-04
+    0.200  2.2925E-03
+    0.300  5.0960E-03
+    0.400  9.0246E-03
+    0.500  1.4082E-02
+    0.600  2.0273E-02
+    0.700  2.7603E-02
+    0.800  3.6080E-02
+    0.900  4.5711E-02
+    1.000  5.6506E-02
+    1.100  6.8475E-02
+    1.200  8.1629E-02
+    1.300  9.5982E-02
+    1.400  1.1155E-01
+    1.500  1.2834E-01
+    1.600  1.4638E-01
+    1.700  1.6567E-01
+    1.800  1.8625E-01
+    1.900  2.0813E-01
+    2.000  2.3134E-01
+    2.200  2.8182E-01
+    2.400  3.3790E-01
+    2.600  3.9982E-01
+    2.800  4.6784E-01
+    3.000  5.4227E-01
+    3.200  6.2345E-01
+    3.400  7.1175E-01
+    3.600  8.0760E-01
+    3.800  9.1148E-01
+    4.000  1.0239E+00
+    4.500  1.3466E+00
+    5.000  1.7384E+00
+    5.500  2.2151E+00
+    6.000  2.7988E+00
+    6.500  3.5196E+00
+    7.000  4.4197E+00
+    7.500  5.5556E+00
+    8.000  6.9962E+00
+    8.500  8.8016E+00
+    9.000  1.0956E+01
+    9.500  1.3256E+01
+   10.000  1.5320E+01
+   10.500  1.6930E+01
+   11.000  1.8328E+01
+   11.500  1.9980E+01
+   12.000  2.2247E+01
+   12.500  2.5345E+01
+   13.000  2.9440E+01
+   13.500  3.4700E+01
+   14.000  4.1320E+01
+   14.500  4.9496E+01
+   15.000  5.9363E+01
+   15.500  7.0865E+01
+   16.000  8.3555E+01
+   16.500  9.6375E+01
+   17.000  1.0760E+02
+   17.500  1.1520E+02
+   18.000  1.1765E+02
+   18.500  1.1473E+02
+   19.000  1.0756E+02
+   19.500  9.7919E+01
+   20.000  8.7460E+01
+   21.000  6.7972E+01
+   22.000  5.2812E+01
+   23.000  4.1779E+01
+   24.000  3.3830E+01
+   25.000  2.8040E+01
+   26.000  2.3744E+01
+   27.000  2.0494E+01
+   28.000  1.7989E+01
+   29.000  1.6026E+01
+   30.000  1.4464E+01
+   31.000  1.3204E+01
+   32.000  1.2176E+01
+   33.000  1.1328E+01
+   34.000  1.0622E+01
+   35.000  1.0030E+01
+   36.000  9.5298E+00
+   37.000  9.1039E+00
+   38.000  8.7391E+00
+   39.000  8.4249E+00
+   40.000  8.1529E+00
+   42.000  7.7093E+00
+   44.000  7.3671E+00
+   46.000  7.0984E+00
+   48.000  6.8836E+00
+   50.000  6.7087E+00
+   52.000  6.5635E+00
+   54.000  6.4405E+00
+   56.000  6.3341E+00
+   58.000  6.2399E+00
+   60.000  6.1548E+00
+
+ ########## RESULTS FOR E=   0.00108 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00114 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00121 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00128 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00136 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00144 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00153 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00162 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00172 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00183 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00194 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00212 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00232 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00254 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00278 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00305 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00333 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00365 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00399 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00437 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00479 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00524 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00574 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00628 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00687 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00752 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00824 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00902 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.00987 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01080 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01183 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01295 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01417 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01551 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01698 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.01859 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.02035 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.02227 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.02438 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.02669 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.02922 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.03198 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.03501 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.03832 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.04195 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.04592 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.05027 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.05503 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.06024 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.06594 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.07218 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.07901 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.08649 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.09468 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.10364 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.11345 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.12419 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.13595 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.14882 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.16290 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.17833 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.19521 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.21368 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.23391 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.25605 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.28029 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.30682 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.33586 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.36766 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.40246 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.44055 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.48226 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.52790 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.57788 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.63258 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.69245 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.75800 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.82975 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.90830 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   0.99427 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.08839 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.19142 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.21316 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.23531 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.25785 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.28081 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.30419 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.32800 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.35224 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.37692 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.40205 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.42765 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.45370 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.48024 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.50726 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : y
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.53477 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.56278 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.59131 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.62036 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.64993 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.68005 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.71071 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.74194 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.77374 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.80611 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.83908 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.87265 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.90683 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.94163 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   1.97708 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.01316 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.04991 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.08733 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.12543 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.16422 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.20373 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.24395 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.28491 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.32662 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.36908 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.41233 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.45636 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.50119 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.54685 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.59334 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.64067 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.68887 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.73795 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.78793 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.83882 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.89064 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.94340 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : n
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   2.99712 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.05183 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.10754 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.16426 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.22202 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.28083 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.34071 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.40169 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.46378 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.52701 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.59138 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.65694 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.72369 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.79166 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.86087 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   3.93134 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.00310 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.07617 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.15057 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.22633 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.30347 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.38202 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.46201 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.54346 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.62639 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.71083 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.79682 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.88438 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   4.97353 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.06431 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.15675 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.25088 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.34672 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.44432 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.54369 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.64488 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.74792 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.85284 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   5.95967 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.06845 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.17922 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.29201 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.40686 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.52380 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.64288 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.76413 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   6.88760 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.01332 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.14133 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.27168 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.40441 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.53957 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.67719 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.81732 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   7.96001 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   8.10530 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   8.25325 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   8.40390 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   8.55729 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   8.71349 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   8.87254 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   9.03449 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   9.19940 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   9.36731 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   9.53829 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   9.71240 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=   9.88968 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  10.07020 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  10.25401 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  10.44117 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  10.63176 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  10.82582 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  11.02342 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  11.22464 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  11.42952 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  11.63814 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  11.85057 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  12.06688 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  12.28714 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  12.51142 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  12.73979 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  12.97233 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  13.20911 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  13.45022 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  13.69573 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  13.94572 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  14.20027 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  14.45947 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  14.72340 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  14.99214 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  15.26580 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  15.54444 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  17.50562 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  19.71422 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : n
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  22.20148 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  25.00254 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  28.15700 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  31.70944 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  35.71008 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  40.21546 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  45.28926 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ ########## RESULTS FOR E=  51.00321 ##########
+
+ Energy dependent input flags
+
+ Width fluctuations (flagwidth)            : n
+ Unresolved resonance parameters (flagurr) : n
+ Preequilibrium (flagpreeq)                : y
+ Multiple preequilibrium (flagmulpre)      : y
+ Number of continuum excitation energy bins: 40
+
+ 8. Thermonuclear reaction rates
+
+ Reaction rate for Z= 30 A= 66 ( 66Zn)
+
+    T        G(T)        Rate       MACS 
+
+   0.0001 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0005 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0010 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0050 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0100 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0500 1.00000E+00 1.62575E-36 2.94970E-41
+   0.1000 1.00000E+00 1.42245E-21 1.82492E-26
+   0.1500 1.00000E+00 2.61760E-16 2.74199E-21
+   0.2000 1.00000E+00 2.55520E-13 2.31802E-18
+   0.2500 1.00000E+00 3.03572E-11 2.46321E-16
+   0.3000 1.00000E+00 1.13946E-09 8.44011E-15
+   0.4000 1.00000E+00 2.21913E-07 1.42351E-12
+   0.5000 1.00000E+00 9.34896E-06 5.36397E-11
+   0.6000 1.00000E+00 1.61013E-04 8.43324E-10
+   0.7000 1.00000E+00 1.55659E-03 7.54804E-09
+   0.8000 1.00001E+00 1.00957E-02 4.57931E-08
+   0.9000 1.00003E+00 4.89342E-02 2.09266E-07
+   1.0000 1.00007E+00 1.90050E-01 7.71038E-07
+   1.5000 1.00158E+00 2.17861E+01 7.21675E-05
+   2.0000 1.00860E+00 3.96196E+02 1.13659E-03
+   2.5000 1.02608E+00 2.87239E+03 7.37023E-03
+   3.0000 1.05886E+00 1.21790E+04 2.85271E-02
+   3.5000 1.11218E+00 3.66082E+04 7.93875E-02
+   4.0000 1.19292E+00 8.68187E+04 1.76113E-01
+   5.0000 1.47942E+00 3.01739E+05 5.47463E-01
+   6.0000 2.05168E+00 6.75505E+05 1.11882E+00
+   7.0000 3.15242E+00 1.11922E+06 1.71623E+00
+   8.0000 5.20236E+00 1.50796E+06 2.16298E+00
+   9.0000 8.92136E+00 1.76820E+06 2.39121E+00
+  10.0000 1.55448E+01 1.88671E+06 2.42055E+00
+
+ Reaction rate for Z= 29 A= 65 ( 65Cu)
+
+    T        G(T)        Rate       MACS 
+
+   0.0001 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0005 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0010 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0050 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0100 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2000 1.00000E+00 1.29001E-34 1.17027E-39
+   0.2500 1.00000E+00 9.44169E-29 7.66105E-34
+   0.3000 1.00000E+00 8.68868E-25 6.43578E-30
+   0.4000 1.00000E+00 1.25434E-19 8.04627E-25
+   0.5000 1.00000E+00 2.30222E-16 1.32090E-21
+   0.6000 1.00000E+00 3.88388E-14 2.03422E-19
+   0.7000 1.00000E+00 1.54800E-12 7.50639E-18
+   0.8000 1.00001E+00 2.44733E-11 1.11008E-16
+   0.9000 1.00003E+00 2.07455E-10 8.87176E-16
+   1.0000 1.00007E+00 1.13467E-09 4.60340E-15
+   1.5000 1.00158E+00 4.45914E-06 1.47711E-11
+   2.0000 1.00860E+00 1.96107E-02 5.62582E-08
+   2.5000 1.02608E+00 3.18721E+00 8.17803E-06
+   3.0000 1.05886E+00 9.80402E+01 2.29642E-04
+   3.5000 1.11218E+00 1.16460E+03 2.52552E-03
+   4.0000 1.19292E+00 7.61156E+03 1.54402E-02
+   5.0000 1.47942E+00 1.08714E+05 1.97246E-01
+   6.0000 2.05168E+00 6.36501E+05 1.05422E+00
+   7.0000 3.15242E+00 2.16117E+06 3.31397E+00
+   8.0000 5.20236E+00 5.16587E+06 7.40980E+00
+   9.0000 8.92136E+00 9.81723E+06 1.32763E+01
+  10.0000 1.55448E+01 1.59864E+07 2.05097E+01
+
+ Reaction rate for Z= 28 A= 64 ( 64Ni)
+
+    T        G(T)        Rate       MACS 
+
+   0.0001 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0005 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0010 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0050 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0100 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.3000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.4000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.5000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.6000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.7000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.8000 1.00001E+00 0.00000E+00 0.00000E+00
+   0.9000 1.00003E+00 0.00000E+00 0.00000E+00
+   1.0000 1.00007E+00 0.00000E+00 0.00000E+00
+   1.5000 1.00158E+00 1.25676E-28 4.16308E-34
+   2.0000 1.00860E+00 2.52598E-19 7.24640E-25
+   2.5000 1.02608E+00 9.61437E-14 2.46694E-19
+   3.0000 1.05886E+00 6.88609E-10 1.61295E-15
+   3.5000 1.11218E+00 4.70756E-07 1.02087E-12
+   4.0000 1.19292E+00 7.07914E-05 1.43601E-10
+   5.0000 1.47942E+00 9.35195E-02 1.69678E-07
+   6.0000 2.05168E+00 1.20049E+01 1.98834E-05
+   7.0000 3.15242E+00 3.78477E+02 5.80362E-04
+   8.0000 5.20236E+00 4.86821E+03 6.98285E-03
+   9.0000 8.92136E+00 3.44257E+04 4.65554E-02
+  10.0000 1.55448E+01 1.60096E+05 2.05394E-01
+
+ Reaction rate for Z= 27 A= 63 ( 63Co)
+
+    T        G(T)        Rate       MACS 
+
+   0.0001 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0005 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0010 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0050 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0100 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.3000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.4000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.5000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.6000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.7000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.8000 1.00001E+00 0.00000E+00 0.00000E+00
+   0.9000 1.00003E+00 0.00000E+00 0.00000E+00
+   1.0000 1.00007E+00 0.00000E+00 0.00000E+00
+   1.5000 1.00158E+00 0.00000E+00 0.00000E+00
+   2.0000 1.00860E+00 0.00000E+00 0.00000E+00
+   2.5000 1.02608E+00 0.00000E+00 0.00000E+00
+   3.0000 1.05886E+00 0.00000E+00 0.00000E+00
+   3.5000 1.11218E+00 0.00000E+00 0.00000E+00
+   4.0000 1.19292E+00 2.45647E-25 4.98299E-31
+   5.0000 1.47942E+00 1.18180E-15 2.14420E-21
+   6.0000 2.05168E+00 6.18571E-11 1.02452E-16
+   7.0000 3.15242E+00 1.54344E-07 2.36673E-13
+   8.0000 5.20236E+00 5.20784E-05 7.47000E-11
+   9.0000 8.92136E+00 4.57010E-03 6.18035E-09
+  10.0000 1.55448E+01 1.57256E-01 2.01751E-07
+
+ Reaction rate for Z= 26 A= 62 ( 62Fe)
+
+    T        G(T)        Rate       MACS 
+
+   0.0001 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0005 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0010 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0050 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0100 1.00000E+00 0.00000E+00 0.00000E+00
+   0.0500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.1500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.2500 1.00000E+00 0.00000E+00 0.00000E+00
+   0.3000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.4000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.5000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.6000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.7000 1.00000E+00 0.00000E+00 0.00000E+00
+   0.8000 1.00001E+00 0.00000E+00 0.00000E+00
+   0.9000 1.00003E+00 0.00000E+00 0.00000E+00
+   1.0000 1.00007E+00 0.00000E+00 0.00000E+00
+   1.5000 1.00158E+00 0.00000E+00 0.00000E+00
+   2.0000 1.00860E+00 0.00000E+00 0.00000E+00
+   2.5000 1.02608E+00 0.00000E+00 0.00000E+00
+   3.0000 1.05886E+00 0.00000E+00 0.00000E+00
+   3.5000 1.11218E+00 0.00000E+00 0.00000E+00
+   4.0000 1.19292E+00 0.00000E+00 0.00000E+00
+   5.0000 1.47942E+00 0.00000E+00 0.00000E+00
+   6.0000 2.05168E+00 3.56615E-24 5.90653E-30
+   7.0000 3.15242E+00 2.52923E-17 3.87836E-23
+   8.0000 5.20236E+00 1.46937E-13 2.10763E-19
+   9.0000 8.92136E+00 1.11994E-10 1.51455E-16
+  10.0000 1.55448E+01 2.19314E-08 2.81369E-14
+
+ Execution time:  0 hours  1 minutes 48.28 seconds 
+
+ The TALYS team congratulates you with this successful calculation.
