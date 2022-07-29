@@ -32,7 +32,8 @@ gr1->SetMarkerColor(kRed);
 gr1->SetMarkerStyle(21);
 
 gr2->SetMarkerColor(kAzure+4);
-gr2->SetMarkerStyle(20);
+gr2->SetMarkerStyle(22);
+gr2->SetMarkerSize(1.5);
 gr2->SetLineWidth(2);
 gr2->SetLineColor(kAzure+4);
 
@@ -46,7 +47,7 @@ mg->Add(gr2);
 // mg->Add(gr3);
 
 mg->GetXaxis()->SetRangeUser(6,13.5);
-// mg->GetYaxis()->SetRangeUser(1,300);
+mg->GetYaxis()->SetRangeUser(1.5E-10,1.5E-7);
 
 
 mg->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
