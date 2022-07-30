@@ -9,8 +9,8 @@ TMultiGraph *mg = new TMultiGraph("mg","");
 TGraph *gr = new TGraph(file1, "%lg %*s %lg %*s %*s %*s");
 TGraph *grr = new TGraph(file1, "%lg %*s %*s %lg %*s %*s");
 // TGraph *gr1 = new TGraph(file2, "%lg %*s %*s %lg %*s %*s");
-TGraph *gr2 = new TGraph(file3, "%lg %*s %*s %lg %*s %*s");
-TGraph *gr3 = new TGraph(file4, "%lg %*s %*s %lg %*s %*s");
+TGraph *gr2 = new TGraph(file3, "%lg %*s %*s %lg");
+TGraph *gr3 = new TGraph(file4, "%lg %*s %*s %lg");
 
 // Options
 
