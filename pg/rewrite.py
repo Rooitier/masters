@@ -7,7 +7,7 @@ psf = []
 energynew = []
 
 # Importing the File and reading it to arrays
-file = open("51V1992.dat",'r')
+file = open("90Zr2015.dat",'r')
 
 for line in file:
     line = line.strip()
@@ -98,7 +98,7 @@ ysplit[nans]= np.interp(x(nans), x(~nans), ysplit[~nans]).round(4) # Interpolate
 x = xsplit.flatten()
 y = ysplit.flatten()
 
-with open("sample.dat","w") as f:
+with open("E1file90Zr2015.dat","w") as f:
     # f.write(' Z=  22 A=  46\n')
     # f.write('  U[MeV]  fE1[mb/MeV]\n')
     for i in range(0, len(x)):
