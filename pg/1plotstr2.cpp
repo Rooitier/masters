@@ -47,8 +47,8 @@ mg->Add(gr1,"p");
 mg->Add(gr2);
 // mg->Add(gr3);
 
-mg->GetXaxis()->SetRangeUser(6,12);
-mg->GetYaxis()->SetRangeUser(1E-9,1E-7);
+// mg->GetXaxis()->SetRangeUser(6,12);
+// mg->GetYaxis()->SetRangeUser(1E-9,1E-7);
 
 
 mg->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
