@@ -49,8 +49,8 @@ mg->Add(gr3,"l");
 // mg->GetYaxis()->SetRangeUser(1,300);
 
 
-mg->GetXaxis()->SetTitle("E (MeV)");
-mg->GetYaxis()->SetTitle("Cumulative N (a.u.)");
+mg->GetXaxis()->SetTitle("E_{x} (MeV)");
+mg->GetYaxis()->SetTitle("Cumulative NLD (a.u.)");
 
 //Draw
 

@@ -1,4 +1,4 @@
-void plot(const char* file1, const char* file2, const char* file3){
+void plot(const char* file1, const char* file2){
 
 // Graphs and canvas
 TCanvas *c1 = new TCanvas ("c1","Graph Draw Options", 500,500,600,400);
@@ -8,9 +8,10 @@ TMultiGraph *mg = new TMultiGraph("mg","");
 
 TGraphAsymmErrors *g = new TGraphAsymmErrors(file1, "%lg %*s %lg %lg %lg");
 TGraphAsymmErrors *gr = new TGraphAsymmErrors(g->GetN(),g->GetX(),g->GetY(),g->GetEXlow(),g->GetEXhigh(),g->GetEYhigh(),g->GetEYlow());
-TGraphAsymmErrors *g1 = new TGraphAsymmErrors(file2, "%lg %*s %lg %lg %lg");
-TGraphAsymmErrors *gr1 = new TGraphAsymmErrors(g1->GetN(),g1->GetX(),g1->GetY(),g1->GetEXlow(),g1->GetEXhigh(),g1->GetEYhigh(),g1->GetEYlow());
-TGraph *grr = new TGraph(file3, "%lg %lg");
+// TGraphAsymmErrors *g1 = new TGraphAsymmErrors(file2, "%lg %*s %lg %lg %lg");
+// TGraphAsymmErrors *gr1 = new TGraphAsymmErrors(g1->GetN(),g1->GetX(),g1->GetY(),g1->GetEXlow(),g1->GetEXhigh(),g1->GetEYhigh(),g1->GetEYlow());
+TGraph *grr = new TGraph(file2, "%lg %lg");
+// TGraph *gr2 = new TGraph(file4, "%lg %lg");
 
 // TGraph *gr1 = new TGraph(file3, "%lg %*s %*s %lg %*s %*s");
 // TGraph *gr2 = new TGraph(file4, "%lg %*s %*s %lg %*s %*s");
@@ -23,26 +24,31 @@ gr->SetMarkerStyle(21);
 // gr->SetLineWidth(2);
 // gr->SetLineColor(1);
 
-grr->SetMarkerColor(4);
+grr->SetMarkerColor(kGreen+3);
 grr->SetMarkerStyle(20);
+grr->SetLineWidth(2);
+grr->SetLineColor(kGreen+3);
 
-gr1->SetMarkerColor(kRed);
-gr1->SetMarkerStyle(21);
+// gr1->SetMarkerColor(kRed);
+// gr1->SetMarkerStyle(21);
 
-// gr2->SetMarkerColor(6);
-// gr2->SetMarkerStyle(20);
+// gr2->SetMarkerColor(kAzure+4);
+// gr2->SetMarkerStyle(22);
+// gr2->SetMarkerSize(1.5);
+// gr2->SetLineWidth(2);
+// gr2->SetLineColor(kAzure+4);
 
 // gr3->SetMarkerColor(kGreen+3);
 // gr3->SetMarkerStyle(20); 
 
 mg->Add(gr,"p");
 mg->Add(grr);
-mg->Add(gr1,"p");
+// mg->Add(gr1,"p");
 // mg->Add(gr2);
 // mg->Add(gr3);
 
-mg->GetXaxis()->SetRangeUser(7,13);
-// mg->GetYaxis()->SetRangeUser(1,300);
+// mg->GetXaxis()->SetRangeUser(6,12);
+// mg->GetYaxis()->SetRangeUser(1E-9,1E-7);
 
 
 mg->GetXaxis()->SetTitle("E_{#gamma} (MeV)");
@@ -52,11 +58,12 @@ mg->GetYaxis()->SetTitle("#font[12]{f_{1}}(MeV^{-3})");
 
 mg->Draw("APL");
 
-auto legend = new TLegend(0.7,0.15,0.85,0.3);
-legend->AddEntry(gr, "Experimental Data 1979","lp");
-legend->AddEntry(grr,"Brink-Axel PSF 1979","lp");
-legend->AddEntry(gr1,"Experimental Data 1992","lp");
-
+auto legend = new TLegend(0.6,0.15,0.85,0.45);
+legend->SetBorderSize(0);
+legend->AddEntry(gr, "{}^{50}Ti(p,#gamma) Erlandsson et al. (1979)","p");
+legend->AddEntry(grr,"Brink-Axel PSF (1979)","lp");
+// legend->AddEntry(gr1,"{}^{50}Ti(p,#gamma) Nemashkalo et al. (1992)","p");
+// legend->AddEntry(gr2,"Brink-Axel PSF (1992)","lp");
 
 // legend->AddEntry(gr2,"HFB + Skyrme","lp");
 // legend->AddEntry(gr3,"HFB + Gogny","lp");
