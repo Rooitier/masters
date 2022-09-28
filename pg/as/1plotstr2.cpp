@@ -62,7 +62,7 @@ auto legend = new TLegend(0.6,0.15,0.85,0.45);
 legend->SetBorderSize(0);
 legend->AddEntry(gr, "{}^{73}As(p,#gamma) Szeflinska et al. (1979)","p");
 legend->AddEntry(grr,"Brink-Axel PSF (1979)","lp");
-legend->AddEntry(gr1,"{}^{73}Ti(p,#gamma) Ratkevich et al. (1995)","p");
+legend->AddEntry(gr1,"{}^{73}As(p,#gamma) Ratkevich et al. (1995)","p");
 legend->AddEntry(gr2,"Brink-Axel PSF (1995)","lp");
 
 // legend->AddEntry(gr2,"HFB + Skyrme","lp");
